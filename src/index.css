@@ -1,0 +1,498 @@
+* {
+  margin: 0px;
+}
+
+.preloader {
+  min-width: 100vw;
+  min-height: 100vh;
+  /* -webkit-backdrop-filter: blur(100px);
+  backdrop-filter: blur(100px); */
+  background: transparent;
+  position: absolute;
+  animation: ease-in 4s;
+}
+
+@keyframes loadspinner {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  top: 30vh;
+  left: 40vw;
+  animation-name: loadspinner;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+}
+
+#addemployeeform{
+  width: 50px;
+  height: 50px;
+  padding: 5px;
+  text-align: center;
+  border-radius: 50%;
+  border:2px solid rgba(135, 206, 250);
+}
+
+.user_item {
+  width: 350px;
+  border: 1px solid #ebebeb;
+  border-radius: 7px;
+  display: inline-flex;
+  justify-content: space-evenly;
+}
+
+.text-box {
+  width: 150px;
+}
+
+.text-box:focus {
+  border: 1.5px solid navy;
+}
+
+.profile_image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.progress1 {
+  min-width: 200px;
+  min-height: 200px;
+  border-radius: 50%;
+  border-width: 15px;
+  border: 15px solid lightskyblue;
+  margin: auto;
+}
+
+.fill {
+  border-radius: 50%;
+}
+
+#percent {
+  align-items: center;
+  text-align: center;
+  margin-top: 30%;
+}
+
+.hide {
+  display: none;
+}
+
+#alertanimation {
+  transition: all 2s forwards;
+}
+
+.navbar {
+  height: 5em;
+  width: 100%;
+  background: linear-gradient(to right, #fff, lightskyblue);
+  display: flex;
+  justify-content: space-between;
+}
+
+.site-logo {
+  max-width: 60px;
+  max-height: 60px;
+  padding-top: 10px;
+}
+
+@media (min-width: 768px) {
+  .site-logo {
+    padding-left: 10px;
+  }
+}
+
+.header-links {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+.links {
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.links a {
+  color: navy;
+}
+
+.form-control {
+  width: 295px;
+  padding: 25px;
+  border: 1px solid navy;
+  border-radius: 7px;
+  margin-bottom: 20px;
+}
+
+.circle {
+  min-width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 7px solid sandybrown;
+  border-end-start-radius: 7px;
+}
+
+#brand {
+  color: sandybrown;
+  font: 1.5em sans-serif;
+  font-weight: 800;
+  text-align: center;
+  padding: 7px;
+}
+
+.transaction-status{
+  background: white;
+  padding: 10px;
+  border-radius: 7px;
+  min-width: 180px;
+  width: 200px;
+  /* height: 150px; */
+  position: absolute;
+  top: 280px;
+  left: 30vw;
+  transition: ease-in-out 5s all;
+/* -webkit-backdrop-filter: blur(12px);
+backdrop-filter: 12px; */
+}
+
+.transaction{
+  display: flex;
+  width: 48px;
+  margin: auto;
+  text-align: center;
+}
+
+#trans_ref{
+  height: 30px;
+  padding: 7px;
+  background: #b4b4b4;
+}
+
+h6{
+  text-align: center;
+}
+
+.brand_text {
+  font: 1.5em sans-serif;
+  font-weight: 800;
+  color: sandybrown;
+  align-items: center;
+  position: relative;
+  top: 7px;
+  right: 16px;
+}
+
+.dashboard {
+  width: 97%;
+  margin: 16px auto;
+  padding: 15px;
+  border-radius: 16px;
+  display: flex;
+}
+
+.menudrawer{
+  background: rgba(255, 255, 255, 0.5) !important;
+  /* -webkit-backdrop-filter: blur(7px); */
+}
+
+.notification {
+  margin: 0px auto;
+  padding: 25px;
+  border-radius: 16px;
+  height: 100vh;
+  background: transparent;
+  color: navy;
+}
+
+.MuiDialog-paperWidthSm {
+  min-width: 500px;
+}
+
+.displaybox {
+  background-color: transparent;
+  border-radius: 15px;
+  margin: auto;
+}
+
+.display {
+  width: 90%;
+  padding: 25px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.display2 {
+  min-width: 25%;
+  padding: 25px;
+}
+
+.hprogressbar {
+  color: aliceblue;
+  height: 20%;
+  padding: 10;
+  overflow: hidden;
+  transition: 0.3s linear;
+  text-align: center;
+}
+
+.display3 {
+  width: 40%;
+  height: 300px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.display5 {
+  width: 50%;
+  height: 300px;
+  padding: 30px;
+}
+
+.board {
+  width: 98%;
+  background: none;
+  border-radius: 10px;
+}
+
+#user{
+  color: lightskyblue;
+  text-transform: capitalize;
+}
+
+.slides {
+  margin: 7px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.slide {
+  height: 7px;
+  width: 20px;
+  border-radius: 35px;
+  background: rgba(214, 162, 28, .5);
+}
+
+.bubble{
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  background: rgba(135, 206, 250, .4);
+  position: relative;
+  left: 50px;
+  text-align: center;
+  font-size: 28px;
+  color: #fff;
+}
+
+.bubble3{
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  background: rgba(250, 238, 135, 0.4);
+  position: relative;
+  right: -15px;
+}
+
+.bubble2{
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  background: rgba(214, 162, 28, .5);
+  position: relative;
+}
+
+.slide:active {
+  background: coral;
+}
+
+.status {
+  overflow-y: scroll;
+}
+
+.status-content {
+  display: flex;
+  justify-content: space-between;
+  border: 0.3px solid black;
+  padding: 5px;
+  font-size: 21px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.box {
+  width: 100%;
+  margin: auto;
+  background: none;
+  padding: 15px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.calendar_day {
+  color: lightskyblue;
+  padding: 5px;
+  margin: auto;
+  width: 5px !important;
+  height: 5px !important;
+  border-radius: 50%;
+}
+
+.calendar_day:hover {
+  background-color: palevioletred;
+  color: tomato;
+}
+
+@media (max-width: 768px) {
+  .salaryPlans {
+    display: block;
+    width: 50%;
+    margin: 0px auto;
+    margin-top: 5em;
+  }
+
+  .basicSalaryPlan {
+    width: 100%;
+    height: 150px;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .midSalaryPlan {
+    width: 100%;
+    height: 150px;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .goldSalaryPlan {
+    width: 100%;
+    height: 150px;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .display {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .display2 {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .display3 {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .display4 {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .display5 {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
+.salaryPlans {
+  display: flex;
+  width: 85%;
+  margin: 0px auto;
+  justify-content: space-evenly;
+  margin-top: 4em;
+}
+
+.basicSalaryPlan {
+  width: 21vw;
+  height: 300px;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.midSalaryPlan {
+  width: 21vw;
+  height: 300px;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.goldSalaryPlan {
+  width: 21vw;
+  height: 300px;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.salaryPlans span a {
+  font-size: 12px;
+}
+
+@media (max-width: 1200px) {
+  .box {
+    display: block;
+  }
+
+  .display {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .display2 {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .display3 {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .display4 {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .display5 {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  background-color: lightskyblue;
+}
+
+*::-webkit-scrollbar- {
+  width: 15px;
+}
+
+/* *::-webkit-scrollbar-thumb {
+  background-color: navy;
+  border-radius: 10px;
+  /* border-left: 1px solid #ffeaa7; 
+} */
+
+/* *::-webkit-scrollbar-track {
+  background: navy;
+  border-radius: 10px;
+} */
