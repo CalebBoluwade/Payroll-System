@@ -23,6 +23,7 @@ const AppRouter = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="login" element={<LoginPage />} />
+        <Route path="/register" element={<Register />} />
         <Route path="dashboard" element={<Dashboard />} />
         {!isUserAuth && (
           <>
@@ -36,8 +37,8 @@ const AppRouter = () => {
         <Route path="*" element={<ErrorPage />} />
         
 
-        {/* <Route path="/register" element={<Register />} />
-        <Route path="/notification" element={<Notications />} /> */}
+        
+        {/* <Route path="/notification" element={<Notications />} /> */}
 
         {/* <Route path="dashboard/:board" element={<Board />} />
         <Route path="staff" element={<Staff />} />

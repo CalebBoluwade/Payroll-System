@@ -931,6 +931,7 @@ input[type="email"]::selection{
 .button_area{
   display: flex;
   justify-content: center;
+  align-content: flex-end;
 }
 
 button{
