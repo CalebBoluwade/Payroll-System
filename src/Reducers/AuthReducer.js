@@ -1,11 +1,11 @@
-const authReducer = (auth = false, action) => {
+const authReducer = (auth, action) => {
   switch (action.type) {
     case "LOG_IN":
       return (auth = true);
     case "LOG_OUT":
       return (auth = false);
     default:
-      return true;
+      return false;
   }
 };
 

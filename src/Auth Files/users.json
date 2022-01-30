@@ -6,8 +6,11 @@
       "username": "New Wave Solutions",
       "email": "johndoe@newwave.com",
       "Phone": "+234xxxxxxxx",
+      "subscription_type": "demo",
+      "subscription_start_date": "demo",
+      "subscription_end_date": "demo",
       "password": "test12345",
-      "Departments": [
+      "Employees": [
         {
           "frontdesk": [
             {

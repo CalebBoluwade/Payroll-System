@@ -4,7 +4,7 @@ const jsonServer = require("json-server");
 const jwt = require("jsonwebtoken");
 
 const server = jsonServer.create();
-const userdb = JSON.parse(fs.readFileSync("./users_db.json", "utf-8"));
+const userdb = JSON.parse(fs.readFileSync("./users.json", "utf-8"));
 
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
@@ -51,7 +51,7 @@ server.post("/api/auth/register", (req, res) => {
       password: password,
     });
     let writeData = fs.writeFile(
-      "./users_db.json",
+      "./users.json",
       JSON.stringify(data),
       (err, result) => {
         if (err) {
@@ -63,4 +63,17 @@ server.post("/api/auth/register", (req, res) => {
       }
     );
   });
+  const newToken = createToken({email, password})
+  res.status(200).json({newToken})
 });
+
+server.post("/api/auth/login"), (req, res) => {
+  const {email, password} =req.body;
+  function isAuthenticated({ email, password }) {
+    return (
+      userdb.users.findIndex(
+        (user) => user.email === email && user.password === password
+      ) !== -1
+    );
+  } 
+}

@@ -4,7 +4,6 @@ import { Menu } from "@material-ui/icons";
 import Drawer from "@mui/material/Drawer";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
-import Avatar from "@material-ui/core/Avatar";
 import Container from "@material-ui/core/Container";
 import { Book } from "@material-ui/icons";
 import ContactSupportIcon from "@material-ui/icons/ContactSupport";
@@ -58,7 +57,7 @@ const MenuDrawer = () => {
           </div>
 
           <ul>
-            <Link to="/dashboard/board" className="click">
+            <Link to="dashboard" className="click">
               <li className="links hoverable">
                 <WidgetsIcon style={{ fontSize: 36 }} />
                 <p>Dashboard</p>
@@ -69,14 +68,14 @@ const MenuDrawer = () => {
               <div className="divider"></div>
             </li>
             <h4>Apps</h4>
-            <Link to="/apps/calendar">
+            <Link to="/">
               <li className="links hoverable">
                 <ContactCalendar style={{ fontSize: 36 }} />
                 <p>Calendar</p>
               </li>
             </Link>
 
-            <Link to="/apps/utilities">
+            <Link to="/">
               <li className="links hoverable">
                 {/* <Utilities style={{ fontSize: 36 }} /> */}
                 <p>Buy Utilities</p>
@@ -89,7 +88,7 @@ const MenuDrawer = () => {
 
             <h4>Management</h4>
 
-            <Link to="/user/staff">
+            <Link to="/">
               <li className="links hoverable">
                 <PersonOutlineIcon style={{ fontSize: 36 }} />
                 <p>Staffs</p>
@@ -109,7 +108,7 @@ const MenuDrawer = () => {
               </li>
             </Link>
 
-            <Link>
+            <Link to="/">
               <li className="links hoverable">
                 <ContactSupportIcon style={{ fontSize: 36 }} />
                 <p>Help Center</p>

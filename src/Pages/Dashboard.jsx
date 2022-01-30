@@ -85,37 +85,39 @@ const Dashboard = () => {
         </div> */}
 
         <Sidebar />
-        
 
-        <div className="displaybox display" id="display">
-          
-
+        <div className="display" id="display">
           <div id="top">
             <ArrowLeftRounded />
-      <div id="search">
-        <input type="search" name="" id="searches" />
-      </div>
-    </div>
-    <section class="body">
-      <div class="s">
-        <div class="m">
-          <div class="f">gng</div>
-          <div class="f">klk</div>
-        </div>
-        <div class="box">
-          <div class="percent">
-            <svg>
-              <circle cx="70" cy="70" r="70"></circle>
-              <circle cx="70" cy="70" r="70"></circle>
-            </svg>
-            <div class="number">
-              <h2>87<span>%</span></h2>
+            <div id="search">
+              <input type="search" name="" id="searches" />
             </div>
           </div>
-          <h2 class="text">Progress</h2>
-        </div>
-      </div>
-    </section>
+          <section class="body">
+            <div class="s">
+              <div class="m">
+                <div class="f">gng</div>
+                <div class="f">klk</div>
+              </div>
+              <div class="box">
+                <div class="percent">
+                  <svg>
+                    <circle cx="70" cy="70" r="70"></circle>
+                    <circle cx="70" cy="70" r="70"></circle>
+                  </svg>
+                  <div class="number">
+                    <h2>
+                      87<span>%</span>
+                    </h2>
+                  </div>
+                </div>
+                {/* <h2 class="text">Progress</h2> */}
+              </div>
+            </div>
+          </section>
+          <div className="m">
+            <div className="f"></div>
+          </div>
         </div>
 
         {/* <Login openPopup={openLoginModal} setOpenPopup={() => dispatch(closeLogin())} /> */}

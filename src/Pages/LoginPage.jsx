@@ -1,46 +1,78 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { login } from "../Actions";
 
 const Login = () => {
-    const isAuth = useSelector((state) => state.loginReducer);
+  const isAuth = useSelector((state) => state.loginReducer);
   const dispatch = useDispatch();
+  const nav = useNavigate();
 
-  let email = "demo@payroll.com"
+  const loginButton = document.getElementById("login");
+
+  const email = "demo@payroll.com";
+  const password = "qwertyuiop";
 
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState();
 
-  const handleLoginRequest = (event) => {
+  const handleLoginRequest = () => {
+    if (userEmail && userPassword == ""){
+      console.log("Empty");
+    }
+    //   if(userEmail !== email){
+    //     console.log("Incorrect email");
+    //   }
 
-    const sign_in = {
-      email: userEmail,
-      password: userPassword,
+    // if(userPassword !== password){
+    //   console.log("Incorrect Password");
+    // }
+
+    dispatch(login()) && nav("/dashboard");
+
+    const userSettings = {
+      sessionId: 1,
+      themePrefrence: "dark",
     };
-
-    console.log(sign_in);
+  
+    localStorage.setItem("userSettings", JSON.stringify(userSettings));
   };
 
   return (
-  <>
-    <div class="main pay">
-    <div class="pay">
-    <div className="form-control">
-        <label htmlFor="email">email</label>
-        <input type="email" required id="email" placeholder="Email" onChange={(e) => setUserEmail(e.target.value)} />
-        <label htmlFor="email">password</label>
-        <input type="password" required id="password" placeholder="Password" onChange={(e) => setUserEmail(e.target.value)}/>
+    <>
+      <div class="main pay">
+        <div class="pay">
+          <div className="form-control">
+            <label htmlFor="email">email</label>
+            <input
+              type="email"
+              required
+              id="email"
+              placeholder="Email"
+              onChange={(e) => setUserEmail(e.target.value)}
+            />
+            <label htmlFor="email">password</label>
+            <input
+              type="password"
+              required
+              id="password"
+              placeholder="Password"
+              onChange={(e) => setUserPassword(e.target.value)}
+            />
 
-        <button onClick={handleLoginRequest}>LOGIN</button>
+            <button id="login" onClick={handleLoginRequest}>
+              LOGIN
+            </button>
 
-        <p>IF YOU DONT HAVE AN ACCOUNT, CLICK <Link to="register">HERE</Link> </p>
+            <p>
+              IF YOU DONT HAVE AN ACCOUNT, CLICK <Link to="register">HERE</Link>{" "}
+            </p>
 
-        <div class="form-footer">
-            powered by
+            <div class="form-footer">powered by</div>
+          </div>
         </div>
-        </div>
-</div>
-</div>
-</>
-  )}
+      </div>
+    </>
+  );
+};
 export default Login;

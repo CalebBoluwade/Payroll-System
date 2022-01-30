@@ -20,6 +20,7 @@ const Settings = ({openSettings, setOpenSettings}) => {
 
   const handleRightAlign = () => {
     sidebar.setAttribute("style", "right: 0;");
+    dashDisplay.setAttribute("style", "margin-right: 70px;");
   };
 
   if (dark === 0) {
@@ -36,23 +37,16 @@ const Settings = ({openSettings, setOpenSettings}) => {
   };
 
   if (dark === 1) {
+    body[0].classList.remove("light");
     body[0].classList.remove("aqua");
     body[0].classList.add("dark");
-
-    // drawer.classList.add("aqua");
   }
 
   if (dark === 2) {
+    body[0].classList.remove("light");
     body[0].classList.remove("dark");
     body[0].classList.add("aqua");
   }
-
-  const userSettings = {
-    sessionId: 1,
-    themePrefrence: "dark",
-  };
-
-  sessionStorage.setItem("userSettings", JSON.stringify(userSettings));
 
   return (
     <div>

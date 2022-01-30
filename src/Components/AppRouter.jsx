@@ -1,9 +1,9 @@
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "../Pages/Home";
 import Dashboard from "../Pages/Dashboard";
 import Notications from "../Pages/Notications";
-import Pricing from "../Pages/Pricing";
-import Register from "../Pages/Register";
+import SubscriptionPage from "../Pages/SubscriptionPage";
+import Register from "../Pages/RegisterCompany";
 import Profile from "../Pages/Profile";
 import Contact from "../Pages/Contact";
 import ErrorPage from "../Pages/ErrorPage";
@@ -18,40 +18,32 @@ import AdminAuth from "../Pages/AdminAuth";
 
 const AppRouter = () => {
   const isUserAuth = useSelector((state) => state.authReducer);
-  // const navigate = useNavigate();
-
-  // if (isUserAuth) {
-  //   navigate("/login");
-  // }
   return (
     <>
       <Routes>
-        <Route path="/*" element={<Home />} />
-        <Route path="sign-in" element={<LoginPage />} />
-        <Route path="pricing" element={<Pricing />} />
+        <Route path="/" element={<Home />} />
+        <Route path="login" element={<LoginPage />} />
+        <Route path="dashboard" element={<Dashboard />} />
+        {!isUserAuth && (
+          <>
+            <Route path="login" element={<LoginPage />} />
+            <Route path="admin" element={<AdminAuth />} />
+          </>
+        )}
+        <Route path="subs" element={<SubscriptionPage />} />
         <Route path="contact" element={<Contact />} />
         <Route path="pay" element={<PayPage />} />
         <Route path="*" element={<ErrorPage />} />
-        <Route path="admin" element={<AdminAuth />} />
+        
 
         {/* <Route path="/register" element={<Register />} />
         <Route path="/notification" element={<Notications />} /> */}
 
-        {isUserAuth ? (
-          <>
-            <Route path="dashboard" element={<Dashboard />} />
-          </>
-        ) : (
-          <>
-            <Route path="login" element={<LoginPage />} />
-          </>
-        )}
-
-        <Route path="dashboard/:board" element={<Board />} />
+        {/* <Route path="dashboard/:board" element={<Board />} />
         <Route path="staff" element={<Staff />} />
         <Route path="calendar" element={<Calendar />} />
         <Route path="profile" element={<Profile />} />
-        <Route path="util" element={<Utilities />} />
+        <Route path="util" element={<Utilities />} /> */}
 
         
       </Routes>

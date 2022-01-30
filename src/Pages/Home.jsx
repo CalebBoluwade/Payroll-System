@@ -35,16 +35,6 @@ const Home = () => {
 
   const year = new Date();
 
-  // const slide = () => {
-  //   let i = 0;
-  //   do {
-  //     i++;
-  //     i = 0;
-  //   } while (i < 3);
-  //   console.log(i);
-  // };
-  // slide();
-
   //Register New Company
   const postNewUser = (e) => {
     e.preventDefault();
@@ -100,7 +90,7 @@ const Home = () => {
         <div
           className="homedisplay"
           style={{
-            backgroundImage: "url(./home/girl_3.gif)",
+            backgroundImage: "url(../home/girl_3.gif)",
           }}
         >
           <h2 className="flow-text center" style={{ paddingTop: 50 }}>

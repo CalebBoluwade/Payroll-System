@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import Header from "../Components/Header";
 import Footer from "../Components/Footer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
-  Button,
   Checkbox,
   Dialog,
   DialogContent,
@@ -13,10 +11,9 @@ import {
 
 const Pricing = () => {
   const [openTCs, closeTCs] = useState(false);
+  const navigate = useNavigate();
   return (
     <>
-      <Header />
-
       {/* <div className="box">
         <div className="displaybox display hoveranim z-depth-5 hoverable">
           <div className="box" style={{ alignItems: "center" }}>
@@ -106,11 +103,13 @@ const Pricing = () => {
               </div>
               <div>
                 <Checkbox />
+                I've Read and Hereby Agree To The Terms & Conditions Stated Above
               </div>
+              <button onClick={() => navigate("/pay")}>PROCEED</button>
             </DialogContent>
           </Dialog>
           <div className="price-quote">FREE</div>
-          <Button onClick={() => closeTCs(!openTCs)}>Try Demo</Button>
+          <button onClick={() => closeTCs(!openTCs)}>Demo Account</button>
         </div>
 
         <div className="card z-depth-4 Payment-Plan hoverable">
@@ -133,7 +132,7 @@ const Pricing = () => {
             <div className="price-quote">N25,750</div>
             <span className="price-discount">Save N8,250</span>
           </div>
-          <Button onClick={() => closeTCs(!openTCs)}>N25,750</Button>
+          <button onClick={() => closeTCs(!openTCs)}>N25,750</button>
         </div>
 
         <div className="card z-depth-4 Payment-Plan hoverable">
@@ -158,13 +157,12 @@ const Pricing = () => {
             <span className="price-discount">Save N49,750</span>
           </div>
 
-          <Button
-            outlined
+          <button
             onClick={() => closeTCs(!openTCs)}
             style={{ position: "relative", bottom: "0px" }}
           >
             Pay N148,250
-          </Button>
+          </button>
         </div>
       </div>
       <br />
@@ -176,14 +174,14 @@ const Pricing = () => {
           justifyContent: "space-evenly",
         }}
       >
-        <Link>
+        <Link to="/">
           <span>Services</span>
         </Link>
-        <Link>
+        <Link to="/">
           <span>Privacy Policy</span>
         </Link>
-        <Link>
-          <span>T & C's</span>
+        <Link to="">
+          <span>T {"&"} C's</span>
         </Link>
       </div>
       {/* <div style={{ paddingTop: 50 }}>

@@ -58,9 +58,6 @@ const Header = () => {
           </span>
         </li>
         <li className="links">
-          <Link to="dashboard">Dashboard</Link>
-        </li>
-        <li className="links">
           <Link to="pricing">Pricing</Link>
         </li>
         <li className="links">

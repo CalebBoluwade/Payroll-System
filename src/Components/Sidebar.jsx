@@ -78,7 +78,7 @@ const Sidebar = () => {
       </Tooltip>
       <Tooltip title="Settings">
       <SettingsIcon
-        style={{ fontSize: 32 }}
+        style={{ fontSize: 32, color: "orange" }}
         onClick={() => setOpenSettings(!openSettings)}
       />
       </Tooltip>
