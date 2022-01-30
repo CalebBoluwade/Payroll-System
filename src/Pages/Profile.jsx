@@ -7,7 +7,7 @@ const Profile = () => {
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
   const [email, setEmail] = useState();
-  const [company, setCompany] = useState(false);
+  const [company] = useState(false);
 
   const handleProfileChanges = () => {
     console.log(firstName, lastName, email);

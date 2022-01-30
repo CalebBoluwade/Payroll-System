@@ -10,8 +10,44 @@ export const logout = () => {
   };
 };
 
-export const airtime = () => {
+export const openLogin = () => {
   return {
-    type: "BUY_AIRTIME",
+    type: "OPENED",
+  };
+};
+
+export const closeLogin = () => {
+  return {
+    type: "CLOSED",
+  };
+};
+
+export const loading = () => {
+  return {
+    type: "LOADING",
+  };
+};
+
+export const notLoading = () => {
+  return {
+    type: "!LOADING",
+  };
+};
+
+export const darkTheme = () => {
+  return {
+    type: "DARK_THEME",
+  };
+};
+
+export const lightTheme = () => {
+  return {
+    type: "LIGHT_THEME",
+  };
+};
+
+export const aquaTheme = () => {
+  return {
+    type: "AQUA_THEME",
   };
 };

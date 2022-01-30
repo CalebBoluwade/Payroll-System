@@ -1,8 +1,14 @@
-import loginReducer from "./LoginReducer";
+import authReducer from "./AuthReducer";
+import loadingReducer from "./LoadingReducer";
+import themeReducer from "./ThemeReducers";
+import loginModal from "./LoginModal";
 import { combineReducers } from "redux";
 
 const Reducers = combineReducers({
-  loginReducer,
+  authReducer,
+  loadingReducer,
+  themeReducer,
+  loginModal,
 });
 
 export default Reducers;

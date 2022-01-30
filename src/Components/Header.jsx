@@ -15,14 +15,12 @@ import Typography from "@material-ui/core/Typography";
 import LockOutlined from "@material-ui/icons/LockOutlined";
 import Badge from "@material-ui/core/Badge";
 import NotificationIcon from "@material-ui/icons/Notifications";
-import Drawer from "@material-ui/core/Drawer";
-import Menu from "@material-ui/core/Menu";
+import Menu from "@mui/material/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import MenuIcon from "@material-ui/icons/MenuOutlined";
-import Logout from "@material-ui/icons/LocalDiningOutlined";
 import Tooltip from "@material-ui/core/Tooltip";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../Actions";
+import { ConfirmationNumberOutlined } from "@material-ui/icons";
 
 const Header = () => {
   const isAuth = useSelector((state) => state.loginReducer);
@@ -32,8 +30,9 @@ const Header = () => {
   const [userPassword, setUserPassword] = useState();
 
   const [openPopup, setOpenPopup] = useState(false);
-  const [openDrawer, setOpenDrawer] = useState(false);
+
   const [openMenu, setOpenMenu] = useState(false);
+  const [appsModalDisplay, setAppsModalDisplay] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -48,67 +47,64 @@ const Header = () => {
 
   return (
     <nav className="navbar z-depth-5">
-      <div style={{ display: "flex" }}>
-        <div
-          className="hide-on-large-only"
-          style={{
-            border: "1px solid navy",
-            borderRadius: 8,
-            height: 35,
-            padding: 7,
-            marginTop: 15,
-            marginLeft: 15,
-          }}
-        >
-          <MenuIcon
-            onClick={() => setOpenDrawer(true)}
-            style={{
-              color: "navy",
-              fontSize: 34,
-              position: "relative",
-              bottom: 10,
-            }}
-          />
-        </div>
-
-        <Drawer open={openDrawer} onClose={() => setOpenDrawer(false)}>
-          <Container
-            style={{
-              width: 350,
-              height: "100%",
-              padding: 15,
-              background:
-                "linear-gradient(to bottom, #fff, lightskyblue, navy)",
-            }}
-          >  
-
-          </Container>
-        </Drawer>
-
-        <img src="GetriPay-Logo2.png" alt="getri-logo" className="site-logo" />
+      <div>
+        <img src="LOGO IDEA 1A.png" alt="brand-logo" className="site-logo" />
       </div>
 
       <ul className="hide-on-med-and-down">
         <li className="links">
-          <a href="/">Home</a>
+          <span onClick={() => setAppsModalDisplay(!appsModalDisplay)}>
+            Apps
+          </span>
         </li>
         <li className="links">
-          <a href="/dashboard">Services</a>
+          <Link to="dashboard">Dashboard</Link>
         </li>
         <li className="links">
-          <a href="/pricing">Pricing</a>
+          <Link to="pricing">Pricing</Link>
         </li>
         <li className="links">
-          <a href="/dashboard">Contact</a>
+          <Link to="/dashboard">Partners</Link>
+        </li>
+        <li className="links">
+          <Link to="/contact">Contact</Link>
         </li>
       </ul>
+
+      <Dialog
+        open={appsModalDisplay}
+        onClose={() => setAppsModalDisplay(false)}
+      >
+        <DialogTitle>
+          <div className="center">Apps</div>
+        </DialogTitle>
+        <DialogContent>
+          <div style={{ display: "flex", justifyContent: "space-around" }}>
+            <div className="quickadd" style={{ background: "blue" }}>
+              <span>
+                <ConfirmationNumberOutlined />
+              </span>
+            </div>
+            <div className="quickadd" style={{ background: "#96d3d3" }}>
+              <span>
+                <ConfirmationNumberOutlined />
+              </span>
+            </div>
+            <div className="quickadd" style={{ background: "blue" }}>
+              <span>
+                <ConfirmationNumberOutlined />
+              </span>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       <div>
         {isAuth ? (
           <span
             style={{
               display: "flex",
-              marginRight: 20,
+              marginRight: 10,
               justifyContent: "space-between",
             }}
           >
@@ -131,25 +127,19 @@ const Header = () => {
                   className="circle"
                   alt="avatar_img"
                   style={{
-                    width: 40,
-                    height: 40,
                     position: "relative",
-                    top: 13,
+                    top: 10,
                   }}
                   onClick={() => setOpenMenu(true)}
                 />
               </Tooltip>
 
               <Menu open={openMenu} onClose={() => setOpenMenu(false)}>
-                <MenuItem onClick={() => setOpenMenu(false)}>Profile</MenuItem>
-                <MenuItem onClick={() => setOpenMenu(false)}>
+                {/* <MenuItem onClick={() => setOpenMenu(false)}>Profile</MenuItem> */}
+                {/* <MenuItem onClick={() => setOpenMenu(false)}>
                   My account
-                </MenuItem>
-                <MenuItem onClick={() => setOpenMenu(false)}>
-                  <Button text="Logout" onClick={() => dispatch(logout())}>
-                    <Logout fontSize="small" /> Logout
-                  </Button>
-                </MenuItem>
+                </MenuItem> */}
+                <MenuItem onClick={() => dispatch(logout())}>Logout</MenuItem>
               </Menu>
             </div>
           </span>
@@ -162,85 +152,13 @@ const Header = () => {
             >
               Login
             </Button>
+            
+            <Dialog open={openPopup} onClose={() => setOpenPopup(false)}></Dialog>
           </span>
         )}
       </div>
 
-      <Dialog open={openPopup} onClose={() => setOpenPopup(false)}>
-        <DialogTitle>
-          {openPopup ? (
-            <Alert severity="success" id="alertanimation">
-              Login Sucess!
-            </Alert>
-          ) : (
-            <Alert severity="error">Try Again</Alert>
-          )}
-        </DialogTitle>
-
-        <DialogContent>
-          <Container component="main" maxWidth="xs">
-            <form
-              // action="/dashboard"
-              method="GET"
-              className="form-control"
-              style={{ margin: "0px auto" }}
-            >
-              <Avatar className="center" style={{ margin: "0px auto" }}>
-                <LockOutlined />
-              </Avatar>
-              <Typography className="center" component="h1" variant="h5">
-                Sign in
-              </Typography>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                placeholder="Email"
-                label="Email Address"
-                name="email"
-                onChange={(e) => setUserEmail(e.target.value)}
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="password"
-                label="Password"
-                type="password"
-                name="password"
-                onChange={(e) => setUserPassword(e.target.value)}
-                current-password="auto-complete"
-              />
-
-              <FormControlLabel
-                control={<Checkbox value="remember" />}
-                label="Remember me"
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                onClick={handleSubmit}
-              >
-                Sign In
-              </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Link variant="body2">Forgot Password?</Link>
-                </Grid>
-
-                <Grid item xs>
-                  <Link to="/register" variant="body2">
-                    Don't have an account? Sign Up
-                  </Link>
-                </Grid>
-              </Grid>
-            </form>
-          </Container>
-        </DialogContent>
-      </Dialog>
+    
     </nav>
   );
 };

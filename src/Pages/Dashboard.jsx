@@ -1,211 +1,147 @@
 import React, { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
-import ContactSupportIcon from "@material-ui/icons/ContactSupport";
-import PersonOutlineIcon from "@material-ui/icons/PeopleAlt";
-import WidgetsIcon from "@material-ui/icons/Widgets";
-import Settings from "@material-ui/icons/Settings";
-import Close from "@material-ui/icons/Close";
+import { BrowserRouter as Routes, Route } from "react-router-dom";
 import Profile from "./Profile";
-import Badge from "@material-ui/core/Badge";
-import NotificationIcon from "@material-ui/icons/Notifications";
-import Avatar from "@material-ui/core/Avatar";
-import { Link } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
-import ContactCalendar from "@material-ui/icons/PermContactCalendar";
-import SearchIcon from "@material-ui/icons/Search";
-// import FormControlLabel from "@material-ui/core/Form";
-import Container from "@material-ui/core/Container";
-import Board from "./Board";
-import Calendar from "./Calendar";
-import Staff from "./Staff";
-import Utilities from "./utilities";
-import { TextField } from "@material-ui/core";
-import { Book } from "@material-ui/icons";
-import ContactSupport from "../Components/ContactSupport";
+import Avatar from "@material-ui/core/Avatar";
+import { ArrowLeftRounded } from "@material-ui/icons";
+import { Link } from "react-router-dom";
 import MenuDrawer from "../Components/MenuDrawer";
+import Footer from "../Components/Footer";
+import { Button, Backdrop, Dialog, DialogContent } from "@mui/material";
+import Sidebar from "../Components/Sidebar";
+// import { closeLogin, loading ,notLoading } from "../Actions";
+import { useDispatch, useSelector } from "react-redux";
 
 const Dashboard = () => {
-  const [loading, setLoading] = useState(true);
+  const [openProfile, setOpenProfile] = useState(false);
+  const [logoutNotifier, setlogoutNotifier] = useState(false);
+
+  // const openLoginModal = useSelector((state) => state.loginModal);
+
+  // console.log(openLoginModal);
+
+  const dispatch = useDispatch();
 
   return (
-    <Router>
-      <>
-
-      {loading ? (
-          <>
-            <div className="preloader">
-              <span className="right" onClick={() => setLoading(false)}>
-                <Close style={{ fontSize: 28 }} />
-              </span>
-
-              <img src="../logo-javascript.png" alt="fds" className="loader" width="50"/>
-
-            </div>
-          </>
-        ) : ""}
-
-          <div className="dashboard z-depth-1">
-            <div className="hide-on-med-and-down" style={{ width: "20%" }}>
-              <Container>
-                <TextField
-                  label="Search here"
-                  InputProps={{ type: "search" }}
-                />
-                <SearchIcon style={{ position: "relative", right: 40 }} />
-              </Container>
-
-              <div
-                on
-                className="displaybox z-depth-3"
-                style={{ marginBottom: 35 }}
+    <>
+      <div className="dashboard">
+        <div id="topbar" className="z-depth-5 hoverable">
+          <div className="left">
+            <MenuDrawer />
+          </div>
+          <div className="right" style={{ display: "flex" }}>
+            <Avatar
+              className="center"
+              onClick={() => setOpenProfile(!openProfile)}
+            >
+              <img
+                src="../Thf_1551875131.jpg"
+                className="circle"
+                alt="avatar_img"
+              />
+              <Backdrop
+                open={openProfile}
+                onClose={() => setOpenProfile(!openProfile)}
               >
                 <div
+                  className="displaybox z-depth-4"
                   style={{
-                    width: "100%",
-                    padding: 7,
-                    display: "flex",
-                    justifyContent: "space-evenly",
+                    width: "30%",
+                    padding: 10,
+                    marginBottom: 35,
                   }}
                 >
-                  <Typography>
+                  <div className="center" style={{ margin: "0px auto" }}>
+                    <img
+                      src="../Thf_1551875131.jpg"
+                      className="brand_image center"
+                      alt="avatar_img"
+                    />
+                  </div>
+
+                  <Typography className="flow-text center">
                     <span
-                      className="flow-text center"
                       style={{
-                        padding: 7,
+                        padding: 10,
                       }}
                     >
                       New Wave
                     </span>
-                    <Typography className="right">
-                      <sub>Admin</sub>
-                    </Typography>
                   </Typography>
+                  <Typography className="center">Admin</Typography>
+
+                  <Link to="/user/profile" className="center">
+                    Go To Full Profile
+                  </Link>
                 </div>
-
-                <div className="center">
-                  <span style={{ fontSize: 25, fontWeight: 400 }}>43 </span>
-                  <span style={{ fontSize: 18, fontWeight: 200 }}>
-                    Employees
-                  </span>
-                </div>
-              </div>
-
-              <ul>
-                <Link to="/dashboard/board" className="click">
-                  <li className="links hoverable">
-                    <WidgetsIcon style={{ fontSize: 36 }} />
-                    <p>Dashboard</p>
-                  </li>
-                </Link>
-
-                <li className="links">
-                  <div className="divider"></div>
-                </li>
-                <h4>Apps</h4>
-                <Link to="/apps/calendar">
-                  <li className="links hoverable">
-                    <ContactCalendar style={{ fontSize: 30 }} />
-                    <p>Calendar</p>
-                  </li>
-                </Link>
-
-                <Link to="/apps/utilities">
-                  <li className="links hoverable">
-                    {/* <Utilities style={{ fontSize: 36 }} /> */}
-                    <p>Buy Utilities</p>
-                  </li>
-                </Link>
-
-                <li className="links">
-                  <div className="divider"></div>
-                </li>
-
-                <h4>Management</h4>
-
-                <Link to="/user/staff">
-                  <li className="links hoverable">
-                    <PersonOutlineIcon style={{ fontSize: 36 }} />
-                    <p>Staffs</p>
-                  </li>
-                </Link>
-
-                <li className="links">
-                  <div className="divider"></div>
-                </li>
-
-                <h4>Support</h4>
-
-                <Link to="/dashboard">
-                  <li className="links hoverable">
-                    <Book style={{ fontSize: 36 }} />
-                    <p>Documentation</p>
-                  </li>
-                </Link>
-
-                <Link>
-                  <li className="links hoverable">
-                    <ContactSupportIcon style={{ fontSize: 30 }} />
-                    <p>Help Center</p>
-                  </li>
-                </Link>
-              </ul>
-            </div>
-            <div className="board">
-              <div>
-              <div className="left">
-                <MenuDrawer />
-              </div>
-              <div className="right" style={{ display: "flex" }}>
-                <Link to="/notification">
-                  <Badge
-                    style={{ marginRight: 25, marginTop: 15 }}
-                    badgeContent={2}
-                    color="white"
-                  >
-                    <NotificationIcon />
-                  </Badge>
-                </Link>
-
-                <Link to="/user/profile">
-                  <Avatar className="center">
-                    <img
-                      src="../Thf_1551875131.jpg"
-                      className="circle"
-                      alt="avatar_img"
-                    />
-                  </Avatar>
-                </Link>
-
-                <Link style={{ padding: 7 }}>
-                  <Settings style={{ fontSize: 32 }} />
-                </Link>
-              </div>
-              </div>
-
-              <Switch>
-                <Route path="/dashboard" component={Board} />
-                <Route path="/user/staff" component={Staff} />
-                <Route path="/dashboard/profile" component={Profile} />
-                <Route path="/apps/calendar" component={Calendar} />
-                <Route path="/apps/utilities" component={Utilities} />
-                <Redirect from="/dashboard/" to="/dashboard/board" />
-                <Redirect from="/dashboard/" to="/apps/calendar" />
-                <Redirect from="/dashboard/" to="/apps/utilities" />
-                <Redirect from="/dashboard/" to="/user/staff" />
-                <Redirect from="/dashboard/" to="/dashboard/profile" />
-              </Switch>
-            </div>
-
-            <ContactSupport />
+              </Backdrop>
+            </Avatar>
           </div>
+        </div>
+
+        {/* <div className="notification_status">
+          ARE YOU SURE YOU WANT TO END THIS SESSION ? <span>YES</span>
+          {"   "} <span>NO</span>
+        </div> */}
+
+        <Sidebar />
         
-      </>
-    </Router>
+
+        <div className="displaybox display" id="display">
+          
+
+          <div id="top">
+            <ArrowLeftRounded />
+      <div id="search">
+        <input type="search" name="" id="searches" />
+      </div>
+    </div>
+    <section class="body">
+      <div class="s">
+        <div class="m">
+          <div class="f">gng</div>
+          <div class="f">klk</div>
+        </div>
+        <div class="box">
+          <div class="percent">
+            <svg>
+              <circle cx="70" cy="70" r="70"></circle>
+              <circle cx="70" cy="70" r="70"></circle>
+            </svg>
+            <div class="number">
+              <h2>87<span>%</span></h2>
+            </div>
+          </div>
+          <h2 class="text">Progress</h2>
+        </div>
+      </div>
+    </section>
+        </div>
+
+        {/* <Login openPopup={openLoginModal} setOpenPopup={() => dispatch(closeLogin())} /> */}
+
+        {/* <Dialog
+              open={logoutNotifier}
+              onClose={() => setlogoutNotifier(false)}    
+            >
+              <DialogContent>
+                <div className="dislaybox box">
+                  <img src="./warning.svg" width={45} className="center" alt="" />
+                  <div style={{alignItems: "center"}}>
+                    Due to Inactivity on your current Session, You'll be logged
+                    out in 1 Minute.
+                  </div>
+                </div>
+              
+                <Button onClick={dispatch(notLoading())}>Close it, I'm Here</Button>
+                
+              </DialogContent>
+            </Dialog>
+       */}
+      </div>
+      <Footer />
+    </>
+    // </Router>
   );
 };
 

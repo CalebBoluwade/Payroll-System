@@ -1,11 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
 import "materialize-css/dist/css/materialize.min.css";
+import "./index.css";
 import AppRouter from "./Components/AppRouter";
 import { createStore } from "redux";
 import Reducers from "./Reducers/combinedReducers";
 import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 
 const store = createStore(
   Reducers,
@@ -14,7 +15,9 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <AppRouter />
+    <BrowserRouter>
+      <AppRouter />
+    </BrowserRouter>
   </Provider>,
   document.getElementById("root")
 );

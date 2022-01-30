@@ -7,52 +7,20 @@ const Footer = () => {
   return (
     <footer
       style={{
-        color: "#fff",
-        background: "linear-gradient(to left, #fff, lightskyblue, navy)",
+        width: "100%",
         padding: 15,
-        position: "relative",
-        bottom: 0,
+        bottom: "100vh",
       }}
     >
-      <div
-        className="container"
-        style={{
-          display: "flex",
-        }}
-      >
-        <div style={{ width: "65%", padding: 10 }}>
-          <ul>
-            <li className="links">Home</li>
-            <li className="links">About</li>
-            <li className="links">Home</li>
-            <li className="links">About</li>
-          </ul>
-        </div>
-
-        <div
-          style={{
-            width: "35%",
-
-            color: "navy",
-            marginTop: 10,
-            padding: 10,
-          }}
-        >
-          <h6 className="flow-text">Sign up for Our Newsletter</h6>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-          />
-        </div>
-      </div>
-      <div style={{ color: "navy" }}>
+      <div style={{ color: "#76C6C5" }}>
         <p className="center">
-          <strong>Copyright &copy; {year.getFullYear()}</strong>
+          {/* <img src="LOGO IDEA 1A.png" alt="brand-logo" width="30" />
+          <br /> */}
+          <span style={{ fontSize: 10 }}>
+            COPYRIGHT &copy; {year.getFullYear()}.
+          </span>
+          <br />
+          <strong>POWERED BY NEW WAVE SOLUTIONS</strong>
         </p>
       </div>
     </footer>
