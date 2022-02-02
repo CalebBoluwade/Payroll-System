@@ -4,15 +4,47 @@ import { useSelector } from "react-redux";
 import { Alert } from "@mui/material";
 
 const AdminAuth = () => {
-  useEffect(() => {
-    const randomNum = Math.random().toFixed(4).substring(2);
-    setOTP(Math.floor(randomNum).toString());
-  }, []);
-
   const [OTP, setOTP] = useState(""); //Generated OTP
   const [userOTP, setUserOTP] = useState(""); //User Inputed OTP
   const isUserAuth = useSelector((state) => state.authReducer);
   const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    var NewOTP = () => {
+      const randomNum = Math.random().toFixed(4).substring(2);
+      setOTP(Math.floor(randomNum).toString());
+    };
+    NewOTP();
+  }, []);
+
+  const date = Date();
+
+  const validateOTP = () => {
+    if (userOTP !== OTP) {
+      alert("OTP MISMATCH");
+    }
+
+    if (userOTP === OTP) {
+      setShow(true);
+      setTimeout(() => {
+        if (isUserAuth) {
+          navigate("/admin");
+        }
+        if (!isUserAuth) {
+          navigate("/login");
+        }
+      }, 5000);
+      sessionStorage.setItem("last_admin_login", "eyrw")
+    }
+  };
+
+  const Button = document.getElementById("otp-button");
+  console.log(Button)
+//   Button.addEventListener("keydown", (e) =>{
+//     if (e.key == "enter"){
+// validateOTP()
+//     }
+//   })
 
   const navigate = useNavigate();
 
@@ -44,63 +76,39 @@ const AdminAuth = () => {
   // };
   // sendOTPsms();
 
-  const button = document.getElementById("otp-button");
   // button.setAttribute("disabled", " ");
-
-  // button.addEventListener("keydown", (e) => {
-  //   if (e.key === "Enter") {
-  //     validateOTP();
-  //   }
-  // });
-
-  const validateOTP = () => {
-    if (userOTP !== OTP) {
-      alert("OTP MISMATCH");
-    }
-
-    if (userOTP === OTP) {
-      setShow(true);
-      setTimeout(() =>{
-        if (isUserAuth) {
-          navigate("/dashboard");
-        }
-        if (!isUserAuth) {
-          navigate("/login");
-        }
-      }, 3000)
-  
-    }
-  };
-
-  const resetOTP = () => {
-    const randomNum = Math.random() * 10000;
-    const Otp = Math.floor(randomNum);
-  };
 
   return (
     <>
       <div className="main pay">
         <div className="pay">
           <div className="form-control">
-          <Alert>OTP Confirmed Sucessfully</Alert>
-            <label htmlFor="otp">ENTER OTP</label>
-            <input
-              type="text"
-              required
-              id="otp"
-              placeholder="Enter OTP"
-              onChange={(e) => setUserOTP(e.target.value)}
-            />
+            <div className={show ? "" : "hide"}>
+            <Alert>OTP Confirmed Sucessfully</Alert>
+            </div>
+            
+            <p className="form-text">OTP sent to your registered Phone Number</p>
+            <div className="input-area">
+              <label htmlFor="otp">ENTER OTP</label>
+              <input
+                type="text"
+                required
+                id="otp"
+                placeholder="Enter OTP"
+                onChange={(e) => setUserOTP(e.target.value)}
+              />
+          
+            </div>
 
-            <div className="button_area">
+            
               <button id="otp-button" onClick={validateOTP}>
                 VERIFY OTP
               </button>
-            </div>
+         
 
             <h3>{OTP}</h3>
 
-            <p onClick={() => resetOTP}>Didn't receive OTP, resend it</p>
+            {/* <p onClick={() => NewOTP()}>Didn't receive OTP, resend it</p> */}
           </div>
         </div>
       </div>

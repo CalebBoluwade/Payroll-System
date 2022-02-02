@@ -230,7 +230,14 @@ const Util = ({ OpenUtils, setOpenUtils }) => {
           </>
         ) : (
           <>
-          
+          <img src="./paystack-logo-vector.svg" alt="" />
+
+<div className="transaction_status center">
+  <div className="center">
+    <CircularProgress />
+  </div>
+  <div className="center">Loading..</div>
+</div>
           </>
         )}
       </Dialog>

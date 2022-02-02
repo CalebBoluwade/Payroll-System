@@ -6,7 +6,6 @@ import Util from "../Components/Utilities";
 import { logout } from "../Actions";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import SettingsIcon from "@material-ui/icons/Settings";
 import Settings from "../Components/Settings";
 
 const Sidebar = () => {
@@ -33,8 +32,9 @@ const Sidebar = () => {
           src="./minimize.svg"
           alt=""
           style={{
-            width: 35,
-            position: "sticky",
+            width: 15,
+            position: "fixed",
+            color: "khaki",
             right: 15,
           }}
         />
@@ -69,7 +69,7 @@ const Sidebar = () => {
       <Tooltip title="Utilities">
         <img
           src="./electricity-flash-svgrepo-com.svg"
-          alt=""
+          alt="Utilities"
           className="img"
           onClick={() => setOpenUtils(!openUtils)}
         />
@@ -78,16 +78,13 @@ const Sidebar = () => {
       <Tooltip title="Printer">
         <img
           src="printer-svgrepo-com.svg"
-          alt=""
+          alt="Printer"
           className="img"
           onClick={() => window.print()}
         />
       </Tooltip>
       <Tooltip title="Settings">
-        <SettingsIcon
-          style={{ fontSize: 32, color: "orange" }}
-          onClick={() => setOpenSettings(!openSettings)}
-        />
+        <img src="./settings.svg" width={35} alt="Settings"  onClick={() => setOpenSettings(!openSettings)}/>
       </Tooltip>
       <Tooltip title="Log out">
         {/* <img src="./power-button-power-svgrepo-com.svg" width={65} alt="" />
@@ -95,7 +92,7 @@ const Sidebar = () => {
         <img
           src="./power-button-svgrepo-com (1).svg"
           width={35}
-          alt=""
+          alt="Logout"
           onClick={() => dispatch(logout())}
         />
       </Tooltip>

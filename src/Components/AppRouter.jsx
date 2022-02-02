@@ -9,7 +9,6 @@ import Contact from "../Pages/Contact";
 import ErrorPage from "../Pages/ErrorPage";
 // import Board from "../Pages/Board";
 // import Calendar from "../Pages/Calendar";
-// import Staff from "../Pages/Staff";
 import { useSelector } from "react-redux";
 import LoginPage from "../Pages/LoginPage";
 import PayPage from "../Pages/PayPage";
@@ -25,9 +24,9 @@ const AppRouter = () => {
         <Route path="/" element={<Home />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="register" element={<Register />} />
-        <Route path="dashboard" element={<Dashboard />} />
-        <Route path="admin-auth" element={<AdminAuth />} /> 
-        <Route path="admin" element={<AdminPage />} /> 
+        <Route path="dashboard" element={<Dashboard />} /> 
+        <Route path="admin" element={<AdminPage />} />
+        <Route path="admin/auth" element={<AdminAuth />} />
         {!isUserAuth && (
           <>
             <Route path="login" element={<LoginPage />} />

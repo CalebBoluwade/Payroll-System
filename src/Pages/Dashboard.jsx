@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar";
 import { ArrowLeftRounded } from "@material-ui/icons";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 import MenuDrawer from "../Components/MenuDrawer";
 import Footer from "../Components/Footer";
 import { Backdrop } from "@mui/material";

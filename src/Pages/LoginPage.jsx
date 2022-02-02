@@ -15,10 +15,11 @@ const Login = () => {
   const password = "qwertyuiop";
 
   const [userEmail, setUserEmail] = useState("");
-  const [userPassword, setUserPassword] = useState();
+  const [userPassword, setUserPassword] = useState("");
+  const [show, setShow] = useState(false);
 
   const handleLoginRequest = () => {
-    if (userEmail && userPassword == ""){
+    if (userEmail && userPassword === ""){
       console.log("Empty");
     }
     //   if(userEmail !== email){
@@ -28,8 +29,12 @@ const Login = () => {
     // if(userPassword !== password){
     //   console.log("Incorrect Password");
     // }
-
-    dispatch(login()) && nav("/dashboard");
+    if (email === userEmail) {
+      if (password === userPassword){
+        setShow(true);
+        dispatch(login()) && nav("/dashboard");
+      }
+    }
   };
 
   return (
@@ -37,8 +42,11 @@ const Login = () => {
       <div className="main pay">
         <div className="pay">
           <div className="form-control">
+            <div className={show ? "" : "hide"}>
           <Alert>Login Sucessful. Redirecting..</Alert>
-            <label htmlFor="email">email</label>
+          </div>
+          <div className="input-area">
+            <label htmlFor="email">E-MAIL ADDRESS</label>
             <input
               type="email"
               required
@@ -46,7 +54,8 @@ const Login = () => {
               placeholder="Email"
               onChange={(e) => setUserEmail(e.target.value)}
             />
-            <label htmlFor="email">password</label>
+            
+            <label htmlFor="password">PASSWORD</label>
             <input
               type="password"
               required
@@ -54,17 +63,19 @@ const Login = () => {
               placeholder="Password"
               onChange={(e) => setUserPassword(e.target.value)}
             />
+            </div>
 
+<div className="button-area">
             <button id="login" onClick={handleLoginRequest}>
               LOGIN
             </button>
+            </div>
 
-            <p>
-              IF YOU DONT HAVE AN ACCOUNT, CLICK <Link to="register">HERE</Link>{" "}
+            <p className="form-text">
+              DON'T HAVE AN ACCOUNT, CLICK <Link to="register">HERE</Link>
             </p>
-
-            <div className="form-footer">powered by</div>
           </div>
+          <div className="form-footer">powered by</div> 
         </div>
       </div>
     </>
