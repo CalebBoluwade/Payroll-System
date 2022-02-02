@@ -1,18 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
-import ContactSupport from "../Components/Settings";
+import ContactSupport from "../Components/ContactSupport";
 import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography";
-import LockOutlined from "@material-ui/icons/LockOutlined";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   // const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  //Register New Company
 
   return (
     <>
@@ -36,7 +31,9 @@ const Home = () => {
                 <br />
                 <Button
                   variant="outlined"
-                  onClick={() => {navigate("register")}}
+                  onClick={() => {
+                    navigate("register");
+                  }}
                 >
                   Sign Up
                 </Button>
@@ -46,10 +43,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-
-
-      
-
 
       <div className="home-slides">
         <div className="home-slide">
@@ -90,22 +83,9 @@ const Home = () => {
           <h3>QUICK ONBOARDING PROCESS</h3>
           <h5>No hassle</h5>
         </div>
-        {/* <div style={{ background: "#f0db4f" }}>
-          <h3 className="center">Our Partners</h3>
-          <div
-            style={{
-              padding: 15,
-              display: "flex",
-              justifyContent: "space-evenly",
-            }}
-          >
-            <img src="../logo-javascript.png" alt="Partner1" width="75" />
-            <img src="../react.png" alt="Partner2" width="75" />
-            <img src="../github.png" alt="Partner3" width="75" />
-          </div>
-        </div> */}
+       
       </div>
-     
+      <ContactSupport />
       <Footer />
     </>
   );

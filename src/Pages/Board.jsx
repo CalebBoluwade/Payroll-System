@@ -9,9 +9,8 @@ import { TextField, Grid } from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
-import { useSelector, useDispatch } from "react-redux";
-import { Button, CardContent, Drawer } from "@mui/material";
-import Utilities from "../Components/Utilities";
+import { useSelector } from "react-redux";
+import { Button, CardContent} from "@mui/material";
 
 const Board = () => {
   const isLoading = useSelector((state) => state.loadingReducer);
@@ -396,15 +395,7 @@ const Board = () => {
               <img src="./PngItem_1985099.png" width="100" alt="" />
               <CardContent>Mobile Apps Coming Soon</CardContent>
             </div>
-            <button onClick={() => setCloseUtil(!openUtil)}>Test</button>
-
-            <Drawer
-              open={openUtil}
-              onClose={() => setCloseUtil(!openUtil)}
-              anchor="bottom"
-            >
-              <Utilities />
-            </Drawer>
+           
           </div>
         </>
       )}

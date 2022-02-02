@@ -207,6 +207,7 @@ label::before {
 
 .hide {
   display: none;
+  transition: all 3s;
 }
 
 #alertanimation {
@@ -233,14 +234,6 @@ label::before {
   list-style: none;
   display: flex;
   justify-content: space-between;
-}
-
-.form-control {
-  width: 295px;
-  padding: 25px;
-  border: 1px solid navy;
-  border-radius: 7px;
-  margin-bottom: 20px;
 }
 
 .quickadd {
@@ -864,7 +857,7 @@ align-items: center;
   float: right;
 }
 
-input[type="search"]{
+/* input[type="search"]{
   height: 30px;
   width: 100%;
   padding: 0 7 0;
@@ -872,9 +865,9 @@ input[type="search"]{
   margin: 10px auto;
   outline: 0;
   border: 1px solid rgb(14, 45, 75);
-}
+} */
 
-input[type="email"]{
+input{
   font-size: 1.4rem;
   padding: 21px 10px 10px;
   border-radius: 7px;
@@ -884,7 +877,7 @@ input[type="email"]{
   border: 1px solid rgb(14, 45, 75);
 }
 
-input[type="password"]{
+/* input[type="password"]{
   width: 100%;
   padding: 21px 10px 10px;
   background: transparent;
@@ -904,12 +897,12 @@ input[type="tel"]{
   outline: 0;
   border: 1px solid rgb(14, 45, 75);
   transition: all 3s;
-}
+} */
 
-input[type="password"]::placeholder{
+input::placeholder{
  font-size: 12px;
 }
-
+/* 
 input[type="email"]::before{
 background-color: #f3f3f3;
   border-bottom: 1px solid #000;
@@ -917,7 +910,7 @@ background-color: #f3f3f3;
 
 input[type="email"]::selection{
   border-bottom: 1px solid #000 !important;
-}
+} */
 
 .form-footer{
   color: #999;
@@ -935,13 +928,29 @@ input[type="email"]::selection{
 }
 
 button{
-  background-color: rgb(14, 45, 75);
-  color: #fff;
-  padding: 15px;
-  width: 135px;
+  border: 3px solid rgb(14, 45, 75);
+  color: rgb(14, 45, 75);
+  padding: 15px 15px;
+  font-size: 14px;
+  background: transparent;
+  width: 125px;
   outline: 0;
   border: 0;
-  border-radius: 7px;
+  border-radius: 12px;
+  transition: all 4s;
+}
+
+button:hover{
+  background-color: rgb(14, 45, 75);
+  color: #fff;
+  padding: 15px 15px;
+  cursor: pointer;
+}
+
+button:disabled{
+  background: #ebebeb;
+  color: #0b1d4d;
+  padding: 10px 15px;
 }
 
 .PaySecure{
@@ -981,7 +990,7 @@ margin-bottom: 20px;
   margin: 12px;
 }
 
-  el{
+label{
   color: #c2c1c1;
   font-size: 1rem;
 transition: all 3s;
@@ -996,4 +1005,33 @@ transition: all 3s;
 .card-details .card{
   display: flex;
   justify-content: space-between;
+}
+
+.employee-grid{
+display: grid;
+width: 95%;
+}
+
+.employee-grid .employee-row{
+  display: flex;
+  justify-content: space-between;
+}
+
+.employee-card{
+  width: 120px;
+  height: 150px;
+  padding: 15px;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+.employee-card .employee-img{
+  width: 60px;
+  height: 60px;
+  border: 0.5px solid #0b1d4d;
+  border-radius: 50%;
 }

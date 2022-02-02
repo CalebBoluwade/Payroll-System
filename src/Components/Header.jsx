@@ -1,18 +1,9 @@
 import React, { useState } from "react";
-import Alert from "@mui/material/Alert";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import { Link } from "react-router-dom";
-import TextField from "@material-ui/core/TextField";
-import Grid from "@material-ui/core/Grid";
-import Avatar from "@material-ui/core/Avatar";
-import Checkbox from "@material-ui/core/Checkbox";
-import Container from "@material-ui/core/Container";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Typography from "@material-ui/core/Typography";
-import LockOutlined from "@material-ui/icons/LockOutlined";
 import Badge from "@material-ui/core/Badge";
 import NotificationIcon from "@material-ui/icons/Notifications";
 import Menu from "@mui/material/Menu";
@@ -23,27 +14,13 @@ import { logout } from "../Actions";
 import { ConfirmationNumberOutlined } from "@material-ui/icons";
 
 const Header = () => {
-  const isAuth = useSelector((state) => state.loginReducer);
+  const isAuth = useSelector((state) => state.authReducer);
   const dispatch = useDispatch();
-
-  const [userEmail, setUserEmail] = useState();
-  const [userPassword, setUserPassword] = useState();
 
   const [openPopup, setOpenPopup] = useState(false);
 
   const [openMenu, setOpenMenu] = useState(false);
   const [appsModalDisplay, setAppsModalDisplay] = useState(false);
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    const sign_in = {
-      email: userEmail,
-      password: userPassword,
-    };
-
-    console.log(sign_in);
-  };
 
   return (
     <nav className="navbar z-depth-5">
@@ -61,7 +38,7 @@ const Header = () => {
           <Link to="pricing">Pricing</Link>
         </li>
         <li className="links">
-          <Link to="/dashboard">Partners</Link>
+          <Link to="/partners">Partners</Link>
         </li>
         <li className="links">
           <Link to="/contact">Contact</Link>

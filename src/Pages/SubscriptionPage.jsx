@@ -149,6 +149,7 @@ const Pricing = () => {
             <li>1 Year Payment</li>
             <li>Customizable Scheduled Payments</li>
             <li>Secured Payments</li>
+            <li>Discount on SMS Charges</li>
           </ul>
           <br />
           <div>

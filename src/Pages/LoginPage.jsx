@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Alert } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../Actions";
@@ -29,20 +30,14 @@ const Login = () => {
     // }
 
     dispatch(login()) && nav("/dashboard");
-
-    const userSettings = {
-      sessionId: 1,
-      themePrefrence: "dark",
-    };
-  
-    localStorage.setItem("userSettings", JSON.stringify(userSettings));
   };
 
   return (
     <>
-      <div class="main pay">
-        <div class="pay">
+      <div className="main pay">
+        <div className="pay">
           <div className="form-control">
+          <Alert>Login Sucessful. Redirecting..</Alert>
             <label htmlFor="email">email</label>
             <input
               type="email"
@@ -68,7 +63,7 @@ const Login = () => {
               IF YOU DONT HAVE AN ACCOUNT, CLICK <Link to="register">HERE</Link>{" "}
             </p>
 
-            <div class="form-footer">powered by</div>
+            <div className="form-footer">powered by</div>
           </div>
         </div>
       </div>

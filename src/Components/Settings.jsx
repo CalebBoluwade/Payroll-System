@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Drawer } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { darkTheme, lightTheme, aquaTheme } from "../Actions";
 
 const Settings = ({openSettings, setOpenSettings}) => {
-
   const dark = useSelector((state) => state.themeReducer);
   const dispatch = useDispatch();
 
@@ -29,13 +28,6 @@ const Settings = ({openSettings, setOpenSettings}) => {
     body[0].classList.add("light");
   }
 
-  const checkTheme = (e) => {
-    // if ((dark != 1) | 2) {
-    //   console.warn(true);
-    // }
-    console.log(e);
-  };
-
   if (dark === 1) {
     body[0].classList.remove("light");
     body[0].classList.remove("aqua");
@@ -47,6 +39,18 @@ const Settings = ({openSettings, setOpenSettings}) => {
     body[0].classList.remove("dark");
     body[0].classList.add("aqua");
   }
+
+  const email = "demo@payroll.com";
+  const date = new Date();
+
+  const userSettings = {
+    email: email,
+    sessionId: 123,
+    themePrefrence: dark,
+    lastLoginDate: date.toUTCString(),
+  };
+  
+  localStorage.setItem("userSettings", JSON.stringify(userSettings));
 
   return (
     <div>
@@ -64,7 +68,7 @@ const Settings = ({openSettings, setOpenSettings}) => {
                 src="./sun-svgrepo-com.svg"
                 width="40"
                 alt=""
-                onClick={(() => dispatch(lightTheme()), (e) => checkTheme(e))}
+                onClick={() => dispatch(lightTheme())}
               />
               <hr />
               <img

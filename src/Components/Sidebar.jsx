@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Badge from "@material-ui/core/Badge";
 import { Tooltip } from "@mui/material";
+import Util from "../Components/Utilities";
 import { logout } from "../Actions";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +11,7 @@ import Settings from "../Components/Settings";
 
 const Sidebar = () => {
   const [openSettings, setOpenSettings] = useState(false);
+  const [openUtils, setOpenUtils] = useState(false);
   const isUserAuth = useSelector((state) => state.authReducer);
 
   const navigate = useNavigate();
@@ -65,7 +67,12 @@ const Sidebar = () => {
       </Tooltip>
 
       <Tooltip title="Utilities">
-        <img src="./electricity-flash-svgrepo-com.svg" alt="" className="img" />
+        <img
+          src="./electricity-flash-svgrepo-com.svg"
+          alt=""
+          className="img"
+          onClick={() => setOpenUtils(!openUtils)}
+        />
       </Tooltip>
 
       <Tooltip title="Printer">
@@ -77,10 +84,10 @@ const Sidebar = () => {
         />
       </Tooltip>
       <Tooltip title="Settings">
-      <SettingsIcon
-        style={{ fontSize: 32, color: "orange" }}
-        onClick={() => setOpenSettings(!openSettings)}
-      />
+        <SettingsIcon
+          style={{ fontSize: 32, color: "orange" }}
+          onClick={() => setOpenSettings(!openSettings)}
+        />
       </Tooltip>
       <Tooltip title="Log out">
         {/* <img src="./power-button-power-svgrepo-com.svg" width={65} alt="" />
@@ -93,8 +100,9 @@ const Sidebar = () => {
         />
       </Tooltip>
 
+      <Util OpenUtils={openUtils} setOpenUtils={setOpenUtils} />
+      
       <Settings openSettings={openSettings} setOpenSettings={setOpenSettings} />
-
     </div>
   );
 };

@@ -1,26 +1,37 @@
-import React, { useState } from "react";
-import { BrowserRouter as Routes, Route } from "react-router-dom";
-import Profile from "./Profile";
+import React, { useState, useEffect } from "react";
 import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar";
 import { ArrowLeftRounded } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import MenuDrawer from "../Components/MenuDrawer";
 import Footer from "../Components/Footer";
-import { Button, Backdrop, Dialog, DialogContent } from "@mui/material";
+import { Backdrop } from "@mui/material";
 import Sidebar from "../Components/Sidebar";
+import { useSelector, useDispatch } from "react-redux";
+import { darkTheme, lightTheme, aquaTheme } from "../Actions";
 // import { closeLogin, loading ,notLoading } from "../Actions";
-import { useDispatch, useSelector } from "react-redux";
+import Alert from "@mui/material/Alert";
 
 const Dashboard = () => {
   const [openProfile, setOpenProfile] = useState(false);
   const [logoutNotifier, setlogoutNotifier] = useState(false);
 
-  // const openLoginModal = useSelector((state) => state.loginModal);
-
-  // console.log(openLoginModal);
-
+  const dark = useSelector((state) => state.themeReducer);
   const dispatch = useDispatch();
+
+  useEffect(() =>{
+     const user = localStorage.getItem("userSettings");
+    //  user && JSON.parse("userSettings");
+      // if (user.themePrefrence == 0){
+      //   dispatch(lightTheme())
+      // }
+      // if (user.themePrefrence == 1){
+      //   dispatch(darkTheme())
+      // }
+      // if (user.themePrefrence == 2){
+      //   dispatch(aquaTheme())
+      // }
+      },[])
 
   return (
     <>
@@ -79,6 +90,8 @@ const Dashboard = () => {
           </div>
         </div>
 
+        <Alert>Login Sucessful. Welcome</Alert>
+
         {/* <div className="notification_status">
           ARE YOU SURE YOU WANT TO END THIS SESSION ? <span>YES</span>
           {"   "} <span>NO</span>
@@ -93,25 +106,25 @@ const Dashboard = () => {
               <input type="search" name="" id="searches" />
             </div>
           </div>
-          <section class="body">
-            <div class="s">
-              <div class="m">
-                <div class="f">gng</div>
-                <div class="f">klk</div>
+          <section className="body">
+            <div className="s">
+              <div className="m">
+                <div className="f">gng</div>
+                <div className="f">klk</div>
               </div>
-              <div class="box">
-                <div class="percent">
+              <div className="box">
+                <div className="percent">
                   <svg>
                     <circle cx="70" cy="70" r="70"></circle>
                     <circle cx="70" cy="70" r="70"></circle>
                   </svg>
-                  <div class="number">
+                  <div className="number">
                     <h2>
                       87<span>%</span>
                     </h2>
                   </div>
                 </div>
-                {/* <h2 class="text">Progress</h2> */}
+                {/* <h2 className="text">Progress</h2> */}
               </div>
             </div>
           </section>
