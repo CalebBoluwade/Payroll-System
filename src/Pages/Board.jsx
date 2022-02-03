@@ -330,20 +330,7 @@ const Board = () => {
                 >
                   <DialogTitle>Recent Transactions</DialogTitle>
                   <DialogContent>
-                    <table>
-                      <tr>
-                        <td>Service Charges</td>
-                        <td>- N700.00</td>
-                      </tr>
-                      <tr>
-                        <td>Monthly Salary Payments</td>
-                        <td>- N5,674,565.65</td>
-                      </tr>
-                      <tr>
-                        <td>Airtime Virtual Top-up</td>
-                        <td>- N5000.00</td>
-                      </tr>
-                    </table>
+                    
                   </DialogContent>
                 </Dialog>
               </div>

@@ -3,6 +3,7 @@ import Home from "../Pages/Home";
 import Dashboard from "../Pages/Dashboard";
 import SubscriptionPage from "../Pages/SubscriptionPage";
 import Register from "../Pages/RegisterCompany";
+import Departments from "../Pages/Departments";
 import EmployeeProfile from "../Pages/EmployeeProfile";
 import Profile from "../Pages/Profile";
 import Contact from "../Pages/Contact";
@@ -15,6 +16,9 @@ import PayPage from "../Pages/PayPage";
 import AdminAuth from "../Pages/AdminAuth";
 import Partners from "../Pages/Partners";
 import AdminPage from "../Pages/AdminPage";
+import Employees from "../Pages/Employees";
+import Transactions from "../Pages/Transactions";
+import AdminPayments from "../Pages/AdminPayments";
 
 const AppRouter = () => {
   const isUserAuth = useSelector((state) => state.authReducer);
@@ -26,9 +30,14 @@ const AppRouter = () => {
         <Route path="register" element={<Register />} />
         <Route path="dashboard" element={<Dashboard />}>
           <Route path="board" element={<Board />} />
+          
         </Route>
         <Route path="admin" element={<AdminPage />}>
-          <Route path=":id" element={<EmployeeProfile />} />
+          <Route path="payments" element={<AdminPayments />} />
+          <Route path="transactions" element={<Transactions />} />
+          <Route path="departments" element={<Departments />} />
+          <Route path="employee" element={<Employees />} />
+          {/* <Route path="employee:id" element={<EmployeeProfile />} /> */}
         </Route>
         <Route path="admin/auth" element={<AdminAuth />} />
         {!isUserAuth && (

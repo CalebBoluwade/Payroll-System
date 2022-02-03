@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar";
 import { ArrowLeftRounded } from "@material-ui/icons";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import MenuDrawer from "../Components/MenuDrawer";
 import Footer from "../Components/Footer";
 import { Backdrop } from "@mui/material";
@@ -15,23 +15,27 @@ import Alert from "@mui/material/Alert";
 const Dashboard = () => {
   const [openProfile, setOpenProfile] = useState(false);
   const [logoutNotifier, setlogoutNotifier] = useState(false);
+  const [show, setShow] = useState(true);
 
   const dark = useSelector((state) => state.themeReducer);
   const dispatch = useDispatch();
 
-  useEffect(() =>{
-     const user = localStorage.getItem("userSettings");
+  useEffect(() => {
+    setTimeout(() => {
+      setShow(false);
+    }, 3000);
+    const user = localStorage.getItem("userSettings");
     //  user && JSON.parse("userSettings");
-      // if (user.themePrefrence == 0){
-      //   dispatch(lightTheme())
-      // }
-      // if (user.themePrefrence == 1){
-      //   dispatch(darkTheme())
-      // }
-      // if (user.themePrefrence == 2){
-      //   dispatch(aquaTheme())
-      // }
-      },[])
+    // if (user.themePrefrence == 0){
+    //   dispatch(lightTheme())
+    // }
+    // if (user.themePrefrence == 1){
+    //   dispatch(darkTheme())
+    // }
+    // if (user.themePrefrence == 2){
+    //   dispatch(aquaTheme())
+    // }
+  }, []);
 
   return (
     <>
@@ -90,7 +94,9 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <Alert>Login Sucessful. Welcome</Alert>
+        <div className={show ? "" : "hide"}>
+          <Alert>Login Sucessful. Welcome</Alert>
+        </div>
 
         {/* <div className="notification_status">
           ARE YOU SURE YOU WANT TO END THIS SESSION ? <span>YES</span>
@@ -154,9 +160,7 @@ const Dashboard = () => {
             </Dialog>
        */}
       </div>
-      <Footer />
     </>
-    // </Router>
   );
 };
 

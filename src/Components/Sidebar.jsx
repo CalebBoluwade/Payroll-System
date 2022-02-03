@@ -23,9 +23,10 @@ const Sidebar = () => {
   }, [isUserAuth]);
 
   return (
+    <div className="bottom-bar">
     <div
-      className="displaybox z-depth-5 hoverable hide-on-small-only"
-      id="sidebar"
+      className="displaybox"
+      id="bottom-bar"
     >
       <Tooltip title="Minimize">
         <img
@@ -50,11 +51,11 @@ const Sidebar = () => {
         <img src="./widget-svgrepo-com.svg" alt="" className="img" />
       </Tooltip>
 
-      <Tooltip title="Search">
+      {/* <Tooltip title="Search">
         <img src="./search-svgrepo-com.svg" alt="" className="img" />
-      </Tooltip>
+      </Tooltip> */}
 
-      <Tooltip title="Notifications">
+      {/* <Tooltip title="Notifications">
         <Link to="/notification">
           <Badge badgeContent={16}>
             <img
@@ -64,7 +65,7 @@ const Sidebar = () => {
             />
           </Badge>
         </Link>
-      </Tooltip>
+      </Tooltip> */}
 
       <Tooltip title="Utilities">
         <img
@@ -87,8 +88,6 @@ const Sidebar = () => {
         <img src="./settings.svg" width={35} alt="Settings"  onClick={() => setOpenSettings(!openSettings)}/>
       </Tooltip>
       <Tooltip title="Log out">
-        {/* <img src="./power-button-power-svgrepo-com.svg" width={65} alt="" />
-          <img src="./power-button-svgrepo-com.svg" width={65} alt="" /> */}
         <img
           src="./power-button-svgrepo-com (1).svg"
           width={35}
@@ -100,6 +99,7 @@ const Sidebar = () => {
       <Util OpenUtils={openUtils} setOpenUtils={setOpenUtils} />
       
       <Settings openSettings={openSettings} setOpenSettings={setOpenSettings} />
+    </div>
     </div>
   );
 };

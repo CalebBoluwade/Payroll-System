@@ -44,7 +44,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="home-slides">
+      {/* <div className="home-slides">
         <div className="home-slide">
           <h2>
             WORK ANYWHERE.
@@ -52,11 +52,11 @@ const Home = () => {
               <strong>ANYTIME</strong>
             </div>
           </h2>
-          {/* <img
+          <img
             src="./home/pexels-anna-nekrashevich-68018732.jpg"
             alt="work-anywhere"
             className="slide-image"
-          /> */}
+          />
           <img
             src="./home/study-work.svg"
             alt="work-anywhere"
@@ -84,6 +84,24 @@ const Home = () => {
           <h5>No hassle</h5>
         </div>
        
+      </div> */}
+
+      <div className="testimonals">
+        <div className="testimonals-w-text">
+        <div className="bubble"></div>
+        </div>
+        <div className="testimonals-w-text">
+        <div className="bubble2"></div>
+        </div>
+        <div className="testimonals-w-text">
+        <div className="bubble3"></div>
+        </div>
+        <div className="testimonals-w-text">
+        <div className="bubble4"></div>
+        </div>
+        <div className="testimonals-w-text">
+        <div className="bubble5"></div>
+        </div>
       </div>
       <ContactSupport />
       <Footer />

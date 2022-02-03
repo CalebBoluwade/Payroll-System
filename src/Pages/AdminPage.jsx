@@ -1,14 +1,12 @@
-import { MoreVert, Menu, ArrowForwardIos } from "@material-ui/icons";
-import { CircularProgress, Dialog } from "@material-ui/core";
+import { Menu, ArrowForwardIos } from "@material-ui/icons";
 import React, { useState, useEffect } from "react";
-import Sidebar from "../Components/Sidebar";
+// import Sidebar from "../Components/Sidebar";
 import { useSelector } from "react-redux";
 import { useNavigate, Outlet } from "react-router-dom";
+import AdminSidebar from "../Components/Admin-Sidebar";
 
 const AdminPage = () => {
-  const [openEmployee, setEmployee] = useState(false);
   const [openSideView, setSideView] = useState(false);
-  const [Employees, setEmployees] = useState({});
   const isUserAuth = useSelector((state) => state.authReducer);
   const isLaading = useSelector((state) => state.loadingReducer);
 
@@ -18,61 +16,14 @@ const AdminPage = () => {
     if (!isUserAuth) {
       navigate("auth");
     }
-
-    const getEmployees = async () => {
-      try {
-        const res = await fetch("https://randomuser.me/api/?results=15", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        const data = await res.json();
-        setEmployees(data.results);
-        return JSON.stringify(data);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    getEmployees();
   }, [isUserAuth]);
-
-  for (let i = 0; i < Employees.length; i++) {}
 
   return (
     <>
       <div className="main" style={{ background: "#fff" }}>
         {/* <Sidebar /> */}
         <div id="admin-board">
-          <div className={` admin-sidebar ${openSideView ? "hide" : ""}`}>
-            <div className="right" style={{ display: "flex" }}>
-              <img
-                src="../Thf_1551875131.jpg"
-                className="circle"
-                alt="avatar_img"
-              />
-            </div>
-            <ul>
-              <li>
-                DEPARTMENTS
-                <ArrowForwardIos
-                  style={{
-                    fontSize: 20,
-                  }}
-                />
-              </li>
-              <li>
-                TRANSACTION HISTORY
-                <ArrowForwardIos
-                  style={{
-                    fontSize: 20,
-                  }}
-                />
-                <li>SUBSCRIPTION</li>
-                <li>Add Employee</li>
-              </li>
-            </ul>
-          </div>
+          <AdminSidebar openSideView={openSideView} setSideView={setSideView} />
 
           <div className="admin-main">
             <div className="admin-topbar">
@@ -88,53 +39,8 @@ const AdminPage = () => {
             </div>
 
             <div className="admin-view">
-              <div className="employee-grid">
-                {Employees.length > 0 ? (
-                  Employees.map((employee) => (
-                    <div
-                      className="employee-card"
-                      key={employee.id}
-                      onClick={() => setEmployee(!openEmployee)}
-                    >
-                      <img
-                        src={Employees[0].picture.large}
-                        alt="employee-avatar"
-                        className="employee-avatar"
-                      />
-                      <span>
-                        <MoreVert />
-                      </span>
-                      <Dialog
-                        open={openEmployee}
-                        onClose={() => setEmployee(!openEmployee)}
-                      >
-                        <input
-                          type="text"
-                          disabled
-                          value={
-                            Employees[0].name.last +
-                            " " +
-                            Employees[0].name.first
-                          }
-                        />
-                        <input
-                          type="text"
-                          disabled
-                          value={Employees[0].gender}
-                        />
-                      </Dialog>
-                    </div>
-                  ))
-                ) : (
-                  <></>
-                )}
-              </div>
-
-              <div className="employee-details">
-                <Outlet />
-                cvnxncvz
-              </div>
-            </div>
+              <Outlet />
+             </div>
 
             {/* </>
             ) : (
@@ -146,18 +52,6 @@ const AdminPage = () => {
               </>
             )} */}
 
-            {/* <div className="employee-card">
-              <img
-                src="./Thf_1551875131.jpg"
-                alt=""
-                className="employee-avatar"
-              />
-              <span>BOLUWADE CALEB</span>
-              <span className="employee-dept">IT [Software]</span>
-              <span>
-                <MoreVert />
-              </span>
-            </div> */}
           </div>
         </div>
       </div>

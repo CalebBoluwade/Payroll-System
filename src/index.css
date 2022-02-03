@@ -2,6 +2,11 @@
   margin: 0px;
 }
 
+@font-face {
+  font-family: sans-serif;
+  src: url("");
+}
+
 ul {
   list-style: none;
   padding: 0px;
@@ -13,6 +18,23 @@ body {
 
 hr {
   height: 55px !important;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 10px;
+}
+
+tr:nth-child(even) {
+  background-color: rgba(14, 44, 75, 0.9);
 }
 
 *,
@@ -31,7 +53,7 @@ hr {
 }
 
 .dark {
-  background-color: rgb(32, 31, 31) !important;
+  background-color: rgb(0, 0, 0) !important;
   color: teal;
 }
 
@@ -41,7 +63,9 @@ hr {
 }
 
 a {
-  color: #0b1d4d !important;
+  color: #fff !important;
+  text-decoration: none;
+  padding: 5px;
 }
 
 .center {
@@ -49,6 +73,15 @@ a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.testimonals {
+  background: #000;
+  padding: 20px;
+}
+
+.testimonals .testimonals-w-text {
+  display: flex;
 }
 
 /* label {
@@ -343,21 +376,25 @@ h6 {
   z-index: 999;
 }
 
-#sidebar {
-  width: 70px;
-  min-width: 70px;
-  height: 90vh;
-  /* background: #417260; */
-  padding: 10px;
+.bottom-bar {
+  margin: 0 auto;
+  min-width: 80vw;
+  position: absolute;
+  bottom: 0;
+  top: auto;
+  left: 50px;
+  right: 64px;
+}
+
+#bottom-bar {
+  height: 60px;
+  margin: 0 auto;
+  padding: 15px 4px;
   color: white;
   display: flex;
-  flex-direction: column;
+  flex-flow: row;
   align-items: center;
-  position: absolute;
   justify-content: space-between;
-  /* background-image: url("leaves-leaf-svgrepo-com1.svg");
-  background-size: contain;
-  background-repeat: repeat-y; */
   z-index: 999;
 }
 
@@ -399,14 +436,9 @@ h6 {
   align-items: center;
 }
 
-.sidebar {
-  position: fixed;
-  left: 0;
-}
-
 .display {
-  width: 90%;
-  margin: 20px;
+  width: 95%;
+  margin: auto;
 }
 
 .display2 {
@@ -870,8 +902,8 @@ input::placeholder {
 }
 
 #top {
-  width: 93%;
-  margin: auto;
+  width: 95%;
+  margin: 15px 10px auto;
 }
 
 #top #search {
@@ -969,14 +1001,26 @@ input[type="text"]:disabled {
   min-width: 100vw;
 }
 
+.admin-links {
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
 .admin-main {
   width: 100%;
   box-shadow: -5px -3px 15px #000;
+  padding-top: 62px;
 }
 
 .admin-topbar {
   padding: 12px;
-  position: static;
+  position: fixed;
+  width: 100%;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: auto;
   background: rgba(14, 44, 75, 0.9);
   display: flex;
   justify-content: space-between;
@@ -985,8 +1029,8 @@ input[type="text"]:disabled {
 }
 
 .admin-sidebar {
+  padding: 75px 15px 15px 15px; 
   width: 20vw;
-  padding: 15px;
   background: rgb(14, 45, 75);
   color: #fff;
   font-size: 14px;
@@ -1006,8 +1050,8 @@ input[type="text"]:disabled {
 }
 
 .employee-details {
-  min-width: 40%;
-  box-shadow: -6px 6px 15px #000;
+  padding: 15px;
+  box-shadow: -6px 6px 15px #0a3838;
 }
 
 .employee-card {
