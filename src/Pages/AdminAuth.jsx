@@ -34,17 +34,17 @@ const AdminAuth = () => {
           navigate("/login");
         }
       }, 5000);
-      sessionStorage.setItem("last_admin_login", "eyrw")
+      sessionStorage.setItem("last_admin_login", "eyrw");
     }
   };
 
-  const Button = document.getElementById("otp-button");
-  console.log(Button)
-//   Button.addEventListener("keydown", (e) =>{
-//     if (e.key == "enter"){
-// validateOTP()
-//     }
-//   })
+  // const Button = document.getElementById("otp-button");
+  // console.log(Button)
+  //   Button.addEventListener("keydown", (e) =>{
+  //     if (e.key == "enter"){
+  // validateOTP()
+  //     }
+  //   })
 
   const navigate = useNavigate();
 
@@ -84,10 +84,12 @@ const AdminAuth = () => {
         <div className="pay">
           <div className="form-control">
             <div className={show ? "" : "hide"}>
-            <Alert>OTP Confirmed Sucessfully</Alert>
+              <Alert>OTP Confirmed Sucessfully</Alert>
             </div>
-            
-            <p className="form-text">OTP sent to your registered Phone Number</p>
+
+            <p className="form-text">
+              OTP sent to your registered Phone Number
+            </p>
             <div className="input-area">
               <label htmlFor="otp">ENTER OTP</label>
               <input
@@ -97,14 +99,11 @@ const AdminAuth = () => {
                 placeholder="Enter OTP"
                 onChange={(e) => setUserOTP(e.target.value)}
               />
-          
             </div>
 
-            
-              <button id="otp-button" onClick={validateOTP}>
-                VERIFY OTP
-              </button>
-         
+            <button id="otp-button" onClick={validateOTP}>
+              VERIFY OTP
+            </button>
 
             <h3>{OTP}</h3>
 

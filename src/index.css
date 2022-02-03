@@ -2,7 +2,7 @@
   margin: 0px;
 }
 
-ul{
+ul {
   list-style: none;
   padding: 0px;
 }
@@ -21,7 +21,7 @@ hr {
   box-sizing: border-box;
 }
 
-.right{
+.right {
   float: right;
 }
 
@@ -44,7 +44,12 @@ a {
   color: #0b1d4d !important;
 }
 
-
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
 /* label {
   display: flex;
@@ -627,7 +632,6 @@ h6 {
   .price-quote {
     font-size: 30px !important;
   }
-
 }
 
 @media (min-width: 768px) {
@@ -641,7 +645,7 @@ h6 {
   .price-quote {
     font-size: 38px !important;
   }
-  .employee-grid{
+  .employee-grid {
     grid-template-columns: auto auto auto auto;
   }
 }
@@ -668,7 +672,7 @@ h6 {
     margin-bottom: 20px;
   }
 
-  .employee-grid{
+  .employee-grid {
     grid-template-columns: auto auto auto;
   }
 }
@@ -681,7 +685,7 @@ h6 {
 } */
 
 @media (max-width: 1200px) {
-  .employee-grid{
+  .employee-grid {
     grid-template-columns: auto auto auto auto auto;
   }
 
@@ -855,9 +859,9 @@ input {
   border: 1px solid rgb(14, 45, 75);
 }
 
-input[type="search"]{
-font-size: 0.6rem;
-margin: 0;
+input[type="search"] {
+  font-size: 0.6rem;
+  margin: 0;
 }
 
 input::placeholder {
@@ -889,7 +893,7 @@ input::placeholder {
 }
 
 button {
-  background-color:rgba(14, 44, 75, 0.2);
+  background-color: rgba(14, 44, 75, 0.2);
   color: #000;
   padding: 15px 15px;
   font-size: 14px;
@@ -910,19 +914,6 @@ button:disabled {
   background: #ebebeb;
   color: #0b1d4d;
   padding: 10px 15px;
-}
-
-.PaySecure {
-  display: flex;
-  margin-top: 15px;
-  margin: auto;
-}
-
-.amount {
-  text-align: center;
-  text-decoration: wavy;
-  font-size: 21px;
-  font-weight: 600;
 }
 
 input[type="text"]:disabled {
@@ -948,6 +939,19 @@ input[type="text"]:disabled {
   margin: 12px;
 }
 
+.PaySecure {
+  display: flex;
+  margin-top: 15px;
+  margin: auto;
+}
+
+.amount {
+  text-align: center;
+  text-decoration: wavy;
+  font-size: 21px;
+  font-weight: 600;
+}
+
 .card-details {
   display: flex;
   flex-direction: column;
@@ -959,41 +963,51 @@ input[type="text"]:disabled {
   justify-content: space-between;
 }
 
-#admin-board{
+#admin-board {
   display: flex;
   min-height: 100vh;
+  min-width: 100vw;
 }
 
-.admin-main{
+.admin-main {
   width: 100%;
-  box-shadow: -3px -2px 15px #000;
+  box-shadow: -5px -3px 15px #000;
 }
 
-.admin-topbar{
+.admin-topbar {
   padding: 12px;
-  position: sticky;
+  position: static;
   background: rgba(14, 44, 75, 0.9);
   display: flex;
   justify-content: space-between;
   align-content: center;
-  /* width: 85%; */
+  box-shadow: -6px 6px 15px #000;
 }
 
-.admin-sidebar{
-  width: 20%;
+.admin-sidebar {
+  width: 20vw;
   padding: 15px;
   background: rgb(14, 45, 75);
   color: #fff;
   font-size: 14px;
 }
 
+.admin-view {
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+}
+
 .employee-grid {
   display: inline-grid;
-  grid-template-columns: 145px 145px 145px 145px;
+  grid-template-columns: auto auto auto auto;
   grid-template-rows: auto;
-  width: 97%;
-  padding: 15px;
   margin: auto;
+}
+
+.employee-details {
+  min-width: 40%;
+  box-shadow: -6px 6px 15px #000;
 }
 
 .employee-card {
@@ -1016,7 +1030,7 @@ input[type="text"]:disabled {
   margin: auto;
 }
 
-.employee-card .employee-dept{
+.employee-card .employee-dept {
   color: #000;
   font-size: 10px;
   text-align: center;

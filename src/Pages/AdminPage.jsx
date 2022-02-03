@@ -1,22 +1,23 @@
 import { MoreVert, Menu, ArrowForwardIos } from "@material-ui/icons";
-import { Dialog } from "@mui/material";
+import { CircularProgress, Dialog } from "@material-ui/core";
 import React, { useState, useEffect } from "react";
 import Sidebar from "../Components/Sidebar";
 import { useSelector } from "react-redux";
-import { useNavigate, useRoutes, Switch } from "react-router-dom";
+import { useNavigate, Outlet } from "react-router-dom";
 
 const AdminPage = () => {
   const [openEmployee, setEmployee] = useState(false);
-  const [openSideView, setSideView] = useState(true);
+  const [openSideView, setSideView] = useState(false);
   const [Employees, setEmployees] = useState({});
   const isUserAuth = useSelector((state) => state.authReducer);
+  const isLaading = useSelector((state) => state.loadingReducer);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-      if (!isUserAuth) {
-        navigate("auth");
-      }
+    if (!isUserAuth) {
+      navigate("auth");
+    }
 
     const getEmployees = async () => {
       try {
@@ -43,61 +44,107 @@ const AdminPage = () => {
       <div className="main" style={{ background: "#fff" }}>
         {/* <Sidebar /> */}
         <div id="admin-board">
-          <div className={` admin-sidebar ${openSideView ? "hide" : ""}`} >
+          <div className={` admin-sidebar ${openSideView ? "hide" : ""}`}>
+            <div className="right" style={{ display: "flex" }}>
+              <img
+                src="../Thf_1551875131.jpg"
+                className="circle"
+                alt="avatar_img"
+              />
+            </div>
             <ul>
-              <li>DEPARTMENTS</li>
-              <li>TRANSACTION HISTORY
-                <ArrowForwardIos style={{
-          fontSize: 20,
-        }}/>
+              <li>
+                DEPARTMENTS
+                <ArrowForwardIos
+                  style={{
+                    fontSize: 20,
+                  }}
+                />
+              </li>
+              <li>
+                TRANSACTION HISTORY
+                <ArrowForwardIos
+                  style={{
+                    fontSize: 20,
+                  }}
+                />
+                <li>SUBSCRIPTION</li>
+                <li>Add Employee</li>
               </li>
             </ul>
           </div>
+
           <div className="admin-main">
             <div className="admin-topbar">
-            <Menu
-        onClick={() => setSideView(!openSideView)}
-        style={{
-          fontSize: 35,
-        }}
-      />
-      <span className="right">
-        <input type="search" name="" id="" />
-      </span>
+              <Menu
+                onClick={() => setSideView(!openSideView)}
+                style={{
+                  fontSize: 35,
+                }}
+              />
+              <span className="right">
+                <input type="search" name="" id="" />
+              </span>
             </div>
-          <div className="employee-grid">
-            
-            {console.log(Employees)}
-            {Employees.length > 0 ? (
-              Employees.map((employee) => (
-                <div
-                  className="employee-card"
-                  key={employee.id}
-                  onClick={() => setEmployee(!openEmployee)}
-                >
-                  <img
-                    src={Employees[0].picture.large}
-                    alt="employee-avatar"
-                    className="employee-avatar"
-                  />
-                  <span>
-                    <MoreVert />
-                  </span>
-                  <Dialog
-                    open={openEmployee}
-                    onClose={() => setEmployee(!openEmployee)}
-                  >
-                    <input type="text" disabled value={Employees[0].name.last + " " + Employees[0].name.first}/>
-<br />
-                    <input type="text" disabled value={Employees[0].gender}/>
-                    
-                  </Dialog>
-                </div>
-              ))
+
+            <div className="admin-view">
+              <div className="employee-grid">
+                {Employees.length > 0 ? (
+                  Employees.map((employee) => (
+                    <div
+                      className="employee-card"
+                      key={employee.id}
+                      onClick={() => setEmployee(!openEmployee)}
+                    >
+                      <img
+                        src={Employees[0].picture.large}
+                        alt="employee-avatar"
+                        className="employee-avatar"
+                      />
+                      <span>
+                        <MoreVert />
+                      </span>
+                      <Dialog
+                        open={openEmployee}
+                        onClose={() => setEmployee(!openEmployee)}
+                      >
+                        <input
+                          type="text"
+                          disabled
+                          value={
+                            Employees[0].name.last +
+                            " " +
+                            Employees[0].name.first
+                          }
+                        />
+                        <input
+                          type="text"
+                          disabled
+                          value={Employees[0].gender}
+                        />
+                      </Dialog>
+                    </div>
+                  ))
+                ) : (
+                  <></>
+                )}
+              </div>
+
+              <div className="employee-details">
+                <Outlet />
+                cvnxncvz
+              </div>
+            </div>
+
+            {/* </>
             ) : (
-              <></>
-            )}
-            </div>
+              <>
+                <div className="center">
+                  <CircularProgress />
+                  <p>Fetching Employees</p>
+                </div>
+              </>
+            )} */}
 
             {/* <div className="employee-card">
               <img

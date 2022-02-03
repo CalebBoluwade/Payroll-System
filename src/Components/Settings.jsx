@@ -3,7 +3,7 @@ import { Drawer } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { darkTheme, lightTheme, aquaTheme } from "../Actions";
 
-const Settings = ({openSettings, setOpenSettings}) => {
+const Settings = ({ openSettings, setOpenSettings }) => {
   const dark = useSelector((state) => state.themeReducer);
   const dispatch = useDispatch();
 
@@ -13,7 +13,6 @@ const Settings = ({openSettings, setOpenSettings}) => {
 
   const handleLeftAlign = () => {
     sidebar.removeAttribute("style", "right: 0;");
-    // console.log(dashDisplay);
     dashDisplay.setAttribute("style", "margin-left: 100px;");
   };
 
@@ -49,12 +48,11 @@ const Settings = ({openSettings, setOpenSettings}) => {
     themePrefrence: dark,
     lastLoginDate: date.toUTCString(),
   };
-  
+
   localStorage.setItem("userSettings", JSON.stringify(userSettings));
 
   return (
     <div>
-
       <Drawer
         open={openSettings}
         onClose={() => setOpenSettings(!openSettings)}
