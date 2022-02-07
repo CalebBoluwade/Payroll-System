@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import MenuDrawer from "../Components/MenuDrawer";
 import Footer from "../Components/Footer";
 import { Backdrop } from "@mui/material";
-import Sidebar from "../Components/Sidebar";
+import Dockbar from "../Components/Dockbar";
 import { useSelector, useDispatch } from "react-redux";
 import { darkTheme, lightTheme, aquaTheme } from "../Actions";
 // import { closeLogin, loading ,notLoading } from "../Actions";
@@ -103,7 +103,7 @@ const Dashboard = () => {
           {"   "} <span>NO</span>
         </div> */}
 
-        <Sidebar />
+        <Dockbar />
 
         <div className="display" id="display">
           <div id="top">

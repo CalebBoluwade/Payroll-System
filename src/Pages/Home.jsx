@@ -6,19 +6,16 @@ import Button from "@material-ui/core/Button";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-  // const dispatch = useDispatch();
   const navigate = useNavigate();
 
   return (
     <>
-      <div style={{ position: "fixed", width: "100%" }}>
-        <Header />
-      </div>
+      <Header />
       <div style={{ paddingTop: "77px", color: "#0a3838" }}>
         <div
           className="homedisplay"
           style={{
-            backgroundImage: "url(../home/girl_3.gif)",
+            backgroundImage: "url(./home/girl_3.gif)",
           }}
         >
           <h2 className="flow-text center" style={{ paddingTop: 50 }}>
@@ -87,22 +84,72 @@ const Home = () => {
       </div> */}
 
       <div className="testimonals">
-        <div className="testimonals-w-text">
-        <div className="bubble"></div>
+        <div className="bubble right">
+          <span
+            className="testimonals-w-text"
+            style={{ position: "relative", bottom: 0, right: 180 }}
+          >
+            <img
+              src="./Thf_1551875131.jpg"
+              className="testimonal-avatar"
+              alt=""
+            />
+            <span className="testimonal-text">
+              "Lorem ipsum dolor sit amet consectetur adipisicing."
+            </span>
+          </span>
+        </div>
+        <br />
+        <br />
+        <br />
+
+        <div className="bubble2" style={{ position: "relative", top: 65 }}>
+          <span
+            className="testimonals-w-text"
+            style={{ position: "relative", top: 35, left: -15 }}
+          >
+            <img
+              src="./Thf_1551875131.jpg"
+              className="testimonal-avatar"
+              alt=""
+            />
+            <span className="testimonal-text">
+              "Lorem ipsum dolor sit amet consectetur adipisicing."
+            </span>
+          </span>
+        </div>
+        <br />
+        <br />
+        <br />
+
+        <div className="bubble3">
+          <span
+            className="testimonals-w-text"
+            style={{ position: "relative", left: -25 }}
+          >
+            <img
+              src="./Thf_1551875131.jpg"
+              className="testimonal-avatar"
+              alt=""
+            />
+            <span className="testimonal-text">
+              "Lorem ipsum dolor sit amet consectetur adipisicing."
+            </span>
+          </span>
+        </div>
+        {/* <div className="testimonals-w-text">
+          <div className="bubble4"></div>
         </div>
         <div className="testimonals-w-text">
-        <div className="bubble2"></div>
-        </div>
-        <div className="testimonals-w-text">
-        <div className="bubble3"></div>
-        </div>
-        <div className="testimonals-w-text">
-        <div className="bubble4"></div>
-        </div>
-        <div className="testimonals-w-text">
-        <div className="bubble5"></div>
-        </div>
+          <div className="bubble5"></div>
+        </div> */}
       </div>
+
+      <img
+        src="./home/pexels-anna-nekrashevich-6801873.jpg"
+        alt="work-anywhere"
+        className="slide-image"
+      />
       <ContactSupport />
       <Footer />
     </>

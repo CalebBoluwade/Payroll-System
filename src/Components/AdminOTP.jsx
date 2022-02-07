@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Alert } from "@mui/material";
 
-const AdminAuth = () => {
+const AdminOTP = ({ showOTP, setOTPDisplay }) => {
   const [OTP, setOTP] = useState(""); //Generated OTP
   const [userOTP, setUserOTP] = useState(""); //User Inputed OTP
   const isUserAuth = useSelector((state) => state.authReducer);
@@ -17,8 +17,6 @@ const AdminAuth = () => {
     NewOTP();
   }, []);
 
-  const date = Date();
-
   const validateOTP = () => {
     if (userOTP !== OTP) {
       alert("OTP MISMATCH");
@@ -27,26 +25,13 @@ const AdminAuth = () => {
     if (userOTP === OTP) {
       setShow(true);
       setTimeout(() => {
-        if (isUserAuth) {
-          navigate("/admin");
-        }
-        if (!isUserAuth) {
-          navigate("/login");
-        }
-      }, 5000);
+        setShow(false);
+        setOTPDisplay(!showOTP);
+      }, 4000);
+
       sessionStorage.setItem("last_admin_login", "eyrw");
     }
   };
-
-  // const Button = document.getElementById("otp-button");
-  // console.log(Button)
-  //   Button.addEventListener("keydown", (e) =>{
-  //     if (e.key == "enter"){
-  // validateOTP()
-  //     }
-  //   })
-
-  const navigate = useNavigate();
 
   const sms = {
     sender: "New Wave Payroll",
@@ -80,22 +65,27 @@ const AdminAuth = () => {
 
   return (
     <>
-      <div className="pay">
-        <div className="form-control">
+      {/* <div className="otp-background"></div> */}
+      <div className={`otp-background ${showOTP ? "" : "hide"}`}>
+        <div className="admin-otp">
           <div className={show ? "" : "hide"}>
             <Alert>OTP Confirmed Sucessfully</Alert>
           </div>
 
-          <p className="form-text">OTP sent to your registered Phone Number</p>
+          <p className="center">Authenticate Admin</p>
           <div className="input-area">
             <label htmlFor="otp">ENTER OTP</label>
             <input
               type="text"
               required
               id="otp"
+              min={4}
+              step={3}
+              required
               placeholder="Enter OTP"
               onChange={(e) => setUserOTP(e.target.value)}
             />
+            <input type="password" required name="" id="" />
           </div>
 
           <button id="otp-button" onClick={validateOTP}>
@@ -104,6 +94,7 @@ const AdminAuth = () => {
 
           <h3>{OTP}</h3>
 
+          <button>Continue</button>
           {/* <p onClick={() => NewOTP()}>Didn't receive OTP, resend it</p> */}
         </div>
       </div>
@@ -111,4 +102,4 @@ const AdminAuth = () => {
   );
 };
 
-export default AdminAuth;
+export default AdminOTP;

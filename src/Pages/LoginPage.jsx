@@ -38,43 +38,50 @@ const Login = () => {
 
   return (
     <>
-      <div className="main pay">
-        <div className="pay">
-          <div className="form-control">
-            <div className={show ? "" : "hide"}>
-              <Alert>Login Sucessful. Redirecting..</Alert>
-            </div>
-            <div className="input-area">
-              <label htmlFor="email">E-MAIL ADDRESS</label>
-              <input
-                type="email"
-                required
-                id="email"
-                placeholder="Email"
-                onChange={(e) => setUserEmail(e.target.value)}
-              />
-
-              <label htmlFor="password">PASSWORD</label>
-              <input
-                type="password"
-                required
-                id="password"
-                placeholder="Password"
-                onChange={(e) => setUserPassword(e.target.value)}
-              />
-            </div>
-
-            <div className="button-area">
-              <button id="login" onClick={handleLoginRequest}>
-                LOGIN
-              </button>
-            </div>
-
-            <p className="form-text">
-              DON'T HAVE AN ACCOUNT, CLICK <Link to="register">HERE</Link>
-            </p>
+      <div className="aqua pay">
+        <div className="form-control" id="login">
+          <div className={show ? "" : "hide"}>
+            <Alert>Login Sucessful. Redirecting..</Alert>
           </div>
-          <div className="form-footer">powered by</div>
+          <div className="input-area">
+            {/* <label htmlFor="email">E-MAIL ADDRESS</label> */}
+            <input
+              type="email"
+              required
+              id="email"
+              onChange={(e) => setUserEmail(e.target.value)}
+            />
+          </div>
+          <div className="input-area">
+            {/* <label htmlFor="password">PASSWORD</label> */}
+            <input
+              type="password"
+              required
+              id="password"
+              placeholder="Password"
+              min="8"
+              minLength="8"
+              onChange={(e) => setUserPassword(e.target.value)}
+            />
+          </div>
+
+          <div className="button-area">
+            <button id="login" onClick={handleLoginRequest}>
+              LOGIN
+            </button>
+          </div>
+
+          <p className="form-text">
+            DON'T HAVE AN ACCOUNT, CLICK <Link to="register">HERE</Link>
+          </p>
+        </div>
+        <div className="paySecure">Secured</div>
+      </div>
+
+      <div className="welcome-banner">
+        <img src="./image.gif" width={300} alt="" />
+        <div className="center">
+          <button>Get Started</button>
         </div>
       </div>
     </>

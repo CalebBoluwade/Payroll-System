@@ -1,12 +1,37 @@
 import React, { useState } from "react";
-import { Dialog, DialogContent } from "@material-ui/core";
+import { Dialog, DialogContent, Typography } from "@material-ui/core";
 import Alert from "@mui/material/Alert";
 import { useSelector } from "react-redux";
 import { CheckCircle } from "@material-ui/icons";
+import {
+  Stepper,
+  StepContent,
+  StepLabel,
+  Step,
+  Box,
+  Paper,
+  Button,
+} from "@material-ui/core";
 // import { Link } from "react-router-dom";
 // import MenuItem from "@material-ui/core/MenuItem";
 
 const Register = () => {
+  const [activeStep, setActiveStep] = useState(0);
+
+  const setActiveSteps = () => {};
+
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  const handleReset = () => {
+    setActiveStep(0);
+  };
+
   const [companyName, setCompanyName] = useState("");
   const [companyEmail, setCompanyEmail] = useState("");
   const [address, setAddress] = useState();
@@ -43,7 +68,6 @@ const Register = () => {
     }
 
     if (confirmPassword === password) {
-
       setResponse(true);
       setResponseNote(true);
       console.log(newUser);
@@ -69,21 +93,74 @@ const Register = () => {
       return data;
     };
 
-    postUser();
+    // postUser();
   };
+
+  const steps = [
+    {
+      label: "Basic Information",
+      description: "<input />",
+    },
+    {
+      label: "Company Details",
+      description:
+        "An ad group contains one or more ads which target a shared set of keywords.",
+    },
+    {
+      label: "Confirm Details",
+      description: `Try out different ad text to see what brings in the most customers,
+                and learn how to enhance your ads using features like ad extensions.
+                If you run into any problems with your ads, find out how to tell if
+                they're running and how to resolve approval issues.`,
+    },
+  ];
 
   return (
     <>
       <div className="main pay">
         <div className="pay">
           <div className="form-control">
-            <input
-              type="text"
-              required
-              id="name"
-              label="Company's Name"
-              onChange={(e) => setCompanyName(e.target.value)}
-            />
+            <Stepper activeStep={activeStep} orientation="vertical">
+              {steps.map((step, index) => (
+                <Step key={step.label}>
+                  <StepLabel
+                    optional={
+                      index === 2 ? (
+                        <Typography variant="caption">Last step</Typography>
+                      ) : null
+                    }
+                  >
+                    {step.label}
+                  </StepLabel>
+                  <StepContent>
+                    <Typography>{step.description}</Typography>
+
+                    <button variant="contained" onClick={handleNext}>
+                      {index === steps.length - 1
+                        ? "Create Account"
+                        : "Continue"}
+                    </button>
+                    <button
+                      className="right"
+                      disabled={index === 0}
+                      onClick={handleBack}
+                    >
+                      Back
+                    </button>
+                  </StepContent>
+                </Step>
+              ))}
+            </Stepper>
+            {activeStep === steps.length && (
+              <Paper square elevation={0} sx={{ p: 3 }}>
+                <Typography>
+                  All steps completed - you&apos;re finished
+                </Typography>
+                <button onClick={handleReset}>Reset</button>
+              </Paper>
+            )}
+
+            {/* 
             <input
               required
               id="email"
@@ -91,8 +168,8 @@ const Register = () => {
               name="email"
               type="email"
               onChange={(e) => setCompanyEmail(e.target.value)}
-            />
-            <button onClick={postNewUser}>Create Account</button>
+            /> */}
+
             <div style={{ color: "#76C6C5" }}>
               <p className="center">
                 <strong>{year.getFullYear()}. NEW WAVE SOLUTIONS.</strong>

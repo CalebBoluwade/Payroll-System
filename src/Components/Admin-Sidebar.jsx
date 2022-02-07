@@ -1,34 +1,40 @@
-import React from 'react';
-import {ArrowForwardIos } from "@material-ui/icons";
+import React, { useState } from "react";
+import { Search } from "@material-ui/icons";
 import { Link } from "react-router-dom";
-import { logout } from "../Actions";
-import { useDispatch } from "react-redux";
 
-const AdminSidebar = ({openSideView}) => {
-  const dispatch = useDispatch();
-  return <>
+const AdminSidebar = ({ openSideView }) => {
+  return (
+    <>
       <div className={` admin-sidebar ${openSideView ? "hide" : ""}`}>
-            <div>
-              <img
-                src="../Thf_1551875131.jpg"
-                className="circle"
-                alt="avatar_img"
-              />
-            </div>
+        <input type="search" name="" id="search" placeholder="Search Here" />
 
-<div className="admin-links">
-            <Link to="departments">DEPARTMENTS</Link>
-            <Link to="employee">EMPLOYEES</Link>
-            <Link to="transactions">TRANS. HISTORY</Link>
-            <Link to="payments">PAYMENTS</Link>
-            </div>
+        <Link to="search" className="search-icon">
+          <Search />
+        </Link>
 
-<div className="center" style={{position: "absolute", bottom: 20, left: 20}}>
-<img src="../power-button-power-svgrepo-com.svg" width={40} alt="Power Button" onClick={() => dispatch(logout())} />
-</div>
-        
-          </div>
-  </>;
+        <div className="admin-links">
+          <Link className="side-links" to="departments">
+            DEPARTMENTS
+          </Link>
+          <Link className="side-links" to="employee">
+            EMPLOYEES
+          </Link>
+          <Link className="side-links" to="transactions">
+            TRANS. HISTORY
+          </Link>
+          <Link className="side-links" to="payments">
+            PAYMENTS
+          </Link>
+          <Link className="side-links" to="notifications">
+            PUSH NOTIFICATIONS
+          </Link>
+          <Link className="side-links" to="feedback">
+            FEEDBACK
+          </Link>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default AdminSidebar;
