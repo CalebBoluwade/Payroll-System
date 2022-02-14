@@ -12,33 +12,11 @@ const Home = () => {
     <>
       <Header />
       <div style={{ paddingTop: "77px", color: "#0a3838" }}>
-        <div
-          className="homedisplay"
-          style={{
-            backgroundImage: "url(./home/girl_3.gif)",
-          }}
-        >
-          <h2 className="flow-text center" style={{ paddingTop: 50 }}>
-            <strong>BUILT FOR EVERYONE</strong>
-          </h2>
-          <div>
-            <div>
-              <h6 className="flow-text center" style={{ paddingTop: 100 }}>
-                <strong>WHY NOT LEAD THE CURVE</strong>,
-                <br />
-                <Button
-                  variant="outlined"
-                  onClick={() => {
-                    navigate("register");
-                  }}
-                >
-                  Sign Up
-                </Button>
-                <strong> TODAY!</strong>
-              </h6>
-            </div>
-          </div>
-        </div>
+        <img
+          src="./home/pexels-anna-nekrashevich-6801873.jpg"
+          alt="work-anywhere"
+          className="slide-image"
+        />
       </div>
 
       {/* <div className="home-slides">
@@ -145,11 +123,34 @@ const Home = () => {
         </div> */}
       </div>
 
-      <img
-        src="./home/pexels-anna-nekrashevich-6801873.jpg"
-        alt="work-anywhere"
-        className="slide-image"
-      />
+      <div
+        className="homedisplay"
+        style={{
+          backgroundImage: "url(./home/girl_3.gif)",
+        }}
+      >
+        <h2 className="flow-text center" style={{ paddingTop: 50 }}>
+          <strong>BUILT FOR EVERYONE</strong>
+        </h2>
+        <div>
+          <div>
+            <h6 className="flow-text center" style={{ paddingTop: 100 }}>
+              <strong>WHY NOT LEAD THE CURVE</strong>,
+              <br />
+              <Button
+                variant="outlined"
+                onClick={() => {
+                  navigate("register");
+                }}
+              >
+                Sign Up
+              </Button>
+              <strong> TODAY!</strong>
+            </h6>
+          </div>
+        </div>
+      </div>
+
       <ContactSupport />
       <Footer />
     </>

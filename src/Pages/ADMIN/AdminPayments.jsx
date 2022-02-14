@@ -5,6 +5,9 @@ const AdminPayments = () => {
     <div>
       <h4>TOTAL EMPLOYEES</h4>
 
+      <h3>Available Balance</h3>
+      <p className="amount">NGN5,000,000,000</p>
+
       <div className="box">
         <div className="percent">
           <svg>
@@ -36,6 +39,8 @@ const AdminPayments = () => {
         </div>
         <h2 className="text">Progress</h2>
       </div>
+
+      <button>Import Excel File</button>
 
       <div className="right">
         <button>PAY</button>

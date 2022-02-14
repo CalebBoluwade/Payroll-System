@@ -23,7 +23,7 @@ const Header = () => {
   const [appsModalDisplay, setAppsModalDisplay] = useState(false);
 
   return (
-    <nav className="navbar z-depth-5">
+    <nav className="navbar">
       <div>
         <img src="LOGO IDEA 1A.png" alt="brand-logo" className="site-logo" />
       </div>
@@ -75,13 +75,7 @@ const Header = () => {
 
       <div>
         {isAuth ? (
-          <span
-            style={{
-              display: "flex",
-              marginRight: 10,
-              justifyContent: "space-between",
-            }}
-          >
+          <span>
             <Tooltip title="Notifications">
               <Link to="/notification">
                 <Badge
@@ -118,21 +112,16 @@ const Header = () => {
             </div>
           </span>
         ) : (
-          <span style={{ marginRight: 20 }}>
-            <Button
-              text="Login"
-              variant="outlined"
-              onClick={() => setOpenPopup(true)}
-            >
-              Login
-            </Button>
-            
-            <Dialog open={openPopup} onClose={() => setOpenPopup(false)}></Dialog>
-          </span>
+          <>
+            <Button onClick={() => setOpenPopup(true)}>Login</Button>
+
+            <Dialog
+              open={openPopup}
+              onClose={() => setOpenPopup(false)}
+            ></Dialog>
+          </>
         )}
       </div>
-
-    
     </nav>
   );
 };

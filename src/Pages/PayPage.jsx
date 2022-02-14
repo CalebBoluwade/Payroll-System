@@ -8,7 +8,8 @@ const PayPage = () => {
   const [ref] = "PR";
   const [transRef, setTransRef] = useState("");
   const [cardNumber, setCardNumber] = useState("");
-  const [cardExpiry, setCardExpiry] = useState("");
+  const [cardExpiryM, setCardExpiryM] = useState("");
+  const [cardExpiryY, setCardExpiryY] = useState("");
   const [CVV, setCVV] = useState("");
 
   const Paystack = (e) => {
@@ -47,20 +48,52 @@ const PayPage = () => {
         <form
           action="https://api.paystack.co/transaction/initialize"
           className="form-control"
+          id="paystack"
         >
-          <div className="sm-text">PAY</div>
-          <div className="right amount">N323,000</div>
-          <div>
-            <span>Calebb.jnr@gmail.com</span>
-          </div>
+          <div className="amount">N323,000</div>
+          <div className="right">GROOVE TECH. SOLUTIONS</div>
           <div className="pay-platform">
             <img src="./credit-card.svg" width="45" alt="" />
             <span>Pay with Card</span>
+            Enter your details to pay
+            <div className="card-details">
+              <input
+                type="email"
+                name=""
+                id=""
+                placeholder="0000 0000 0000 0000"
+                onChange={(e) => setCardNumber(e.target.value)}
+              />
+
+              <div className="card">
+                <input
+                  type="tel"
+                  name=""
+                  id="month"
+                  placeholder="Month"
+                  maxLength="4"
+                  onChange={(e) => setCardExpiryM(e.target.value)}
+                />
+
+                <input
+                  type="tel"
+                  id="year"
+                  placeholder="C V V"
+                  minLength="3"
+                  maxLength="3"
+                  onChange={(e) => setCardExpiryY(e.target.value)}
+                />
+              </div>
+              <input
+                type="tel"
+                id=""
+                placeholder="CVV"
+                minLength="3"
+                maxLength="3"
+                onChange={(e) => setCVV(e.target.value)}
+              />
+            </div>
           </div>
-          <details className="pay-platform">
-            <summary>dfhdh</summary>
-            eeh
-          </details>
           <div className="pay-platform">
             <img src="./bank.svg" width="45" alt="Bank" />
             <span>Pay with Bank</span>
@@ -69,58 +102,10 @@ const PayPage = () => {
             <img src="./ussd_image.svg" width="45" alt="" />
             <span>Pay with USSD</span>
           </div>
-          <p className="flow-text">Enter your details to pay</p>
-          <div className="card-details">
-            <div className="card">
-              <label for="">
-                CARD NUMBER
-                <input
-                  type="email"
-                  name=""
-                  id=""
-                  placeholder="0000 0000 0000 0000"
-                  onChange={(e) => setCardNumber(e.target.value)}
-                />
-              </label>
-            </div>
-            <div className="card">
-              <div>
-                <label for="">
-                  CARD EXPIRY
-                  <input
-                    type="tel"
-                    name=""
-                    id=""
-                    placeholder="MM/YY"
-                    maxLength="4"
-                    onChange={(e) => setCardExpiry(e.target.value)}
-                  />
-                </label>
-              </div>
-              <div>
-                <label for="cvv">
-                  CVV
-                  <input
-                    type="tel"
-                    id=""
-                    placeholder="CVV"
-                    maxLength="3"
-                    onChange={(e) => setCVV(e.target.value)}
-                  />
-                </label>
-              </div>
-            </div>
-          </div>
-          <div className="button_area">
-            <button onClick={() => Paystack}>PAY</button>
-          </div>
-          <img
-            src="./secure-white-en.e212765d.svg"
-            alt=""
-            className="PaySecure"
-          />
+          <button onClick={() => Paystack}>PROCEED</button>
           Why Chose PayEase?
         </form>
+        <img src="./secure-white-en.e212765d.svg" alt="paystack" />
       </div>
     </>
   );

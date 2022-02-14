@@ -41,7 +41,7 @@ server.post("/api/auth/register", (req, res) => {
       res.status(status).json({ status, message });
       return;
     }
-    let data = JSON.parse(data.toString());
+    let res = JSON.parse(data.toString());
 
     let last_item_id = data.users[data.users.length - 1].id;
 
@@ -63,17 +63,18 @@ server.post("/api/auth/register", (req, res) => {
       }
     );
   });
-  const newToken = createToken({email, password})
-  res.status(200).json({newToken})
+  const newToken = createToken({ email, password });
+  res.status(200).json({ newToken });
 });
 
-server.post("/api/auth/login"), (req, res) => {
-  const {email, password} =req.body;
-  function isAuthenticated({ email, password }) {
-    return (
-      userdb.users.findIndex(
-        (user) => user.email === email && user.password === password
-      ) !== -1
-    );
-  } 
-}
+server.post("/api/auth/login"),
+  (req, res) => {
+    const { email, password } = req.body;
+    function isAuthenticated({ email, password }) {
+      return (
+        userdb.users.findIndex(
+          (user) => user.email === email && user.password === password
+        ) !== -1
+      );
+    }
+  };

@@ -1,15 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { TextField, Select, MenuItem } from "@material-ui/core";
-import {
-  Button,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  Radio,
-  RadioGroup,
-  CircularProgress,
-  Dialog,
-} from "@mui/material";
+import { CircularProgress, Dialog } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { loading } from "../Actions";
 import { notLoading } from "../Actions";
@@ -84,23 +74,23 @@ const Util = ({ OpenUtils, setOpenUtils }) => {
 
   let service_name = serviceId;
 
-    useEffect(() => {
+  useEffect(() => {
     const getBillerServices = async () => {
-      try{
-      const res = await fetch(
-        "https://buybills.herokuapp.com/api/biller_services"
-      );
-      const dataRes = await res.json();
-      setBillerServices(dataRes);
-      dispatch(notLoading);
-      return dataRes;
-    } catch(e){
-      console.log(e);
-    }
+      try {
+        const res = await fetch(
+          "https://buybills.herokuapp.com/api/biller_services"
+        );
+        const dataRes = await res.json();
+        setBillerServices(dataRes);
+        dispatch(notLoading);
+        return dataRes;
+      } catch (e) {
+        console.log(e);
+      }
     };
     getBillerServices();
 
-    console.log(biller_services) 
+    console.log(biller_services);
   }, []);
 
   // const postBillsRequest = async () => {
@@ -120,21 +110,50 @@ const Util = ({ OpenUtils, setOpenUtils }) => {
   //   console.warn(e);
   // }
   // };
-  let a = [{id: 1}, {id: 2}, {id: 3}, {id: 4}];
+  let a = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }];
 
   return (
     <>
       <Dialog open={OpenUtils} onClose={() => setOpenUtils(!OpenUtils)}>
-        <div style={{ minWidth: 500,display: "flex", flexDirection: "row" }}>
-    
-{/* {a.length > 0 ? biller_services.map((airtime) =>{
-   <div className="hoverable display2 displaybox">
-{airtime.id}
-   </div>
-}) : <></>}               */}
-         
-        </div>
+        <div style={{ width: 400, padding: 13 }}>
+          <div className="services">
+            <div className="bills">
+              <img src="./airtime.svg" width={50} alt="" />
+            </div>
+            <div className="bills">
+              <img src="./utilities.svg" width={35} alt="" />
+            </div>
+            <div className="bills">
+              <img src="./utilities.svg" width={35} alt="" />
+            </div>
+            <div className="bills">
+              <img src="./utilities.svg" width={35} alt="" />
+            </div>
+          </div>
 
+          <div>
+            <input
+              required
+              type="email"
+              label="Email"
+              onChange={(e) => setEmailAddress(e.target.value)}
+            />
+            <br />
+            <input
+              required
+              type="text"
+              label="Beneficiary"
+              onChange={(e) => setPhoneNumber(e.target.value)}
+            />
+            <br />
+            <input
+              required
+              type="number"
+              label="Amount"
+              onChange={(e) => setAirtimeAmount(e.target.value)}
+            />
+          </div>
+        </div>
         {/* <div>
               <Select
                 required
@@ -148,26 +167,7 @@ const Util = ({ OpenUtils, setOpenUtils }) => {
                 <MenuItem>1000</MenuItem>
               </Select>
 
-              <TextField
-                required
-                type="email"
-                label="Email"
-                onChange={(e) => setEmailAddress(e.target.value)}
-              ></TextField>
-              <br />
-              <TextField
-                required
-                type="text"
-                label="Beneficiary"
-                onChange={(e) => setPhoneNumber(e.target.value)}
-              ></TextField>
-              <br />
-              <TextField
-                required
-                type="number"
-                label="Amount"
-                onChange={(e) => setAirtimeAmount(e.target.value)}
-              ></TextField>
+            
 
               <br />
               <br />
@@ -202,12 +202,12 @@ const Util = ({ OpenUtils, setOpenUtils }) => {
 
           <br />
 
-          <TextField
+          <input
             required
-            type="number"
+            type="text"
             label="Meter Number"
             onChange={(e) => setMeterNo(e.target.value)}
-          ></TextField>
+          />
         </div> */}
 
         {/* <div className="transaction_status">
@@ -217,29 +217,6 @@ const Util = ({ OpenUtils, setOpenUtils }) => {
           <div className="center">Processing..</div>
         </div>
       </div> */}
-        {isLoading ? (
-          <>
-            <img src="./paystack-logo-vector.svg" alt="" />
-
-            <div className="transaction_status center">
-              <div className="center">
-                <CircularProgress />
-              </div>
-              <div className="center">Loading..</div>
-            </div>
-          </>
-        ) : (
-          <>
-          <img src="./paystack-logo-vector.svg" alt="" />
-
-<div className="transaction_status center">
-  <div className="center">
-    <CircularProgress />
-  </div>
-  <div className="center">Loading..</div>
-</div>
-          </>
-        )}
       </Dialog>
     </>
   );

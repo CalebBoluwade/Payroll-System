@@ -23,57 +23,42 @@ const Dockbar = () => {
   }, [isUserAuth]);
 
   return (
-    <div className="bottom-bar">
-      <div className="displaybox" id="bottom-bar">
-        {/* <Tooltip title="Minimize">
-          <img
-            src="./minimize.svg"
-            alt=""
-            style={{
-              width: 15,
-              position: "fixed",
-              color: "khaki",
-              right: 15,
-            }}
-          />
-        </Tooltip> */}
-
+    <div className="dock">
+      <div className="displaybox" id="dock">
         <div className="bar-item">
           <Tooltip title="Home">
             <Link className="Bbar-links" to="/">
-              <img
-                src="./smart-home-svgrepo-com.svg"
-                alt="home"
-                className="img"
-              />
+              <img src="./home.svg" alt="home" className="img" />
             </Link>
           </Tooltip>
         </div>
 
-        <div className="bar-item">
+        {/* <div className="bar-item">
           <Tooltip title="Dashboard">
             <Link to="dashboard" className="Bbar-links">
-              <img src="./widget-svgrepo-com.svg" alt="" className="img" />
+              <img src="./dashboard.svg" alt="" className="img" />
+            </Link>
+          </Tooltip>
+        </div> */}
+
+        <div className="bar-item">
+          <Tooltip title="Notifications">
+            <Link to="notifications">
+              <Badge badgeContent={16}>
+                <img
+                  src="./notification-svgrepo-com (1).svg"
+                  alt=""
+                  className="img"
+                />
+              </Badge>
             </Link>
           </Tooltip>
         </div>
-
-        {/* <Tooltip title="Notifications">
-        <Link to="/notification">
-          <Badge badgeContent={16}>
-            <img
-              src="./notification-svgrepo-com (1).svg"
-              alt=""
-              className="img"
-            />
-          </Badge>
-        </Link>
-      </Tooltip> */}
 
         <div className="bar-item">
           <Tooltip title="Utilities">
             <img
-              src="./electricity-flash-svgrepo-com.svg"
+              src="./utilities.svg"
               alt="Utilities"
               className="img  Bbar-links"
               onClick={() => setOpenUtils(!openUtils)}
@@ -84,7 +69,7 @@ const Dockbar = () => {
         <div className="bar-item">
           <Tooltip title="Printer">
             <img
-              src="printer-svgrepo-com.svg"
+              src="printer.svg"
               alt="Printer"
               className="img Bbar-links"
               onClick={() => window.print()}
@@ -107,7 +92,7 @@ const Dockbar = () => {
         <div className="bar-item">
           <Tooltip title="Log out">
             <img
-              src="./power-button-svgrepo-com (1).svg"
+              src="./power-button2.svg"
               className="img Bbar-links"
               width={35}
               alt="Logout"

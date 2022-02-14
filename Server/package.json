@@ -1,0 +1,12 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Payroll Demo Server",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm start",
+    "start": "node server.js"
+  },
+  "author": "GROOVE TECH",
+  "license": "ISC"
+}

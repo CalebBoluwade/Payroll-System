@@ -1,43 +1,17 @@
 import React, { useState } from "react";
-import { Dialog, DialogContent, Typography } from "@material-ui/core";
+import { Dialog, DialogContent } from "@material-ui/core";
 import Alert from "@mui/material/Alert";
 import { useSelector } from "react-redux";
 import { CheckCircle } from "@material-ui/icons";
-import {
-  Stepper,
-  StepContent,
-  StepLabel,
-  Step,
-  Box,
-  Paper,
-  Button,
-} from "@material-ui/core";
-// import { Link } from "react-router-dom";
-// import MenuItem from "@material-ui/core/MenuItem";
+import { Link } from "react-router-dom";
 
 const Register = () => {
-  const [activeStep, setActiveStep] = useState(0);
-
-  const setActiveSteps = () => {};
-
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
-  const handleReset = () => {
-    setActiveStep(0);
-  };
-
   const [companyName, setCompanyName] = useState("");
   const [companyEmail, setCompanyEmail] = useState("");
   const [address, setAddress] = useState();
   const [country, setCountry] = useState("");
-  const [rcc, setRCC] = useState("");
-  const [taxID, setTaxID] = useState();
+  const [RCC, setRCC] = useState("");
+  const [CAC, setCAC] = useState();
   const [phoneNo, setPhoneNo] = useState();
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
@@ -47,136 +21,174 @@ const Register = () => {
   const [responseNote, setResponseNote] = useState(false);
 
   const isLoading = useSelector((state) => state.loadingReducer);
-  const year = new Date();
 
-  const postNewUser = async (e) => {
-    e.preventDefault();
+  const users = [
+    { email: "demo@payroll.com" },
+    { email: "admin@payroll.com" },
+    { email: "customercare@payroll.com" },
+    { email: "helpdesk@payroll.com" },
+  ];
 
-    const newUser = {
-      Company_Name: companyName,
-      Company_Email: companyEmail,
-      Number: phoneNo,
-      rcc: rcc,
-      tax: taxID,
-      password: password,
-      confirmPassword: confirmPassword,
-    };
-
-    if (password === "") {
-      const pass = document.getElementById("password");
-      pass.setAttribute("disabled", true);
-    }
-
-    if (confirmPassword === password) {
-      setResponse(true);
-      setResponseNote(true);
-      console.log(newUser);
-
-      return newUser;
-    }
-
-    if (confirmPassword !== password) {
-      setResponseNote(false);
-    }
-
-    const postUser = async () => {
-      const response = await fetch("http://localhost:8000/users", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(newUser),
-      });
-
-      const data = await response.json();
-      console.log(data);
-      return data;
-    };
-
-    // postUser();
+  const checkEmail = () => {
+    console.log("ggjf");
+    // users.find({ email: companyEmail }, (err, foundEmail) => {
+    //   if (err) {
+    //     console.log(err, "Email already exists");
+    //   } else {
+    //     if (foundEmail) {
+    //       console.log("1");
+    //     }
+    //   }
+    // });
   };
 
-  const steps = [
-    {
-      label: "Basic Information",
-      description: "<input />",
-    },
-    {
-      label: "Company Details",
-      description:
-        "An ad group contains one or more ads which target a shared set of keywords.",
-    },
-    {
-      label: "Confirm Details",
-      description: `Try out different ad text to see what brings in the most customers,
-                and learn how to enhance your ads using features like ad extensions.
-                If you run into any problems with your ads, find out how to tell if
-                they're running and how to resolve approval issues.`,
-    },
-  ];
+  const RegisterNew = (e) => {
+    e.preventDefault();
+    // if (password === "") {
+    //   const pass = document.getElementById("password");
+    //   pass.setAttribute("disabled", true);
+    // }
+
+    // if (confirmPassword === password) {
+    //   setResponse(true);
+    //   setResponseNote(true);
+    //   console.log(newUser);
+
+    //   return newUser;
+    // }
+
+    // if (confirmPassword !== password) {
+    //   setResponseNote(false);
+    // }
+
+    const RegisterCompany = async () => {
+      const newCompany = {
+        Company_Name: companyName,
+        Company_Email: companyEmail,
+        Number: phoneNo,
+        address: address,
+        country: country,
+        rcc: RCC,
+        cac: CAC,
+        password: password,
+        confirmPassword: confirmPassword,
+      };
+
+      try {
+        const response = await fetch("http://localhost:8000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(newCompany),
+        });
+
+        const data = await response.json();
+        console.log(data);
+        return data;
+      } catch (e) {
+        console.log(e);
+      }
+    };
+  };
 
   return (
     <>
-      <div className="main pay">
-        <div className="pay">
-          <div className="form-control">
-            <Stepper activeStep={activeStep} orientation="vertical">
-              {steps.map((step, index) => (
-                <Step key={step.label}>
-                  <StepLabel
-                    optional={
-                      index === 2 ? (
-                        <Typography variant="caption">Last step</Typography>
-                      ) : null
-                    }
-                  >
-                    {step.label}
-                  </StepLabel>
-                  <StepContent>
-                    <Typography>{step.description}</Typography>
-
-                    <button variant="contained" onClick={handleNext}>
-                      {index === steps.length - 1
-                        ? "Create Account"
-                        : "Continue"}
-                    </button>
-                    <button
-                      className="right"
-                      disabled={index === 0}
-                      onClick={handleBack}
-                    >
-                      Back
-                    </button>
-                  </StepContent>
-                </Step>
-              ))}
-            </Stepper>
-            {activeStep === steps.length && (
-              <Paper square elevation={0} sx={{ p: 3 }}>
-                <Typography>
-                  All steps completed - you&apos;re finished
-                </Typography>
-                <button onClick={handleReset}>Reset</button>
-              </Paper>
-            )}
-
-            {/* 
+      <div className="pay" id="register_page">
+        <form className="form-control" id="register">
+          <label htmlFor="name" className="form-label">
+            Business Name
+          </label>
+          <input
+            required
+            id="company_name"
+            label="name"
+            type="text"
+            onChange={(e) => setCompanyName(e.target.value)}
+          />
+          <label htmlFor="email" className="form-label">
+            Business E-mail
+          </label>
+          <input
+            required
+            id="email"
+            label="Email Address"
+            name="email"
+            type="email"
+            onKeyDown={checkEmail()}
+            onChange={(e) => setCompanyEmail(e.target.value)}
+          />
+          <label htmlFor="cac" className="form-label">
+            Company Details
+          </label>
+          <div className="form-flex">
             <input
               required
-              id="email"
-              label="Email Address"
-              name="email"
-              type="email"
-              onChange={(e) => setCompanyEmail(e.target.value)}
-            /> */}
-
-            <div style={{ color: "#76C6C5" }}>
-              <p className="center">
-                <strong>{year.getFullYear()}. NEW WAVE SOLUTIONS.</strong>
-              </p>
-            </div>
+              id="cac"
+              label="CAC"
+              name="cac"
+              type="tel"
+              placeholder="CAC"
+              onChange={(e) => setCAC(e.target.value)}
+            />
+            <input
+              required
+              id="rcc"
+              label="Phone No."
+              name="phone"
+              type="tel"
+              placeholder="RCC"
+              onChange={(e) => setRCC(e.target.value)}
+            />
           </div>
-        </div>
+          <label htmlFor="cac" className="form-label">
+            Phone Number
+          </label>
+          <input
+            required
+            id="phone"
+            label="Phone No."
+            name="phone"
+            type="tel"
+            onChange={(e) => setPhoneNo(e.target.value)}
+          />
+          <select
+            name="country"
+            label="Select Your Country"
+            onChange={(e) => setCountry(e.target.value)}
+          >
+            <option>NGN (+234)</option>
+            <option>USA</option>
+            <option>UK</option>
+            <option>Canada</option>
+          </select>
+          <label htmlFor="password" className="form-label">
+            Password
+          </label>
+          <div className="form-flex">
+            <input
+              required
+              id="register-password"
+              label="Password"
+              type="password"
+              name="password"
+              minLength={8}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <input
+              id="repeat-password"
+              label="Re-type Password"
+              type="password"
+              name="password2"
+              minLength={8}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+          </div>
+          <input type="checkbox" name="" id="" />
+          Agree to the Terms and Conditions.
+          <button onClick={RegisterNew}>Sign-up</button>
+        </form>
+        <Link to="/login">Have an account? Click Here</Link>
       </div>
 
       <Dialog open={response} onClose={() => setResponse(false)}>
@@ -242,17 +254,7 @@ const Register = () => {
     //         </Select>
     //       </Grid>
     //       <Grid item sm>
-    //         <TextField
-    //           variant="outlined"
-    //           margin="normal"
-    //           required
-    //           fullWidth
-    //           id="phone"
-    //           label="Phone No."
-    //           name="phone"
-    //           type="tel"
-    //           onChange={(e) => setPhoneNo(e.target.value)}
-    //         />
+    //
     //       </Grid>
     //     </Grid>
     //     <TextField
@@ -263,36 +265,11 @@ const Register = () => {
     //       type="text"
     //       onChange={(e) => setAddress(e.target.value)}
     //     />
-    //     <TextField
-    //       variant="outlined"
-    //       margin="normal"
-    //       required
-    //       fullWidth
-    //       id="password"
-    //       label="Password"
-    //       type="password"
-    //       name="password"
-    //       autoComplete="current-password"
-    //       onChange={(e) => setPassword(e.target.value)}
-    //     />
-
-    //     <TextField
-    //       variant="outlined"
-    //       margin="normal"
-    //       required
-    //       fullWidth
-    //       id="password"
-    //       label="Re-type Password"
-    //       type="password"
-    //       name="password2"
-    //       autoComplete="current-password"
-    //       onChange={(e) => setConfirmPassword(e.target.value)}
-    //     />
 
     //
     //     <Grid container>
     //       <Grid item xs>
-    //         <Link variant="body2">{"Have an account? Click Here"}</Link>
+    //
     //       </Grid>
     //     </Grid>
     //   </form>

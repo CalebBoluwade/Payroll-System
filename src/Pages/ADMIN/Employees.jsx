@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { CircularProgress, Dialog } from "@material-ui/core";
 import { MoreVert } from "@material-ui/icons";
 import { Outlet } from "react-router-dom";
-import EmployeePayButton from "../Components/EmployeePayButton";
+import EmployeePayButton from "../../Components/EmployeePayButton";
 import EmployeeProfile from "./EmployeeProfile";
-import AdminOTP from "../Components/AdminOTP";
+import AdminOTP from "../../Components/AdminOTP";
 
 const Employees = () => {
   const [openEmployee, setEmployee] = useState(false);

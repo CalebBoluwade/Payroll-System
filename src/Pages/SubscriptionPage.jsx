@@ -103,7 +103,8 @@ const Pricing = () => {
               </div>
               <div>
                 <Checkbox />
-                I've Read and Hereby Agree To The Terms & Conditions Stated Above
+                I've Read and Hereby Agree To The Terms & Conditions Stated
+                Above
               </div>
               <button onClick={() => navigate("/pay")}>PROCEED</button>
             </DialogContent>
@@ -227,6 +228,13 @@ const Pricing = () => {
           </div>
         </div>
       </div> */}
+
+      <div className="center">
+        Try Out Our Themes
+        <button>Light Theme</button>
+        <button>Dark Theme</button>
+        <button>Aqua Theme</button>
+      </div>
       <Footer />
     </>
   );

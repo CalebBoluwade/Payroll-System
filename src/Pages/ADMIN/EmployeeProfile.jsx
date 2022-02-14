@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import EmployeePayButton from "../Components/EmployeePayButton";
+import EmployeePayButton from "../../Components/EmployeePayButton";
 import { Delete } from "@material-ui/icons";
-import AdminOTP from "../Components/AdminOTP";
+import AdminOTP from "../../Components/AdminOTP";
 import { Tooltip } from "@mui/material";
 
 const EmployeeProfile = () => {
@@ -13,7 +13,7 @@ const EmployeeProfile = () => {
   let fname = "Caleb";
   let gender = "M";
   let department = "IT [Software]";
-  let salary = "75,000,000";
+  let salary = "75,000,000.00";
   let currency = "NGN";
 
   const handleSalary = () => {
@@ -30,9 +30,10 @@ const EmployeeProfile = () => {
         <p
           className="right"
           style={{
+            fontSize: 18,
             position: "relative",
-            top: -25,
-            right: -15,
+            top: -12,
+            right: -16,
           }}
         >
           {gender}
@@ -51,7 +52,7 @@ const EmployeeProfile = () => {
         </div>
 
         <div className="right sm-text" onClick={handleSalary}>
-          Change Salary
+          CHANGE SALARY
         </div>
         <div>
           <div className="detail-box">
@@ -60,6 +61,7 @@ const EmployeeProfile = () => {
           </div>
         </div>
 
+        <p>New Salary</p>
         <div className={`details ${showSalaryInput ? "" : "hide"}`}>
           <span>
             <input
@@ -71,23 +73,22 @@ const EmployeeProfile = () => {
             <button className="right" onClick={handleSalaryChanges}>
               Apply Changes
             </button>
+            <Tooltip title="Remove Employee">
+              <Delete
+                style={{
+                  fontSize: 32,
+                  color: "red",
+                  position: "relative",
+                  right: 0,
+                }}
+              />
+            </Tooltip>
           </span>
         </div>
 
         {/* <AdminOTP showOTP={showOTP} setOTPDisplay={setOTPDisplay} /> */}
 
         {/* <EmployeePayButton /> */}
-        <Tooltip title="Remove Employee">
-          <Delete
-            style={{
-              fontSize: 32,
-              color: "red",
-              position: "relative",
-              bottom: -25,
-              left: -15,
-            }}
-          />
-        </Tooltip>
       </div>
     </>
   );

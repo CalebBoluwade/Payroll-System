@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar";
-import { ArrowLeftRounded } from "@material-ui/icons";
-import { Link } from "react-router-dom";
-import MenuDrawer from "../Components/MenuDrawer";
-import Footer from "../Components/Footer";
+import { Link, Outlet } from "react-router-dom";
+import MenuDrawer from "../../Components/MenuDrawer";
 import { Backdrop } from "@mui/material";
-import Dockbar from "../Components/Dockbar";
-import { useSelector, useDispatch } from "react-redux";
-import { darkTheme, lightTheme, aquaTheme } from "../Actions";
+import Dockbar from "../../Components/Dockbar";
+import { useSelector } from "react-redux";
 // import { closeLogin, loading ,notLoading } from "../Actions";
 import Alert from "@mui/material/Alert";
+import { ArrowUpward } from "@material-ui/icons";
+import BackTo from "../../Components/BackTo";
+import ChartJs from "./ChartJs";
 
 const Dashboard = () => {
   const [openProfile, setOpenProfile] = useState(false);
@@ -18,23 +18,11 @@ const Dashboard = () => {
   const [show, setShow] = useState(true);
 
   const dark = useSelector((state) => state.themeReducer);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     setTimeout(() => {
       setShow(false);
     }, 3000);
-    const user = localStorage.getItem("userSettings");
-    //  user && JSON.parse("userSettings");
-    // if (user.themePrefrence == 0){
-    //   dispatch(lightTheme())
-    // }
-    // if (user.themePrefrence == 1){
-    //   dispatch(darkTheme())
-    // }
-    // if (user.themePrefrence == 2){
-    //   dispatch(aquaTheme())
-    // }
   }, []);
 
   return (
@@ -98,47 +86,48 @@ const Dashboard = () => {
           <Alert>Login Sucessful. Welcome</Alert>
         </div>
 
-        {/* <div className="notification_status">
-          ARE YOU SURE YOU WANT TO END THIS SESSION ? <span>YES</span>
-          {"   "} <span>NO</span>
-        </div> */}
-
-        <Dockbar />
-
-        <div className="display" id="display">
-          <div id="top">
-            <ArrowLeftRounded />
-            <div id="search">
-              <input type="search" name="" id="searches" />
-            </div>
+        <div className="displaybox">
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              margin: "15px 0",
+            }}
+          >
+            <BackTo />
+            <img src="./dashboard.svg" width={30} alt="" />
+            <h2> Dashboard</h2>
           </div>
-          <section className="body">
-            <div className="s">
-              <div className="m">
-                <div className="f">gng</div>
-                <div className="f">klk</div>
-              </div>
-              <div className="box">
-                <div className="percent">
-                  <svg>
-                    <circle cx="70" cy="70" r="70"></circle>
-                    <circle cx="70" cy="70" r="70"></circle>
-                  </svg>
-                  <div className="number">
-                    <h2>
-                      87<span>%</span>
-                    </h2>
-                  </div>
-                </div>
-                {/* <h2 className="text">Progress</h2> */}
+
+          <div className="flex-center">
+            <div className="display2">
+              <h4>Total Salaries Paid</h4>
+              <span className="board-numbers">$ 500,000</span>
+              <div className="right">
+                <ArrowUpward /> 21%
               </div>
             </div>
-          </section>
-          <div className="m">
-            <div className="f"></div>
+            <div className="display2">
+              <h3>No. of Transactions</h3>
+              <span className="board-numbers">43</span>
+              <div className="right">
+                <ArrowUpward /> 5%
+              </div>
+            </div>
+            <div className="display2 ">
+              <h3>Success Rate</h3>
+              <span className="board-numbers">100%</span>
+              <div className="right">
+                <ArrowUpward /> 15%
+              </div>
+            </div>
           </div>
         </div>
 
+        <div className="displaybox">
+          {/* <Outlet /> */}
+          <ChartJs />
+        </div>
         {/* <Login openPopup={openLoginModal} setOpenPopup={() => dispatch(closeLogin())} /> */}
 
         {/* <Dialog
@@ -159,6 +148,11 @@ const Dashboard = () => {
               </DialogContent>
             </Dialog>
        */}
+        {/* <div className="notification_status">
+          ARE YOU SURE YOU WANT TO END THIS SESSION ? <span>YES</span>
+          {"   "} <span>NO</span>
+        </div> */}
+        <Dockbar />
       </div>
     </>
   );

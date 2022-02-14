@@ -10,7 +10,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import { useSelector } from "react-redux";
-import { Button, CardContent} from "@mui/material";
+import { Button, CardContent } from "@mui/material";
 
 const Board = () => {
   const isLoading = useSelector((state) => state.loadingReducer);
@@ -142,25 +142,31 @@ const Board = () => {
       ) : (
         <>
           <div id="main-board">
-            <div className="box">
-              <div className="displaybox display z-depth-5 hoverable">
-                <div>
-                  <div
-                    style={{
-                      fontSize: 23,
-                      fontWeight: 300,
-                    }}
-                  >
-                    <strong style={{ AlignItems: "center" }}>
-                      Have a Great Day,<span id="user"> CALEB</span>
-                    </strong>
+            <div className="display" id="display">
+              <section className="body">
+                <div className="s">
+                  <div className="m">
+                    <div className="f">gng</div>
+                    <div className="f">klk</div>
                   </div>
-
-                  <div style={{ fontSize: 14, fontWeight: 400 }}></div>
-                  <span>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  </span>
+                  <div className="box">
+                    <div className="percent">
+                      <svg>
+                        <circle cx="70" cy="70" r="70"></circle>
+                        <circle cx="70" cy="70" r="70"></circle>
+                      </svg>
+                      <div className="number">
+                        <h2>
+                          87<span>%</span>
+                        </h2>
+                      </div>
+                    </div>
+                    {/* <h2 className="text">Progress</h2> */}
+                  </div>
                 </div>
+              </section>
+              <div className="m">
+                <div className="f"></div>
               </div>
             </div>
 
@@ -329,9 +335,7 @@ const Board = () => {
                   onClose={() => setOpenTransactions(!openTransactions)}
                 >
                   <DialogTitle>Recent Transactions</DialogTitle>
-                  <DialogContent>
-                    
-                  </DialogContent>
+                  <DialogContent></DialogContent>
                 </Dialog>
               </div>
 
@@ -382,7 +386,6 @@ const Board = () => {
               <img src="./PngItem_1985099.png" width="100" alt="" />
               <CardContent>Mobile Apps Coming Soon</CardContent>
             </div>
-           
           </div>
         </>
       )}

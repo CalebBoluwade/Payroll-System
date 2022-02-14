@@ -1,10 +1,6 @@
 * {
   margin: 0px;
-}
-
-@font-face {
-  font-family: sans-serif;
-  src: url("");
+  user-select: none;
 }
 
 ul {
@@ -12,13 +8,60 @@ ul {
   padding: 0px;
 }
 
+html,
 body {
-  height: 100vh;
+  height: 100%;
+  max-height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-hr {
-  height: 55px !important;
+input:disabled {
+  color: #fff;
+  overflow-x: scroll;
 }
+
+input[type="checkbox"] {
+  margin: 0;
+  /* visibility: hidden; */
+}
+
+input[type="checkbox"]:checked {
+  background-color: #000;
+}
+
+input[type="checkbox"]:before {
+  background-color: #fff;
+}
+
+label#switch {
+  display: flex;
+  width: 180px;
+  height: 90px;
+  border: 6px solid;
+  border-radius: 99em;
+  position: relative;
+  transition: transform 0.75s ease-in-out;
+  transform-origin: 50% 50%;
+  cursor: pointer;
+}
+
+label#switch:before {
+  transition: transform 0.75s ease;
+  transition-delay: 0.5s;
+  content: "";
+  display: block;
+  position: absolute;
+  width: 54px;
+  height: 54px;
+  background-color: #000;
+  border-radius: 50%;
+  top: 12px;
+  left: 12px;
+}
+
+/* hr {
+  height: 55px !important;
+} */
 
 table {
   font-family: arial, sans-serif;
@@ -44,17 +87,19 @@ tr:nth-child(even) {
 }
 
 .left {
-  float: left;
+  /* float: left; */
+  text-align: left;
 }
 
 .right {
-  float: right;
+  /* float: right; */
+  text-align: right;
 }
 
 /* Themes */
 .light {
-  background-color: aliceblue;
-  color: #974a06;
+  background-color: #fff;
+  color: #4433a3;
 }
 
 .dark {
@@ -63,7 +108,7 @@ tr:nth-child(even) {
 }
 
 .aqua {
-  color: rgb(148, 213, 253);
+  color: rgb(60, 140, 190);
   background: #031930;
 }
 
@@ -159,32 +204,6 @@ a {
     left: 4px;
   }
 }
-
-/* label {
-  display: flex;
-  width: 150px;
-  height: 45px;
-  border: 2px solid;
-  border-radius: 15px;
-  position: relative;
-  transition: transform 0.75s ease-in-out;
-  transform-origin: 50% 50%;
-  cursor: pointer;
-}
-
-label::before {
-  transition: transform 0.75s ease;
-  transition-delay: 0.5s;
-  content: "";
-  display: block;
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  background-color: #000;
-  border-radius: 50%;
-  top: 6px;
-  left: 12px;
-} */
 
 .settings-box {
   display: flex;
@@ -314,17 +333,18 @@ label::before {
 }
 
 .navbar {
-  height: 3.5em;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.4);
+  height: 5em;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.25);
   display: flex;
+  align-items: center;
   justify-content: space-between;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: auto;
-  box-shadow: -6px 6px 15px #0a3838;
+  box-shadow: -6px 6px 15px #000;
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
 }
@@ -411,57 +431,103 @@ h6 {
   text-align: center;
 }
 
-.brand_text {
-  font: 1.5em sans-serif;
-  font-weight: 800;
-  color: sandybrown;
-  align-items: center;
-  position: relative;
-  top: 7px;
-  right: 16px;
-}
-
 .dashboard {
+  min-width: 100%;
   min-height: 100vh;
 }
 
+.dashboard-greeting {
+  background-color: #fff;
+  border-radius: 7px;
+  width: 70%;
+  max-height: 50px;
+  padding: 15px;
+  margin: 0 0 0 15px;
+}
+
+.board-numbers {
+  font-size: 2.5em;
+}
+
 .displaybox {
-  padding: 7px;
+  width: 97%;
+  margin: auto;
+  margin-top: 30px;
+  padding: 25px;
   border-radius: 7px;
   background-color: rgba(255, 255, 255, 0.2);
 }
 
+.flex-center {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: column;
+}
+
+.display2 {
+  background-color: #fff;
+  width: 30%;
+  /* min-width: 250px; */
+  padding: 15px;
+  max-height: 300px;
+  box-shadow: 3px 2px 15px #000;
+  transform-origin: 50% 50%;
+  border-radius: 7px;
+  margin-right: 20px;
+}
+
+/* .display3 {
+  width: 40%;
+  height: 300px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.display5 {
+  width: 50%;
+  height: 300px;
+  padding: 30px;
+} */
+
 #topbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: auto;
   display: flex;
   justify-content: space-between;
   border-radius: 7px;
   align-items: center;
-  padding: 7px;
+  padding: 15px;
+  box-shadow: 6px 6px 16px;
   background-image: url("leaves-leaf-svgrepo-com.svg");
   background-repeat: no-repeat;
   background-position: right;
   background-size: cover;
-  z-index: 999;
+  z-index: 1;
 }
 
-.bottom-bar {
+.dock {
   margin: 0 auto;
   min-width: 65vw;
-  max-width: 70vw;
-  position: absolute;
+  max-width: 75vw;
+  position: fixed;
   bottom: 0;
-  top: auto;
   left: 50px;
   right: 64px;
 }
 
-#bottom-bar {
+#dock {
   height: 60px;
   display: flex;
   flex-flow: row;
   align-items: center;
   justify-content: space-between;
   z-index: 999;
+  box-shadow: 3px -1px 6px;
 }
 
 a.side-links {
@@ -496,19 +562,21 @@ a.side-links:hover {
   color: navy;
 }
 
-.MuiDialog-paperWidthSm {
-  min-width: 300px !important;
+.services {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 1em;
+  margin: 15px;
 }
 
 .bills {
-  width: 160px;
-  min-width: 85px;
-  height: 65px;
-  margin: 15px;
-  padding: 10px;
+  height: 50px;
+  padding: 35px;
+  border-radius: 7px;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 3px 3px 13px #000;
 }
 
 .img {
@@ -520,40 +588,6 @@ a.side-links:hover {
   -webkit-box-align: center;
   align-items: center;
   margin: 0 auto;
-}
-
-.display {
-  width: 95%;
-  margin: auto;
-}
-
-.display2 {
-  min-width: 21%;
-  max-height: 300px;
-}
-
-.hprogressbar {
-  color: aliceblue;
-  height: 20%;
-  padding: 10;
-  overflow: hidden;
-  transition: 0.3s linear;
-  text-align: center;
-}
-
-.display3 {
-  width: 40%;
-  height: 300px;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-}
-
-.display5 {
-  width: 50%;
-  height: 300px;
-  padding: 30px;
 }
 
 #user {
@@ -624,15 +658,18 @@ a.side-links:hover {
 
 .Payment-Plan {
   width: 21vw;
-  min-width: 205px;
+  min-width: 225px;
   height: 485px;
   padding: 15px;
+  margin-right: 15px;
+  margin-bottom: 15px;
   border-radius: 7px !important;
   text-align: center;
   text-transform: capitalize;
   background-image: url("leaves-leaf-svgrepo-com.svg");
   background-repeat: no-repeat;
   background-size: cover;
+  box-shadow: 5px 3px 15px;
 }
 
 .price-slash {
@@ -668,7 +705,7 @@ a.side-links:hover {
 @media (max-width: 469px) {
   .subcription-fees {
     display: block;
-    width: 50%;
+    width: 75%;
     margin: 0px auto;
     margin-top: 5em;
   }
@@ -691,6 +728,15 @@ a.side-links:hover {
   .employee-grid {
     grid-template-columns: auto auto auto auto;
   }
+
+  .display2 {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .flex-center {
+    flex-flow: row;
+  }
 }
 
 @media (max-width: 768px) {
@@ -708,11 +754,6 @@ a.side-links:hover {
     to {
       transform: skewY(-15deg);
     }
-  }
-
-  .display2 {
-    width: 100%;
-    margin-bottom: 20px;
   }
 
   .employee-grid {
@@ -861,50 +902,85 @@ a.side-links:hover {
   font-size: 21px;
 }
 
-.form-text {
-  font-size: 14px;
-  font-weight: 600;
-  line-break: 20px;
+.form-label {
+  color: #000;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 0.9rem;
+  background: #fff;
+  padding: 5px;
+  position: relative;
+  left: 20px;
+  top: 25px;
 }
 
 .form-control {
   width: 90%;
-  max-width: 405px;
+  max-width: 340px;
   display: flex;
   flex-direction: column;
   background: #fff;
   border-radius: 7px;
-  padding: 25px;
+  padding: 21px 15px;
   box-shadow: 3px 4px 5px 1px;
 }
 
-label {
-  color: #c2c1c1;
-  font-size: 14px;
-  position: relative;
-  top: 25px;
-  transition: all 3s;
-  z-index: 999;
+.form-control#paystack {
+  max-width: 400px;
+}
+
+#register_page {
+  background-image: url("pexels-ekaterina-bolovtsova-6077983.jpg");
+  background-repeat: no-repeat;
+  background-clip: border-box;
+  background-position: left;
+  background-size: cover;
+}
+
+.form-control#register {
+  width: 98%;
+  max-width: 485px;
+  border-radius: 7px;
+  background-color: transparent;
+  margin: 15px 0 18px 0;
 }
 
 input {
-  padding: 16px 10px 10px;
-  border-radius: 7px;
   outline: 0;
-  margin: 15px 0 18px 0;
-  border: 1px solid #b4b4b4;
+  border-radius: 7px;
+  color: rgb(14, 44, 75);
+  padding: 15px 21px;
+  margin: 16px 0px;
+}
+
+input::-moz-focus-inner {
+  background-color: transparent;
+  border: 0;
 }
 
 input[type="email"] {
-  font-size: 1.4rem;
+  font-size: 1em;
+  width: 100%;
+  background-color: transparent;
+}
+
+input[type="text"] {
+  font-size: 1rem;
+  background-color: transparent;
 }
 
 input[type="password"] {
-  font-size: 1.4rem;
+  font-size: 1rem;
+  width: 100%;
+  background-color: transparent;
+}
+
+input[type="password"]#register {
+  width: 45%;
 }
 
 input#salary-input {
-  font-size: 1.4rem;
+  font-size: 1rem;
+  width: 100%;
 }
 
 input[type="search"] {
@@ -912,8 +988,13 @@ input[type="search"] {
   margin-bottom: 15px;
 }
 
+input[type="tel"] {
+  font-size: 1rem;
+  width: 44%;
+}
+
 input.check {
-  font-size: 1.4rem;
+  font-size: 1rem;
 }
 
 a.search-icon {
@@ -923,35 +1004,26 @@ a.search-icon {
   bottom: 50px;
 }
 
-input::placeholder {
-  transition: ease-in 3s;
-  word-spacing: 0.6em;
-}
-
-#top {
-  width: 95%;
-  margin: 15px 10px auto;
-}
-
-.button-area {
-  position: relative;
-  bottom: 0px !important;
+.form-flex {
+  display: flex;
+  justify-content: space-between;
 }
 
 button {
   background-color: rgba(14, 44, 75, 0.4);
   color: inherit;
-  padding: 15px 15px;
+  padding: 21px 21px;
   font-size: 16px;
+  margin: 14px 0;
   border: 0;
   border-radius: 12px;
-  transition: all 1.3s;
+  transition: all 0.85s;
 }
 
 button:hover {
   background-color: rgb(14, 44, 75);
   color: #fff;
-  padding: 15px 15px;
+  padding: 21px 23px;
   cursor: pointer;
 }
 
@@ -961,52 +1033,43 @@ button:disabled {
   padding: 10px 15px;
 }
 
-summary::marker {
-  float: right !important;
-  color: #000;
-  margin: 0;
-}
-
 .welcome-banner {
   position: absolute;
   z-index: 999;
-  width: 405px;
-  margin: 0 auto;
-  background: #fff;
-  top: 0;
+  border-radius: 15px;
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.295);
+  top: 100px;
+  left: 40%;
 }
 
 .pay-platform {
   padding: 16px;
   border-radius: 7px;
   border: 1px solid #b4b4b4;
+  box-sizing: content-box;
+  box-shadow: 2px 1px 14px #0b1d4d;
   font-size: 21px;
-  font-weight: 500;
+  color: #0a3838;
   justify-content: space-between;
   align-items: center;
   display: flex;
-  margin: 12px;
-}
-
-.PaySecure {
-  display: flex;
-  margin: 0 auto;
-  position: relative;
-  bottom: -45px;
+  flex-direction: column;
+  margin: 21px 0 0 5px;
 }
 
 .amount {
   text-align: right;
-  text-decoration: wavy;
+  color: green;
   font-size: 21px;
   font-weight: 600;
 }
 
-.card-details {
+/* .card-details {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+} */
 
 .card-details .card {
   display: flex;
@@ -1073,9 +1136,15 @@ summary::marker {
   flex-direction: column;
 }
 
+#admin-nav {
+  display: flex;
+  position: sticky;
+}
+
 .admin-topbar {
   padding: 12px;
-  min-height: 100%;
+  min-height: 100vh;
+  max-height: 100vh;
   background: rgba(14, 44, 75, 0.9);
   display: flex;
   flex-direction: column;
@@ -1083,16 +1152,23 @@ summary::marker {
   align-content: center;
 }
 
-.admin-sidebar {
+.adminMenu {
   padding: 65px 15px 15px 15px;
   width: 265px;
+  min-height: 100vh;
+  max-height: 100vh;
   background: rgb(14, 45, 75);
+  top: 0;
+  bottom: 0;
+  left: 70px;
   color: #fff;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .admin-view {
   width: 100%;
+  max-height: 100vh;
+  overflow-y: scroll;
   box-shadow: -5px -3px 15px #000;
   padding: 25px;
 }
@@ -1109,11 +1185,11 @@ summary::marker {
 } */
 
 .view-employee {
-  width: 365px;
-  padding: 25px;
-  font-size: 26px;
+  width: 321px;
+  padding: 16px 25px;
+  /* background: linear-gradient(to right, 20% (#031930), #fff); */
   border-radius: 7px;
-  box-shadow: -6px 6px 15px #000;
+  box-shadow: -6px 6px 15px;
 }
 
 .view-employee .details {
@@ -1132,7 +1208,8 @@ summary::marker {
   background: #ebeaea;
   border: 1px solid#b4b4b4;
   border-radius: 7px;
-  padding: 16px;
+  margin: 10px 0 20px 0;
+  padding: 21px;
 }
 
 .detail-box .currency {
@@ -1143,7 +1220,7 @@ summary::marker {
   font-size: 16px;
 }
 
-.employee-card {
+/* .employee-card {
   width: 145px;
   height: 175px;
   padding: 7px;
@@ -1154,13 +1231,13 @@ summary::marker {
   border-radius: 4px;
   margin-bottom: 15px;
   box-shadow: 3px 2px 5px #0a3838;
-}
+} */
 
 .employee-avatar {
   width: 85px;
   height: 85px;
   border-radius: 50%;
-  margin: auto;
+  /* margin: auto; */
 }
 
 .employee-card .employee-dept {
@@ -1169,4 +1246,12 @@ summary::marker {
   text-align: center;
   text-emphasis: inherit;
   text-transform: uppercase;
+}
+
+#app-version {
+  position: absolute;
+
+  bottom: 0;
+  /* right: 10px; */
+  font-size: 16px;
 }

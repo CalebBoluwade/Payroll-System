@@ -48,11 +48,11 @@ const AdminAuth = () => {
 
   const navigate = useNavigate();
 
-  const sms = {
-    sender: "New Wave Payroll",
-    recipient: "08038220361",
-    message: "Your One Time Password is" + OTP + "." + "Expires in x Minutes",
-  };
+  // const sms = {
+  //   sender: "New Wave Payroll",
+  //   recipient: "08038220361",
+  //   message: "Your One Time Password is" + OTP + "." + "Expires in x Minutes",
+  // };
 
   // const sendOTPsms = async () => {
   //   try {
@@ -86,17 +86,18 @@ const AdminAuth = () => {
             <Alert>OTP Confirmed Sucessfully</Alert>
           </div>
 
-          <p className="form-text">OTP sent to your registered Phone Number</p>
-          <div className="input-area">
-            <label htmlFor="otp">ENTER OTP</label>
-            <input
-              type="text"
-              required
-              id="otp"
-              placeholder="Enter OTP"
-              onChange={(e) => setUserOTP(e.target.value)}
-            />
-          </div>
+          <p>OTP sent to your registered Phone Number</p>
+
+          <label htmlFor="otp">ENTER OTP</label>
+          <input
+            type="text"
+            required
+            id="otp"
+            placeholder="Enter OTP"
+            minLength={4}
+            maxLength={4}
+            onChange={(e) => setUserOTP(e.target.value)}
+          />
 
           <button id="otp-button" onClick={validateOTP}>
             VERIFY OTP
