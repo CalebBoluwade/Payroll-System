@@ -8,12 +8,5 @@
     "start": "node server.js"
   },
   "author": "GROOVE TECH",
-  "license": "ISC",
-  "dependencies": {
-    "body-parser": "^1.19.1",
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.0",
-    "express": "^4.17.2",
-    "node-mailer": "^0.1.1"
-  }
+  "license": "ISC"
 }
