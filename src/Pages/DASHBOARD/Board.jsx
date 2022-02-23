@@ -1,136 +1,101 @@
 import React, { useState } from "react";
-import PeopleOutlinedRounded from "@material-ui/icons/PeopleOutlineOutlined";
+// import PeopleOutlinedRounded from "@material-ui/icons/PeopleOutlineOutlined";
 import CircularProgress from "@mui/material/CircularProgress";
-import { PaymentOutlined, PersonAddOutlined } from "@material-ui/icons";
-import { Tooltip } from "@material-ui/core";
-import SearchIcon from "@material-ui/icons/Search";
-import Container from "@material-ui/core/Container";
-import { TextField, Grid } from "@material-ui/core";
-import Dialog from "@material-ui/core/Dialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import { useSelector } from "react-redux";
-import { Button, CardContent } from "@mui/material";
+// import { PaymentOutlined, PersonAddOutlined } from "@material-ui/icons";
+// import { Tooltip } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import { ArrowUpward } from "@material-ui/icons";
+// import { useSelector } from "react-redux";
+import BackTo from "../../Components/BackTo";
+import ChartJs from "./ChartJs";
 
 const Board = () => {
-  const isLoading = useSelector((state) => state.loadingReducer);
-  // const dispatch = useDispatch();
+  // const isLoading = useSelector((state) => state.loadingReducer);
 
   const [openUtil, setCloseUtil] = useState(false);
-
-  const AllEmployees = [
-    "Ali Benson",
-    "Samson Stevens",
-    "Giwa Michael",
-    "Ronke Precious",
-    "Peter Griffon",
-    "John Doe",
-    "Mary Jane",
-  ];
-
-  const companyX = {
-    users: [
-      {
-        company_id: 1,
-        avatar_img: "https://i.pravatar.cc/150?img=39",
-        companyName: "New Wave Solutions",
-        email: "johndoe@newwave.com",
-        rcc: "",
-        tax: "",
-        Phone: "+234xxxxxxxx",
-        password: "test12345",
-        Departments: [
-          {
-            frontdesk: [
-              {
-                employee_id: 1,
-                staffName: "Jide Makanaki",
-                staffEmail: "jide@example.com",
-                phoneNumber: "08012345678",
-                Department: "marketing",
-                jobTitle: "Head marketer",
-                salary: 176000,
-                dateJoined: "Joined 2021-11-2",
-              },
-              {
-                employee_id: 2,
-                staffName: "Sarah Mbah",
-                staffEmail: "sarah@example.com",
-                phoneNumber: "08012345678",
-                Department: "marketing",
-                jobTitle: "Head marketer",
-                salary: 176000,
-                dateJoined: "Joined 2021-11-2",
-              },
-            ],
-            marketing: [
-              {
-                employee_id: 1,
-                staffName: "Dennis Baker",
-                staffEmail: "jide@example.com",
-                phoneNumber: "08012345678",
-                Department: "marketing",
-                jobTitle: "Head marketer",
-                salary: 176000,
-                dateJoined: "Joined 2021-11-2",
-              },
-              {
-                employee_id: 2,
-                staffName: "Mitchell David",
-                staffEmail: "davids@example.com",
-                phoneNumber: "08012345678",
-                Department: "marketing",
-                jobTitle: "marketer",
-                salary: 176000,
-                dateJoined: "Joined 2021-11-2",
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  };
-
-  const percent = AllEmployees.length;
-
-  //Employee Details
-  const [staffName, setStaffName] = useState("");
-  const [staffEmail, setStaffEmail] = useState("");
-  const [phoneNo, setPhoneNo] = useState("");
-  const [dept, setDept] = useState("");
-  const [jobTitle, setStaffJobTitle] = useState("");
-  const [salary, setSalary] = useState();
-  const [dateJoined, setDateJoined] = useState();
-  const [acctNo, setAcctNo] = useState("");
 
   const [openEmployees, setOpenEmployees] = useState(false);
   const [openPopup, setOpenPopup] = useState(false);
   const [openTransactions, setOpenTransactions] = useState(false);
 
-  const [confirmDetails, setConfirmDetails] = useState(false);
-
-  const submitEmployee = (e) => {
-    e.preventDefault();
-
-    const employeeDetails = {
-      staffName: staffName,
-      staffEmail: staffEmail,
-      phoneNumber: phoneNo,
-      Department: dept,
-      jobTitle: jobTitle,
-      salary: salary,
-      dateJoined: "Joined " + dateJoined,
-    };
-
-    console.log(employeeDetails);
-    setConfirmDetails(true);
-
-    console.log(companyX);
-  };
-
   return (
-    <div>
-      {isLoading ? (
+    <>
+      <section>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            margin: "0 0 7px 0",
+          }}
+        >
+          <BackTo />
+          <img src="./../dashboard.svg" width={30} alt="" />
+          <h2>Dashboard</h2>
+        </div>
+
+        <div className="flex-center">
+          <div className="display2" id="salaries">
+            <h4>Total Salaries Paid</h4>
+            <span className="board-numbers">$ 500,000</span>
+            <div className="right">
+              <ArrowUpward /> 21%
+            </div>
+          </div>
+          <div className="display2" id="transactions">
+            <h3>No. of Transactions</h3>
+            <span className="board-numbers">43</span>
+            <div className="right">
+              <ArrowUpward /> 5%
+            </div>
+          </div>
+
+          <Link to="notifications">
+            <div className="display2" id="success">
+              <h3>Success Rate</h3>
+              <span className="board-numbers">100%</span>
+              <div className="right">
+                <ArrowUpward /> 15%
+              </div>
+            </div>
+          </Link>
+        </div>
+      </section>
+
+      <section className="flex-center">
+        <div style={{ display: "flex", flexFlow: "column" }}>
+          <div id="suggestions">
+            <span style={{ color: "#999" }}>SUGGESTIONS</span>
+            <div className="suggestions">
+              <img src="./credit-card2.svg" width={48} alt="" />
+              <p>Remember to keep your details safe</p>
+            </div>
+            <div className="suggestions">
+              <img src="./credit-card2.svg" width={48} alt="" />
+              <p>Wear A Mask!</p>
+            </div>
+            <div className="suggestions">
+              <img src="./credit-card2.svg" width={48} alt="" />
+              <p>Dial *7111# Today!</p>
+            </div>
+          </div>
+
+          <div className="box">
+            <div className="percent">
+              <svg>
+                <circle cx="70" cy="70" r="70"></circle>
+                <circle cx="70" cy="70" r="70"></circle>
+              </svg>
+              <div className="number">
+                <h2>
+                  87<span>%</span>
+                </h2>
+              </div>
+            </div>
+            {/* <h2 className="text">Progress</h2> */}
+          </div>
+        </div>
+      </section>
+      {/* {isLoading ? (
         <>
           <div
             className="center loading"
@@ -143,30 +108,14 @@ const Board = () => {
         <>
           <div id="main-board">
             <div className="display" id="display">
-              <section className="body">
-                <div className="s">
-                  <div className="m">
-                    <div className="f">gng</div>
-                    <div className="f">klk</div>
-                  </div>
-                  <div className="box">
-                    <div className="percent">
-                      <svg>
-                        <circle cx="70" cy="70" r="70"></circle>
-                        <circle cx="70" cy="70" r="70"></circle>
-                      </svg>
-                      <div className="number">
-                        <h2>
-                          87<span>%</span>
-                        </h2>
-                      </div>
-                    </div>
-                    {/* <h2 className="text">Progress</h2> */}
-                  </div>
+              <div className="s">
+                <div className="m">
+                  <div className="f">gng</div>
+                  <div className="f">klk</div>
                 </div>
-              </section>
-              <div className="m">
-                <div className="f"></div>
+                <div className="m">
+                  <div className="f"></div>
+                </div>
               </div>
             </div>
 
@@ -342,7 +291,7 @@ const Board = () => {
               <div className="displaybox display2 z-depth-3">
                 {/* <span className="left" style={{ marginTop: "20%" }}>
       <ArrowBackIos />
-    </span> */}
+    </span> 
 
                 <div className="progress1">
                   <div className="fill">
@@ -351,9 +300,9 @@ const Board = () => {
                   </div>
                 </div>
 
-                {/* <span className="right" style={{ marginTop: "20%" }}>
+                 <span className="right" style={{ marginTop: "20%" }}>
       <ArrowForwardIos />
-    </span> */}
+    </span> 
               </div>
 
               <div className="displaybox display2 z-depth-5">
@@ -365,7 +314,7 @@ const Board = () => {
                 <p>Payment Integrations with Paystack, FlutterWave, BUYBills</p>
               </div>
 
-              {/* <div className="displaybox display2 z-depth-5 hoverable">
+               <div className="displaybox display2 z-depth-5 hoverable">
     <div className="center" style={{ fontSize: 28, fontWeight: 400 }}>
       <strong>
         <em> At a Glance</em>
@@ -374,7 +323,7 @@ const Board = () => {
 
 
    
-  </div> */}
+  </div>
             </div>
             <div
               className="displaybox display2 z-depth-5 hoverable"
@@ -388,8 +337,8 @@ const Board = () => {
             </div>
           </div>
         </>
-      )}
-    </div>
+      )} */}
+    </>
   );
 };
 

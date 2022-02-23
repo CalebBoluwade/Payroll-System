@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Search } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 
 const AdminMenu = ({ openSideView }) => {
-  const current_link = document.getElementsByTagName("a.side-links");
-  console.log(current_link);
+  // const current_link = document.getElementsByTagName("a.side-links");
+
+  // const [showAbout, setShowAbout] = useState(false);
   return (
     <>
       <div className={` adminMenu ${openSideView ? "hide" : ""}`}>
@@ -39,7 +40,7 @@ const AdminMenu = ({ openSideView }) => {
           className="center sm-text"
           style={{ position: "relative", bottom: "0px" }}
         >
-          Need Help
+          <Link to="help">Need Help</Link>
         </p>
         <p id="app-version">Version 1.0.0</p>
       </div>

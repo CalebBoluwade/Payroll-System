@@ -6,14 +6,15 @@ import ErrorPage from "../Pages/ErrorPage";
 
 import SubscriptionPage from "../Pages/SubscriptionPage";
 
-// import Profile from "../Pages/Profile";
 import Contact from "../Pages/Contact";
 
 //DASHBOARD
 import Dashboard from "../Pages/DASHBOARD/Dashboard";
 import Board from "../Pages/DASHBOARD/Board";
+import Profile from "../Pages/DASHBOARD/Profile";
+import Employeed from "../Pages/DASHBOARD/Employees";
 import Notification from "../Pages/DASHBOARD/Notification";
-// import Calendar from "../Pages/Calendar";
+import Calendar from "../Pages/DASHBOARD/Calendar";
 
 // LOGIN AND SIGNUP
 import LoginPage from "../Pages/LoginPage";
@@ -30,6 +31,7 @@ import AdminPayments from "../Pages/ADMIN/AdminPayments";
 import AdminSearch from "../Pages/ADMIN/AdminSearch";
 import AdminFeedback from "../Pages/ADMIN/AdminFeedback";
 import AdminPrefrences from "../Pages/ADMIN/AdminPrefrences";
+import NeedHelp from "../Pages/ADMIN/NeedHelp";
 
 const AppRouter = () => {
   const isUserAuth = useSelector((state) => state.authReducer);
@@ -41,10 +43,12 @@ const AppRouter = () => {
         <Route path="register" element={<Register />} />
         {/* DASHBOARD */}
         <Route path="dashboard" element={<Dashboard />}>
-          <Route path="board" element={<Board />} />
+          <Route path="board" element={<Board />}>
+            <Route path="calendar" element={<Calendar />} />
+          </Route>
           <Route path="notifications" element={<Notification />} />
-          {/* <Route path="calendar" element={<Calendar />} /> */}
-          {/* <Route path="profile" element={<Profile />} /> */}
+          <Route path="profile" element={<Profile />} />
+          <Route path="employee" element={<Employeed />} />
         </Route>
         {/* ADMIN */}
         <Route path="admin" element={<AdminPage />}>
@@ -55,6 +59,7 @@ const AppRouter = () => {
           <Route path="search" element={<AdminSearch />} />
           <Route path="feedback" element={<AdminFeedback />} />
           <Route path="prefrences" element={<AdminPrefrences />} />
+          <Route path="help" element={<NeedHelp />} />
           {/* <Route path="employee:id" element={<EmployeeProfile />} /> */}
         </Route>
         <Route path="admin/auth" element={<AdminAuth />} />

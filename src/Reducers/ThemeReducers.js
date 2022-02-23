@@ -7,7 +7,7 @@ const themeReducer = (theme, action) => {
     case "AQUA_THEME":
       return (theme = 2);
     default:
-      return (theme = null);
+      return (theme = 0);
   }
 };
 

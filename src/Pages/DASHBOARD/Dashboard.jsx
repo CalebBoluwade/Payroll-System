@@ -1,23 +1,22 @@
 import React, { useState, useEffect } from "react";
-import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar";
 import { Link, Outlet } from "react-router-dom";
 import MenuDrawer from "../../Components/MenuDrawer";
-import { Backdrop } from "@mui/material";
+import Badge from "@material-ui/core/Badge";
+// import { Backdrop } from "@mui/material";
 import Dockbar from "../../Components/Dockbar";
-import { useSelector } from "react-redux";
-// import { closeLogin, loading ,notLoading } from "../Actions";
 import Alert from "@mui/material/Alert";
-import { ArrowUpward } from "@material-ui/icons";
-import BackTo from "../../Components/BackTo";
-import ChartJs from "./ChartJs";
+import { KeyboardArrowDown, KeyboardArrowUp } from "@material-ui/icons";
+import { useNavigate } from "react-router-dom";
+// import { darkTheme, lightTheme, aquaTheme } from "../../Actions";
 
 const Dashboard = () => {
   const [openProfile, setOpenProfile] = useState(false);
-  const [logoutNotifier, setlogoutNotifier] = useState(false);
+  const [openAssistant, setOpenAssistant] = useState(false);
+  const [AssistantProfile, setAssistantProfile] = useState("");
   const [show, setShow] = useState(true);
 
-  const dark = useSelector((state) => state.themeReducer);
+  const nav = useNavigate();
 
   useEffect(() => {
     setTimeout(() => {
@@ -25,109 +24,178 @@ const Dashboard = () => {
     }, 3000);
   }, []);
 
+  var slideIndex = 0;
+
+  const suggestions = () => {
+    var i;
+    const suggestSlides = document.getElementsByClassName("suggestions");
+
+    for (i = 0; i < suggestSlides.length; i++) {
+      suggestSlides[i].classList = "hide";
+    }
+
+    slideIndex++;
+    if (slideIndex > suggestSlides.length) {
+      slideIndex = 1;
+    }
+    // suggestSlides[slideIndex - 1].style.display = "flex";
+
+    setTimeout(suggestions, 5000);
+  };
+  suggestions();
+
   return (
     <>
-      <div className="dashboard">
-        <div id="topbar" className="z-depth-5 hoverable">
+      <div className="dashboard" style={{ paddingTop: -5 }}>
+        {/* <div id="topbar" className="z-depth-5 hoverable">
           <div className="left">
             <MenuDrawer />
           </div>
-          <div className="right" style={{ display: "flex" }}>
-            <Avatar
-              className="center"
-              onClick={() => setOpenProfile(!openProfile)}
-            >
-              <img
-                src="../Thf_1551875131.jpg"
-                className="circle"
-                alt="avatar_img"
-              />
-              <Backdrop
-                open={openProfile}
-                onClose={() => setOpenProfile(!openProfile)}
-              >
-                <div
-                  className="displaybox z-depth-4"
-                  style={{
-                    width: "30%",
-                    padding: 10,
-                    marginBottom: 35,
-                  }}
-                >
-                  <div className="center" style={{ margin: "0px auto" }}>
-                    <img
-                      src="../Thf_1551875131.jpg"
-                      className="brand_image center"
-                      alt="avatar_img"
-                    />
-                  </div>
-
-                  <Typography className="flow-text center">
-                    <span
-                      style={{
-                        padding: 10,
-                      }}
-                    >
-                      New Wave
-                    </span>
-                  </Typography>
-                  <Typography className="center">Admin</Typography>
-
-                  <Link to="/user/profile" className="center">
-                    Go To Full Profile
-                  </Link>
-                </div>
-              </Backdrop>
-            </Avatar>
-          </div>
-        </div>
+          
+        </div> */}
 
         <div className={show ? "" : "hide"}>
           <Alert>Login Sucessful. Welcome</Alert>
         </div>
 
-        <div className="displaybox">
+        <div id="notch">
+          <div id="dashboard-menu">
+            <MenuDrawer />
+          </div>
+
+          <div id="display-notch">
+            Wed 16th, Feb
+            <img
+              src="../Thf_1551875131.jpg"
+              className="profile-circle"
+              alt="avatar_img"
+            />
+          </div>
+        </div>
+
+        <div id="dashboard-links">
+          <ul>
+            <div>
+              <li className="dashboard-link">
+                <Link to="board">Dashboard</Link>
+              </li>
+              <li className="dashboard-link">
+                <Badge color="primary" badgeContent={16}>
+                  <Link to="notifications">Notifications</Link>
+                </Badge>
+              </li>
+            </div>
+
+            <div>
+              <li className="dashboard-link">
+                <Link to="employee">Employees</Link>
+              </li>
+              <li className="dashboard-link">
+                <Link to="profile">Profile</Link>
+              </li>
+            </div>
+          </ul>
+        </div>
+
+        {/* <div style={{ marginTop: 10, textAlign: "right" }}>
+          <span style={{ fontSize: "1.2em" }}>Hi, GREWS</span>
+        </div> */}
+
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            margin: "15px 0 0 0",
+            justifyContent: "space-evenly",
+          }}
+        >
           <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              margin: "15px 0",
-            }}
+            style={{ display: "flex", flexFlow: "column" }}
+            onClick={() => setOpenAssistant(!openAssistant)}
           >
-            <BackTo />
-            <img src="./dashboard.svg" width={30} alt="" />
-            <h2> Dashboard</h2>
-          </div>
+            <div id="virtual-assistant">
+              Choose your Assistant
+              <span>
+                {openAssistant ? (
+                  <>
+                    <KeyboardArrowUp
+                      style={{
+                        paddingTop: 7,
+                        paddingLeft: 15,
+                        fontSize: 32,
+                      }}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <KeyboardArrowDown
+                      style={{
+                        paddingTop: 7,
+                        paddingLeft: 15,
+                        fontSize: 40,
+                      }}
+                    />
+                  </>
+                )}
+              </span>
+            </div>
 
-          <div className="flex-center">
-            <div className="display2">
-              <h4>Total Salaries Paid</h4>
-              <span className="board-numbers">$ 500,000</span>
-              <div className="right">
-                <ArrowUpward /> 21%
+            <div id="drop-down" className={openAssistant ? "" : "hide"}>
+              <div
+                className="assistant-list"
+                onClick={() => setAssistantProfile("sam")}
+              >
+                <img src="./Avatars/2.jpg" width={35} alt="" />
+                SAM
               </div>
-            </div>
-            <div className="display2">
-              <h3>No. of Transactions</h3>
-              <span className="board-numbers">43</span>
-              <div className="right">
-                <ArrowUpward /> 5%
+              <div
+                className="assistant-list"
+                onClick={() => setAssistantProfile("kate")}
+              >
+                <img src="./Avatars/1.jpg" width={35} alt="" />
+                KATE
               </div>
-            </div>
-            <div className="display2 ">
-              <h3>Success Rate</h3>
-              <span className="board-numbers">100%</span>
-              <div className="right">
-                <ArrowUpward /> 15%
+
+              <div
+                className="assistant-list"
+                onClick={() => setAssistantProfile("fletcher")}
+              >
+                <img src="./Avatars/3.jpg" width={35} alt="" />
+                FLETCHER
               </div>
             </div>
           </div>
         </div>
 
         <div className="displaybox">
-          {/* <Outlet /> */}
-          <ChartJs />
+          <Outlet />
         </div>
+
+        {/* <div className="theme">
+  <img
+                src="./sun-svgrepo-com.svg"
+                width="15"
+                alt=""
+                onClick={() => dispatch(lightTheme())}
+              />
+  </div>
+  <div className="theme">
+  <img
+                src="./moon-svgrepo-com.svg"
+                width="15"
+                alt="Dark Mode"
+                onClick={() => dispatch(darkTheme())}
+              />
+  </div>
+  <div className="theme">
+  <img
+                src="./drops-water-svgrepo-com.svg"
+                width="15"
+                alt="Aqua Mode"
+                onClick={() => dispatch(aquaTheme())}
+              />
+  </div> */}
+
         {/* <Login openPopup={openLoginModal} setOpenPopup={() => dispatch(closeLogin())} /> */}
 
         {/* <Dialog
@@ -152,6 +220,7 @@ const Dashboard = () => {
           ARE YOU SURE YOU WANT TO END THIS SESSION ? <span>YES</span>
           {"   "} <span>NO</span>
         </div> */}
+        <Avatar />
         <Dockbar />
       </div>
     </>

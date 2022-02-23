@@ -59,6 +59,9 @@ const Settings = ({ openSettings, setOpenSettings }) => {
               />
             </div>
           </div>
+
+          <input type="date" name="" id="" />
+          <input type="date" name="" id="" />
         </div>
       </Drawer>
     </div>

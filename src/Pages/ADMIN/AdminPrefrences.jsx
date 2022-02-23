@@ -32,10 +32,10 @@ const AdminPrefrences = () => {
         onChange={(e) => setSMSChecked(e.target.value)}
       />
       <img src="../chat.svg" width={45} alt="" />
-
+      SET SALARY PAY DAY
+      <input type="number" name="" id="" min={1} max={31} />
       <h4>CURRENT DEBIT SOURCE</h4>
       <input type="text" name="" id="" disabled value="0234794084" />
-
       <h4>NAME ON ACCOUNT</h4>
       <input
         type="text"
@@ -44,7 +44,6 @@ const AdminPrefrences = () => {
         disabled
         value="BOLUWADE CALEB OLADIPUPO"
       />
-
       <h3>CHANGE DEBIT SOURCE ACCOUNT</h3>
       <input
         type="text"
@@ -53,10 +52,8 @@ const AdminPrefrences = () => {
         minLength="10"
         maxLength="10"
       />
-
       <h4>NAME ON ACCOUNT</h4>
       <div className="detail-box"></div>
-
       <h3>Currency Denomination</h3>
       <select name="" id="">
         <option value="">None</option>
@@ -68,11 +65,9 @@ const AdminPrefrences = () => {
           BRITISH POUND - GBP [In View]
         </option>
       </select>
-
       <h3>CHANGE PASSWORD</h3>
       <input type="password" name="" id="" />
       <input type="password" name="" id="" />
-
       <div className="button-area right">
         <button>Apply Changes</button>
       </div>

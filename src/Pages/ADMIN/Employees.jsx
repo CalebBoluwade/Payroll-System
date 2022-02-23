@@ -7,10 +7,38 @@ import EmployeeProfile from "./EmployeeProfile";
 import AdminOTP from "../../Components/AdminOTP";
 
 const Employees = () => {
-  const [openEmployee, setEmployee] = useState(false);
+  const [openEmployee, setOpenEmployee] = useState(false);
   const [showOTP, setOTPDisplay] = useState(false);
   const [Employees, setEmployees] = useState({});
   const [testData, setTestData] = useState({});
+
+  // //Employee Details
+  // const [staffName, setStaffName] = useState("");
+  // const [staffEmail, setStaffEmail] = useState("");
+  // const [phoneNo, setPhoneNo] = useState("");
+  // const [dept, setDept] = useState("");
+  // const [jobTitle, setStaffJobTitle] = useState("");
+  // const [salary, setSalary] = useState();
+  // const [dateJoined, setDateJoined] = useState();
+  // const [acctNo, setAcctNo] = useState("");
+  // const [confirmDetails, setConfirmDetails] = useState(false);
+
+  // const submitEmployee = (e) => {
+  //   e.preventDefault();
+
+  //   const employeeDetails = {
+  //     staffName: staffName,
+  //     staffEmail: staffEmail,
+  //     phoneNumber: phoneNo,
+  //     Department: dept,
+  //     jobTitle: jobTitle,
+  //     salary: salary,
+  //     dateJoined: "Joined " + dateJoined,
+  //   };
+
+  //   console.log(employeeDetails);
+  //   setConfirmDetails(true);
+  // };
 
   useEffect(() => {
     const getEmployees = async () => {
@@ -38,7 +66,54 @@ const Employees = () => {
   return (
     <>
       <div id="employee">
-        {/* <div className="employee-grid">
+        <button onClick={() => setOpenEmployee(!openEmployee)}></button>
+
+        <div className="employee-grid">
+          <div
+            className="employee-card"
+            onClick={() => setOpenEmployee(!openEmployee)}
+          >
+            <img
+              src="../Avatars/1.jpg"
+              alt="employee-avatar"
+              className="employee-avatar"
+            />
+          </div>
+
+          <div
+            className="employee-card"
+            onClick={() => setOpenEmployee(!openEmployee)}
+          >
+            <img
+              src="../Avatars/1.jpg"
+              alt="employee-avatar"
+              className="employee-avatar"
+            />
+          </div>
+
+          <div
+            className="employee-card"
+            onClick={() => setOpenEmployee(!openEmployee)}
+          >
+            <img
+              src="../Avatars/1.jpg"
+              alt="employee-avatar"
+              className="employee-avatar"
+            />
+          </div>
+
+          <div
+            className="employee-card"
+            onClick={() => setOpenEmployee(!openEmployee)}
+          >
+            <img
+              src="../Avatars/1.jpg"
+              alt="employee-avatar"
+              className="employee-avatar"
+            />
+          </div>
+        </div>
+        {/* 
           {console.log(testData)}
           {testData.length > 0 ? (
             testData.map((employee, index) => (
@@ -74,9 +149,8 @@ const Employees = () => {
           )}
         </div> */}
         <EmployeeProfile
-        // lname={testData[0].name.last}
-        // fname={testData[0].name.first}
-        // gender={testData[0].gender}
+          openEmployee={openEmployee}
+          setOpenEmployee={setOpenEmployee}
         />
       </div>
 

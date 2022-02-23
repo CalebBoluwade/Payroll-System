@@ -3,6 +3,8 @@ import { Alert } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../Actions";
+import CircularProgress from "@mui/material/CircularProgress";
+import axios from "axios";
 
 const Login = () => {
   const isUserAuth = useSelector((state) => state.authReducer);
@@ -14,52 +16,74 @@ const Login = () => {
     }
   }, [isUserAuth]);
 
+  const isLoading = useSelector((state) => state.loadingReducer);
+
   const dispatch = useDispatch();
   const nav = useNavigate();
 
-  const email = "demo@payroll.com";
-  const password = "qwertyuiop";
-
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
+  const [datafromServer, setDatafromServer] = useState();
+  const [serverResponse, setServerResponse] = useState();
   const [show, setShow] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
 
   let wrongPasswordCount = 0;
 
-  const handleLoginRequest = (e) => {
-    e.preventDefault();
+  const Login = {
+    email: userEmail,
+    password: userPassword,
+  };
 
-    // console.log("faju");
-    if (userEmail === "") {
-      console.log("Empty E");
-    }
-    if (userPassword === "") {
-      console.log("Empty P");
-    }
-    if (userEmail !== email) {
-      console.log("Incorrect email");
-    }
-    if (userPassword !== password) {
-      console.log("Incorrect Password");
-      wrongPasswordCount = wrongPasswordCount + 1;
-      console.log(wrongPasswordCount);
-      if (wrongPasswordCount >= 3) {
-        setShowForgotPassword(true);
-      }
-      if (wrongPasswordCount >= 5) {
-        setShowForgotPassword(true);
-      }
-    }
-    if (email === userEmail) {
-      if (password === userPassword) {
+  const sendLoginRequest = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:4000/login", Login);
+
+      setDatafromServer(response);
+      console.log(datafromServer);
+
+      if (datafromServer.status === 200) {
+        setServerResponse(datafromServer.data.message);
+        console.log(datafromServer.data.message);
         setShow(true);
         dispatch(login()) && nav("/dashboard");
       }
+    } catch (e) {
+      console.log(e);
+      // if (datafromServer.status == 401) {
+      setServerResponse(datafromServer.data.message);
+      console.log(datafromServer.data.message);
+      // }
     }
+    // setShow(true);
   };
 
-  //Check if user is already logged in
+  // const handleLoginRequest = (event) => {
+  //   event.preventDefault();
+
+  //   if (userEmail === "") {
+  //     console.log("Empty E");
+  //   }
+  //   if (userPassword === "") {
+  //     console.log("Empty P");
+  //   }
+  //   if (userEmail !== email) {
+  //     console.log("Incorrect email");
+  //   }
+  //   if (userPassword !== password) {
+  //     console.log("Incorrect Password");
+  //     wrongPasswordCount = wrongPasswordCount + 1;
+  //     console.log(wrongPasswordCount);
+  //     if (wrongPasswordCount >= 3) {
+  //       setShowForgotPassword(true);
+  //     }
+  //     if (wrongPasswordCount >= 5) {
+  //       setShowForgotPassword(true);
+  //     }
+  //   }
+  //
+  // };
 
   return (
     <>
@@ -88,9 +112,13 @@ const Login = () => {
               backgroundSize: "contain",
             }}
           >
-            <form action="/dashboard" className="form-control" id="login">
-              <div className={show ? "" : "hide"}>
-                <Alert>Login Sucessful. Redirecting..</Alert>
+            <form
+              className="form-control"
+              id="login"
+              onSubmit={sendLoginRequest}
+            >
+              <div className={show ? "hide" : ""}>
+                <Alert>{serverResponse}</Alert>
               </div>
 
               {wrongPasswordCount < 5 ? (
@@ -120,7 +148,6 @@ const Login = () => {
                   E-mail
                 </span>
                 <br />
-                {/* <label htmlFor="email">E-MAIL ADDRESS</label> */}
                 <input
                   type="email"
                   required
@@ -150,16 +177,8 @@ const Login = () => {
                 <p style={{ color: "navy" }}>Forgot Password?</p>
               </div>
 
-              <button
-                onKeyPress={(e) => {
-                  console.log(e.key);
-                  if (e.key === "ENTER") {
-                    handleLoginRequest();
-                  }
-                }}
-                onClick={handleLoginRequest}
-              >
-                Login
+              <button disabled={isLoading} onClick={sendLoginRequest}>
+                {isLoading ? "Loading..." : "Login"}
               </button>
             </form>
 
@@ -168,6 +187,8 @@ const Login = () => {
             </Link>
 
             <div className="paySecure">Secured</div>
+
+            <button>Fingerprint Login</button>
           </div>
         </>
       )}

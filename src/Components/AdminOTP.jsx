@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Alert } from "@mui/material";
+import axios from "axios";
 
 const AdminOTP = ({ showOTP, setOTPDisplay }) => {
   const [OTP, setOTP] = useState(""); //Generated OTP
@@ -10,12 +11,18 @@ const AdminOTP = ({ showOTP, setOTPDisplay }) => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    var NewOTP = () => {
-      const randomNum = Math.random().toFixed(4).substring(2);
-      setOTP(Math.floor(randomNum).toString());
+    const getOTP = async () => {
+      try {
+        const res = await axios.get("http://localhost:4000/otp");
+
+        const data = res.json();
+        setOTP(data);
+      } catch (e) {
+        console.log(e);
+      }
     };
-    NewOTP();
-  }, []);
+    getOTP();
+  }, [OTP]);
 
   const validateOTP = () => {
     if (userOTP !== OTP) {

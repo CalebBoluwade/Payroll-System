@@ -1,4 +1,5 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
 // import { Chart } from "chart.js";
 
 const ChartJs = () => {
@@ -42,7 +43,7 @@ const ChartJs = () => {
 
   return (
     <>
-      <canvas id="myChart" width="200" height="200"></canvas>
+      <canvas id="chart"></canvas>
     </>
   );
 };

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Alert } from "@mui/material";
+import axios from "axios";
 
 const AdminAuth = () => {
   const [OTP, setOTP] = useState(""); //Generated OTP
@@ -9,15 +10,21 @@ const AdminAuth = () => {
   const isUserAuth = useSelector((state) => state.authReducer);
   const [show, setShow] = useState(false);
 
-  useEffect(() => {
-    var NewOTP = () => {
-      const randomNum = Math.random().toFixed(4).substring(2);
-      setOTP(Math.floor(randomNum).toString());
-    };
-    NewOTP();
-  }, []);
+  const navigate = useNavigate();
+  const isLoading = useSelector((state) => state.loadingReducer);
 
-  const date = Date();
+  useEffect(() => {
+    const getOTP = async () => {
+      try {
+        const res = await axios.get("http://localhost:4000/otp");
+
+        setOTP(res.data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    getOTP();
+  }, []);
 
   const validateOTP = () => {
     if (userOTP !== OTP) {
@@ -34,7 +41,6 @@ const AdminAuth = () => {
           navigate("/login");
         }
       }, 5000);
-      sessionStorage.setItem("last_admin_login", "eyrw");
     }
   };
 
@@ -45,8 +51,6 @@ const AdminAuth = () => {
   // validateOTP()
   //     }
   //   })
-
-  const navigate = useNavigate();
 
   // const sms = {
   //   sender: "New Wave Payroll",

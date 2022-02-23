@@ -11,12 +11,15 @@ const Home = () => {
   return (
     <>
       <Header />
-      <div style={{ paddingTop: "77px", color: "#0a3838" }}>
-        <img
-          src="./home/pexels-anna-nekrashevich-6801873.jpg"
-          alt="work-anywhere"
-          className="slide-image"
-        />
+      <div style={{ paddingTop: "77px" }}>
+        <figure>
+          <img
+            src="./home/pexels-anna-nekrashevich-6801873.jpg"
+            alt="work-anywhere"
+            className="slide-image"
+          />
+          <figcaption>A Guy Working</figcaption>
+        </figure>
       </div>
 
       {/* <div className="home-slides">

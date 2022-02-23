@@ -12,7 +12,7 @@ const AdminPage = () => {
   const isUserAuth = useSelector((state) => state.authReducer);
   // const isLoading = useSelector((state) => state.loadingReducer);
   const [connectionStatus, setConnectionStatus] = useState();
-  const [showStatus, setShowStatus] = useState();
+  // const [showStatus, setShowStatus] = useState();
   const [welcomeBanner, setWelcomeBanner] = useState(false);
 
   const dispatch = useDispatch();
@@ -23,7 +23,6 @@ const AdminPage = () => {
       setWelcomeBanner(true);
     }, 5000);
     setConnectionStatus(navigator.onLine);
-    console.log(navigator);
   }, [navigator]);
 
   useEffect(() => {
@@ -61,21 +60,21 @@ const AdminPage = () => {
         </div>
       </div>
 
-      <div className={showStatus ? "" : "hide"}>
-        {connectionStatus ? (
-          <>
-            <div className="status online">
-              <Wifi /> Connection Available
-            </div>
-          </>
-        ) : (
-          <>
-            <div className="status offline">
-              <WifiOffOutlined /> Connection Offline
-            </div>
-          </>
-        )}
-      </div>
+      {/* <div className={showStatus ? "" : "hide"}> */}
+      {connectionStatus ? (
+        <>
+          <div className="status online">
+            <Wifi /> Connection Available
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="status offline">
+            <WifiOffOutlined /> Connection Offline
+          </div>
+        </>
+      )}
+      {/* </div> */}
 
       {/* 
       <div className="welcome-banner">

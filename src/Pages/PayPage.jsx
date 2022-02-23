@@ -1,111 +1,182 @@
+import { Tooltip } from "@mui/material";
 import React, { useState } from "react";
+import axios from "axios";
 
 const PayPage = () => {
-  const key = "pk_test_xxxxxxxxx";
-  const [email, setEmail] = useState("");
-  const [amount, setAmount] = useState("");
-  const [currency] = "NGN";
+  const [customerEmail, setCustomerEmail] = useState("");
+  const currency = "NGN";
   const [ref] = "PR";
-  const [transRef, setTransRef] = useState("");
+  // const [transRef, setTransRef] = useState("");
   const [cardNumber, setCardNumber] = useState("");
   const [cardExpiryM, setCardExpiryM] = useState("");
   const [cardExpiryY, setCardExpiryY] = useState("");
   const [CVV, setCVV] = useState("");
 
-  const Paystack = (e) => {
+  const [openCard, setOpenCard] = useState(true);
+  const [openBank, setOpenBank] = useState(false);
+  const [openUSSD, setOpenUSSD] = useState(false);
+
+  const payMethods = ["card", "bank", "ussd"];
+
+  // switch (payMethods) {
+  //   case 0:
+  //     setOpenBank(true);
+  //     break;
+  //   case 1:
+  //     setOpenCard(true);
+  //     break;
+  //   case 2:
+  //     setOpenUSSD(true);
+  //     break;
+  //   default:
+  //     setOpenBank(true);
+  //     break;
+  // }
+
+  const payWithPaystack = (e) => {
     e.preventDefault();
 
-    window.addEventListener("close", (e) => {
-      alert("Window Closed");
-    });
-
     const Paystack_data = {
-      key: key,
-      email: email,
+      email: customerEmail,
+      cardNumber: cardNumber,
+      cardExpiryM: cardExpiryM,
+      cardExpiryY: cardExpiryY,
+      CVV: CVV,
       currency: currency,
-      amount: amount * 100,
-      ref: ref + Math.floor(Math.random() * 1000000000 + 1),
     };
 
-    const submitPaystackData = async (e) => {
+    const submitPaystackData = async () => {
       try {
-        const res = await fetch(
-          "https://api.paystack.co/transaction/initialize",
-          {
-            headers: "application/json",
-            body: JSON.stringify(Paystack_data),
-          }
+        const res = await axios.post(
+          "http://localhost:4000/pay",
+          Paystack_data
         );
         const data = res.json;
-      } catch {
-        console.log(e);
+        console.log(data);
+      } catch (err) {
+        console.log(err);
       }
     };
+    submitPaystackData();
   };
   return (
     <>
       <div className="aqua pay">
-        <form
-          action="https://api.paystack.co/transaction/initialize"
-          className="form-control"
-          id="paystack"
-        >
+        <form className="form-control" id="paystack">
           <div className="amount">N323,000</div>
           <div className="right">GROOVE TECH. SOLUTIONS</div>
-          <div className="pay-platform">
-            <img src="./credit-card.svg" width="45" alt="" />
-            <span>Pay with Card</span>
-            Enter your details to pay
-            <div className="card-details">
-              <input
-                type="email"
-                name=""
-                id=""
-                placeholder="0000 0000 0000 0000"
-                onChange={(e) => setCardNumber(e.target.value)}
-              />
+          <div id="pay">
+            <div className="pay-methods">
+              <Tooltip title="Card">
+                <div className="pay-with">
+                  <img src="./credit-card.svg" width="45" alt="" />
+                </div>
+              </Tooltip>
 
-              <div className="card">
-                <input
-                  type="tel"
-                  name=""
-                  id="month"
-                  placeholder="Month"
-                  maxLength="4"
-                  onChange={(e) => setCardExpiryM(e.target.value)}
-                />
+              <Tooltip title="Bank">
+                <div className="pay-with">
+                  <img src="./bank.svg" width="45" alt="Bank" />
+                </div>
+              </Tooltip>
 
-                <input
-                  type="tel"
-                  id="year"
-                  placeholder="C V V"
-                  minLength="3"
-                  maxLength="3"
-                  onChange={(e) => setCardExpiryY(e.target.value)}
-                />
-              </div>
-              <input
-                type="tel"
-                id=""
-                placeholder="CVV"
-                minLength="3"
-                maxLength="3"
-                onChange={(e) => setCVV(e.target.value)}
-              />
+              <Tooltip title="USSD">
+                <div className="pay-with">
+                  <img src="./ussd_image.svg" width="45" alt="" />
+                </div>
+              </Tooltip>
             </div>
-          </div>
-          <div className="pay-platform">
-            <img src="./bank.svg" width="45" alt="Bank" />
-            <span>Pay with Bank</span>
-          </div>
+
+            <div
+              className={`pay-platform ${
+                payMethods[0] == "card" ? "hide" : "hide"
+              }`}
+            >
+              Enter your details to pay
+              <div className="card-details">
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="Email"
+                  required
+                  onChange={(e) => setCustomerEmail(e.target.value)}
+                />
+
+                <input
+                  type="text"
+                  name=""
+                  id="cardNumber"
+                  minLength={16}
+                  maxLength={16}
+                  placeholder="0000 0000 0000 0000"
+                  onChange={(e) => setCardNumber(e.target.value)}
+                />
+
+                <div className="card">
+                  <input
+                    type="tel"
+                    name=""
+                    id="month"
+                    placeholder="MM"
+                    min="01"
+                    max="12"
+                    minLength="2"
+                    maxLength="2"
+                    required
+                    onChange={(e) => setCardExpiryM(e.target.value)}
+                  />
+                  /
+                  <input
+                    type="tel"
+                    id="year"
+                    placeholder="YY"
+                    min="22"
+                    minLength="2"
+                    maxLength="2"
+                    required
+                    onChange={(e) => setCardExpiryY(e.target.value)}
+                  />
+                  <input
+                    type="tel"
+                    id="cvv"
+                    placeholder="CVV"
+                    minLength="3"
+                    maxLength="3"
+                    required
+                    onChange={(e) => setCVV(e.target.value)}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div
+              className="pay-platform"
+              className={`pay-platform ${
+                payMethods[1] == "bank" ? "hide" : ""
+              }`}
+            >
+              <div className="pay-methods">
+                <img src="./bank.svg" width="45" alt="Bank" />
+                Pay with Keystone
+              </div>
+              <div className="pay-with">
+                <img src="./bank.svg" width="45" alt="Bank" />
+                Pay with GTCO
+              </div>
+              <div className="pay-with">
+                <img src="./bank.svg" width="45" alt="Bank" />
+                Pay with ALAT
+              </div>
+            </div>
+            {/* 
           <div className="pay-platform">
             <img src="./ussd_image.svg" width="45" alt="" />
-            <span>Pay with USSD</span>
+          </div> */}
           </div>
-          <button onClick={() => Paystack}>PROCEED</button>
+          <button onClick={payWithPaystack}>PROCEED</button>
           Why Chose PayEase?
         </form>
-        <img src="./secure-white-en.e212765d.svg" alt="paystack" />
+        <img src="./paystackSecured.svg" alt="paystack" />
       </div>
     </>
   );

@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import EmployeePayButton from "../../Components/EmployeePayButton";
 import { Delete } from "@material-ui/icons";
 import AdminOTP from "../../Components/AdminOTP";
-import { Tooltip } from "@mui/material";
+import { Dialog, Tooltip } from "@mui/material";
 
-const EmployeeProfile = () => {
+const EmployeeProfile = ({openEmployee, setOpenEmployee}) => {
   const [showSalaryInput, setSalaryInput] = useState(false);
   const [NewSalary, setNewSalary] = useState("75000000");
   const [showOTP, setOTPDisplay] = useState(false);
+  const [BVN, setBVN] = useState("");
 
   let lname = "Boluwade";
   let fname = "Caleb";
@@ -26,6 +27,7 @@ const EmployeeProfile = () => {
 
   return (
     <>
+    <Dialog open={openEmployee} onClose={() => setOpenEmployee(!openEmployee)}>
       <div className="view-employee">
         <p
           className="right"
@@ -50,6 +52,12 @@ const EmployeeProfile = () => {
             {department}
           </div>
         </div>
+
+        <input
+              type="text"
+              id="salary-input"
+              onChange={(e) => setBVN(e.target.value)}
+            />
 
         <div className="right sm-text" onClick={handleSalary}>
           CHANGE SALARY
@@ -90,6 +98,8 @@ const EmployeeProfile = () => {
 
         {/* <EmployeePayButton /> */}
       </div>
+
+      </Dialog>
     </>
   );
 };
