@@ -11,7 +11,7 @@ const AdminAuth = () => {
   const [show, setShow] = useState(false);
 
   const navigate = useNavigate();
-  const isLoading = useSelector((state) => state.loadingReducer);
+  // const isLoading = useSelector((state) => state.loadingReducer);
 
   useEffect(() => {
     const getOTP = async () => {
@@ -44,43 +44,15 @@ const AdminAuth = () => {
     }
   };
 
-  // const Button = document.getElementById("otp-button");
-  // console.log(Button)
-  //   Button.addEventListener("keydown", (e) =>{
-  //     if (e.key == "enter"){
-  // validateOTP()
-  //     }
-  //   })
+  const resetOTP = async () => {
+    try {
+      const res = await axios.get("http://localhost:4000/otp");
 
-  // const sms = {
-  //   sender: "New Wave Payroll",
-  //   recipient: "08038220361",
-  //   message: "Your One Time Password is" + OTP + "." + "Expires in x Minutes",
-  // };
-
-  // const sendOTPsms = async () => {
-  //   try {
-  //     const res = await fetch(
-  //       "https://messaging.vtpass.com/v2/api/sms/sendsms",
-  //       {
-  //         method: "POST",
-  //         headers: {
-  //           "X-Token": "VT_PK_XXXXXXXXXXXXXXXXXXXXXXX",
-  //           "X-Secret": "VT_SK_XXXXXXXXXXXXXXXXXXXXXX",
-  //           "Content-Type": "application/x-www-form-urlencoded",
-  //         },
-  //         body: JSON.stringify(sms),
-  //       }
-  //     );
-  //     const data = await res.json();
-  //     return data;
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
-  // sendOTPsms();
-
-  // button.setAttribute("disabled", " ");
+      setOTP(res.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <>
@@ -90,27 +62,29 @@ const AdminAuth = () => {
             <Alert>OTP Confirmed Sucessfully</Alert>
           </div>
 
-          <p>OTP sent to your registered Phone Number</p>
+          <h2 className="center">{OTP}</h2>
+          <p className="center">Authenticate Admin</p>
 
-          <label htmlFor="otp">ENTER OTP</label>
-          <input
-            type="text"
-            required
-            id="otp"
-            placeholder="Enter OTP"
-            minLength={4}
-            maxLength={4}
-            onChange={(e) => setUserOTP(e.target.value)}
-          />
+          <div className="input-area">
+            <label htmlFor="otp">ENTER OTP</label>
+            <input
+              type="text"
+              required
+              id="otp"
+              min={6}
+              step={3}
+              max={6}
+              required
+              placeholder="Enter OTP"
+              onChange={(e) => setUserOTP(e.target.value)}
+            />
+          </div>
 
           <button id="otp-button" onClick={validateOTP}>
             VERIFY OTP
           </button>
-
-          <h3>{OTP}</h3>
-
-          {/* <p onClick={() => NewOTP()}>Didn't receive OTP, resend it</p> */}
         </div>
+        <p onClick={resetOTP}>Didn't receive OTP, resend it</p>
       </div>
     </>
   );

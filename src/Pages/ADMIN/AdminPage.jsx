@@ -1,5 +1,5 @@
 import { Menu, WifiOffOutlined, Wifi } from "@material-ui/icons";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, Outlet } from "react-router-dom";
 import { logout } from "../../Actions";
@@ -23,7 +23,7 @@ const AdminPage = () => {
       setWelcomeBanner(true);
     }, 5000);
     setConnectionStatus(navigator.onLine);
-  }, [navigator]);
+  }, [navigator.onLine]);
 
   useEffect(() => {
     if (!isUserAuth) {

@@ -1,13 +1,7 @@
 import React, { useState } from "react";
 import Footer from "../Components/Footer";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  Checkbox,
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  FormControlLabel,
-} from "@mui/material";
+import { Checkbox, Dialog, DialogContent, DialogTitle } from "@mui/material";
 
 const Pricing = () => {
   const [openTCs, closeTCs] = useState(false);

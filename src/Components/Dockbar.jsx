@@ -27,7 +27,7 @@ const Dockbar = () => {
         <Tooltip title="Home">
           <Link to="/">
             <div className="dock-item">
-              <img src="./home.svg" alt="Home" className="img" />
+              <img src="../home.svg" alt="Home" className="img" />
             </div>
           </Link>
         </Tooltip>
@@ -35,7 +35,15 @@ const Dockbar = () => {
         <Tooltip title="Admin">
           <Link to="/admin">
             <div className="dock-item">
-              <img src="./admin.svg" alt="Admin" className="img" />
+              <img src="../admin.svg" alt="Admin" className="img" />
+            </div>
+          </Link>
+        </Tooltip>
+
+        <Tooltip title="Business Analytics">
+          <Link to="/bm-analytics">
+            <div className="dock-item">
+              <img src="../analytics.svg" alt="Admin" className="img" />
             </div>
           </Link>
         </Tooltip>
@@ -43,7 +51,7 @@ const Dockbar = () => {
         <Tooltip title="Utilities">
           <div className="dock-item">
             <img
-              src="./utilities.svg"
+              src="../utilities.svg"
               alt="Utilities"
               className="img"
               onClick={() => setOpenUtils(!openUtils)}
@@ -54,7 +62,7 @@ const Dockbar = () => {
         <Tooltip title="Settings">
           <div className="dock-item">
             <img
-              src="./settings.svg"
+              src="../settings.svg"
               className="img"
               alt="Settings"
               onClick={() => setOpenSettings(!openSettings)}
@@ -65,7 +73,7 @@ const Dockbar = () => {
         <Tooltip title="Log Out">
           <div className="dock-item">
             <img
-              src="./power-button2.svg"
+              src="../power-button2.svg"
               className="img"
               alt="Logout"
               onClick={() => dispatch(logout())}

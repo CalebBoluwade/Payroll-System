@@ -25,36 +25,40 @@ const Login = () => {
   const [userPassword, setUserPassword] = useState("");
   const [datafromServer, setDatafromServer] = useState();
   const [serverResponse, setServerResponse] = useState();
+  const [dataLoading, setDataLoading] = useState(false);
   const [show, setShow] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
 
   let wrongPasswordCount = 0;
 
-  const Login = {
-    email: userEmail,
-    password: userPassword,
-  };
-
   const sendLoginRequest = async (e) => {
     e.preventDefault();
+    setDataLoading(true);
+
+    const Login = {
+      email: userEmail,
+      password: userPassword,
+    };
+
     try {
       const response = await axios.post("http://localhost:4000/login", Login);
 
       setDatafromServer(response);
+      setServerResponse(response.data.message);
+      setDataLoading(false);
       console.log(datafromServer);
 
-      if (datafromServer.status === 200) {
-        setServerResponse(datafromServer.data.message);
-        console.log(datafromServer.data.message);
-        setShow(true);
-        dispatch(login()) && nav("/dashboard");
+      if (!dataLoading) {
+        if (response.status === 200) {
+          // console.log(datafromServer.data.message);
+          // setShow(true);
+          dispatch(login()) && nav("/dashboard");
+        }
       }
     } catch (e) {
       console.log(e);
-      // if (datafromServer.status == 401) {
-      setServerResponse(datafromServer.data.message);
-      console.log(datafromServer.data.message);
-      // }
+      // setServerResponse(datafromServer.data.message);
+      // console.log(datafromServer.data.message);
     }
     // setShow(true);
   };

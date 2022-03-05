@@ -10,19 +10,20 @@ const AdminOTP = ({ showOTP, setOTPDisplay }) => {
   const isUserAuth = useSelector((state) => state.authReducer);
   const [show, setShow] = useState(false);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const getOTP = async () => {
       try {
         const res = await axios.get("http://localhost:4000/otp");
 
-        const data = res.json();
-        setOTP(data);
+        setOTP(res.data);
       } catch (e) {
         console.log(e);
       }
     };
     getOTP();
-  }, [OTP]);
+  }, []);
 
   const validateOTP = () => {
     if (userOTP !== OTP) {
@@ -32,79 +33,57 @@ const AdminOTP = ({ showOTP, setOTPDisplay }) => {
     if (userOTP === OTP) {
       setShow(true);
       setTimeout(() => {
-        setShow(false);
-        setOTPDisplay(!showOTP);
-      }, 4000);
-
-      sessionStorage.setItem("last_admin_login", "eyrw");
+        if (isUserAuth) {
+          navigate("/admin");
+        }
+        if (!isUserAuth) {
+          navigate("/login");
+        }
+      }, 5000);
     }
   };
 
-  const sms = {
-    sender: "New Wave Payroll",
-    recipient: "08038220361",
-    message: "Your One Time Password is" + OTP + "." + "Expires in x Minutes",
+  const resetOTP = async () => {
+    try {
+      const res = await axios.get("http://localhost:4000/otp");
+
+      setOTP(res.data);
+    } catch (e) {
+      console.log(e);
+    }
   };
-
-  // const sendOTPsms = async () => {
-  //   try {
-  //     const res = await fetch(
-  //       "https://messaging.vtpass.com/v2/api/sms/sendsms",
-  //       {
-  //         method: "POST",
-  //         headers: {
-  //           "X-Token": "VT_PK_XXXXXXXXXXXXXXXXXXXXXXX",
-  //           "X-Secret": "VT_SK_XXXXXXXXXXXXXXXXXXXXXX",
-  //           "Content-Type": "application/x-www-form-urlencoded",
-  //         },
-  //         body: JSON.stringify(sms),
-  //       }
-  //     );
-  //     const data = await res.json();
-  //     return data;
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
-  // sendOTPsms();
-
-  // button.setAttribute("disabled", " ");
 
   return (
     <>
       {/* <div className="otp-background"></div> */}
       <div className={`otp-background ${showOTP ? "" : "hide"}`}>
-        <div className="admin-otp">
-          <div className={show ? "" : "hide"}>
-            <Alert>OTP Confirmed Sucessfully</Alert>
-          </div>
-
-          <p className="center">Authenticate Admin</p>
-          <div className="input-area">
-            <label htmlFor="otp">ENTER OTP</label>
-            <input
-              type="text"
-              required
-              id="otp"
-              min={4}
-              step={3}
-              required
-              placeholder="Enter OTP"
-              onChange={(e) => setUserOTP(e.target.value)}
-            />
-            <input type="password" required name="" id="" />
-          </div>
-
-          <button id="otp-button" onClick={validateOTP}>
-            VERIFY OTP
-          </button>
-
-          <h3>{OTP}</h3>
-
-          <button>Continue</button>
-          {/* <p onClick={() => NewOTP()}>Didn't receive OTP, resend it</p> */}
+        <div className={show ? "" : "hide"}>
+          <Alert>OTP Confirmed Sucessfully</Alert>
         </div>
+
+        <h2 className="center">{OTP}</h2>
+        <p className="center">Authenticate Admin</p>
+
+        <div className="input-area">
+          <label htmlFor="otp">ENTER OTP</label>
+          <input
+            type="text"
+            required
+            id="otp"
+            min={6}
+            step={3}
+            max={6}
+            required
+            placeholder="Enter OTP"
+            onChange={(e) => setUserOTP(e.target.value)}
+          />
+        </div>
+
+        <button id="otp-button" onClick={validateOTP}>
+          VERIFY OTP
+        </button>
       </div>
+      <p onClick={resetOTP}>Didn't receive OTP, resend it</p>
     </>
   );
 };

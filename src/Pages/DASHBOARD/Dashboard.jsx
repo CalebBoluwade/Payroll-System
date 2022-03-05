@@ -11,7 +11,6 @@ import { useNavigate } from "react-router-dom";
 // import { darkTheme, lightTheme, aquaTheme } from "../../Actions";
 
 const Dashboard = () => {
-  const [openProfile, setOpenProfile] = useState(false);
   const [openAssistant, setOpenAssistant] = useState(false);
   const [AssistantProfile, setAssistantProfile] = useState("");
   const [show, setShow] = useState(true);
@@ -27,18 +26,18 @@ const Dashboard = () => {
   var slideIndex = 0;
 
   const suggestions = () => {
-    var i;
-    const suggestSlides = document.getElementsByClassName("suggestions");
+    let i;
+    const slides = document.getElementsByClassName("suggestions");
 
-    for (i = 0; i < suggestSlides.length; i++) {
-      suggestSlides[i].classList = "hide";
+    for (i = 1; i < slides.length; i++) {
+      // slides[i].classList -= "hide";
     }
 
     slideIndex++;
-    if (slideIndex > suggestSlides.length) {
+    if (slideIndex > slides.length) {
       slideIndex = 1;
     }
-    // suggestSlides[slideIndex - 1].style.display = "flex";
+    // slides[slideIndex - 1].style.display = "flex";
 
     setTimeout(suggestions, 5000);
   };
@@ -106,63 +105,63 @@ const Dashboard = () => {
             display: "flex",
             alignItems: "center",
             margin: "15px 0 0 0",
-            justifyContent: "space-evenly",
+            justifyContent: "center",
           }}
         >
           <div
-            style={{ display: "flex", flexFlow: "column" }}
+            id="virtual-assistant"
             onClick={() => setOpenAssistant(!openAssistant)}
           >
-            <div id="virtual-assistant">
-              Choose your Assistant
-              <span>
-                {openAssistant ? (
-                  <>
-                    <KeyboardArrowUp
-                      style={{
-                        paddingTop: 7,
-                        paddingLeft: 15,
-                        fontSize: 32,
-                      }}
-                    />
-                  </>
-                ) : (
-                  <>
-                    <KeyboardArrowDown
-                      style={{
-                        paddingTop: 7,
-                        paddingLeft: 15,
-                        fontSize: 40,
-                      }}
-                    />
-                  </>
-                )}
-              </span>
+            Choose your Assistant
+            <span>
+              {openAssistant ? (
+                <>
+                  <KeyboardArrowUp
+                    style={{
+                      paddingTop: 7,
+                      paddingLeft: 15,
+                      fontSize: 32,
+                    }}
+                  />
+                </>
+              ) : (
+                <>
+                  <KeyboardArrowDown
+                    style={{
+                      paddingTop: 7,
+                      paddingLeft: 15,
+                      fontSize: 40,
+                    }}
+                  />
+                </>
+              )}
+            </span>
+          </div>
+
+          <div className="center">{AssistantProfile}</div>
+
+          <div id="drop-down" className={openAssistant ? "" : "hide"}>
+            <div
+              className="assistant-list"
+              onClick={() => setAssistantProfile("sam")}
+            >
+              <img src="../Avatars/2.jpg" width={50} alt="" />
+              <div>SAM</div>
+            </div>
+            <div
+              className="assistant-list"
+              onClick={() => setAssistantProfile("kate")}
+            >
+              <img src="../Avatars/1.jpg" width={50} alt="" />
+              KATE
             </div>
 
-            <div id="drop-down" className={openAssistant ? "" : "hide"}>
-              <div
-                className="assistant-list"
-                onClick={() => setAssistantProfile("sam")}
-              >
-                <img src="./Avatars/2.jpg" width={35} alt="" />
-                SAM
-              </div>
-              <div
-                className="assistant-list"
-                onClick={() => setAssistantProfile("kate")}
-              >
-                <img src="./Avatars/1.jpg" width={35} alt="" />
-                KATE
-              </div>
-
-              <div
-                className="assistant-list"
-                onClick={() => setAssistantProfile("fletcher")}
-              >
-                <img src="./Avatars/3.jpg" width={35} alt="" />
-                FLETCHER
-              </div>
+            <div
+              className="assistant-list"
+              onClick={() => setAssistantProfile("fletcher")}
+            >
+              <img src="../Avatars/3.jpg" width={50} alt="" />
+              FLETCHER
             </div>
           </div>
         </div>

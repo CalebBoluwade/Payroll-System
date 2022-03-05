@@ -12,6 +12,7 @@ import Contact from "../Pages/Contact";
 import Dashboard from "../Pages/DASHBOARD/Dashboard";
 import Board from "../Pages/DASHBOARD/Board";
 import Profile from "../Pages/DASHBOARD/Profile";
+import Utilities from "../Pages/DASHBOARD/Utilities";
 import Employeed from "../Pages/DASHBOARD/Employees";
 import Notification from "../Pages/DASHBOARD/Notification";
 import Calendar from "../Pages/DASHBOARD/Calendar";
@@ -32,6 +33,11 @@ import AdminSearch from "../Pages/ADMIN/AdminSearch";
 import AdminFeedback from "../Pages/ADMIN/AdminFeedback";
 import AdminPrefrences from "../Pages/ADMIN/AdminPrefrences";
 import NeedHelp from "../Pages/ADMIN/NeedHelp";
+import Receipts from "../Pages/Receipts";
+import BusinessAnalytics from "../Pages/BusinessAnalytics";
+import ChartJs from "../Pages/DASHBOARD/ChartJs";
+import AdminOTP from "./AdminOTP";
+import Mail from "../Pages/Mail";
 
 const AppRouter = () => {
   const isUserAuth = useSelector((state) => state.authReducer);
@@ -41,15 +47,22 @@ const AppRouter = () => {
         <Route path="/" element={<Home />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="register" element={<Register />} />
+        <Route path="receipt" element={<Receipts />} />
+        <Route path="mail" element={<Mail />} />
         {/* DASHBOARD */}
         <Route path="dashboard" element={<Dashboard />}>
           <Route path="board" element={<Board />}>
+            <Route path="chart1" element={<ChartJs />} />
+            <Route path="chart2" element={<Calendar />} />
+            <Route path="chart3" element={<AdminOTP />} />
             <Route path="calendar" element={<Calendar />} />
           </Route>
+          <Route path="buy-utilities" element={<Utilities />} />
           <Route path="notifications" element={<Notification />} />
           <Route path="profile" element={<Profile />} />
           <Route path="employee" element={<Employeed />} />
         </Route>
+        <Route path="bm-analytics" element={<BusinessAnalytics />} />
         {/* ADMIN */}
         <Route path="admin" element={<AdminPage />}>
           <Route path="payments" element={<AdminPayments />} />

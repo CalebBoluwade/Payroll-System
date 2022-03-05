@@ -11,27 +11,9 @@ const PayPage = () => {
   const [cardExpiryM, setCardExpiryM] = useState("");
   const [cardExpiryY, setCardExpiryY] = useState("");
   const [CVV, setCVV] = useState("");
+  const [serviceID, setServiceID] = useState("");
 
-  const [openCard, setOpenCard] = useState(true);
-  const [openBank, setOpenBank] = useState(false);
-  const [openUSSD, setOpenUSSD] = useState(false);
-
-  const payMethods = ["card", "bank", "ussd"];
-
-  // switch (payMethods) {
-  //   case 0:
-  //     setOpenBank(true);
-  //     break;
-  //   case 1:
-  //     setOpenCard(true);
-  //     break;
-  //   case 2:
-  //     setOpenUSSD(true);
-  //     break;
-  //   default:
-  //     setOpenBank(true);
-  //     break;
-  // }
+  // const payMethods = ["card", "bank", "ussd"];
 
   const payWithPaystack = (e) => {
     e.preventDefault();
@@ -70,29 +52,49 @@ const PayPage = () => {
               <Tooltip title="Card">
                 <div className="pay-with">
                   <img src="./credit-card.svg" width="45" alt="" />
+
+                  <input
+                    className="service"
+                    type="radio"
+                    name="select"
+                    className="select_service"
+                    onClick={() => setServiceID("Card")}
+                  />
                 </div>
               </Tooltip>
 
               <Tooltip title="Bank">
                 <div className="pay-with">
                   <img src="./bank.svg" width="45" alt="Bank" />
+
+                  <input
+                    className="service"
+                    type="radio"
+                    name="select"
+                    className="select_service"
+                    onClick={() => setServiceID("Bank")}
+                  />
                 </div>
               </Tooltip>
 
               <Tooltip title="USSD">
                 <div className="pay-with">
                   <img src="./ussd_image.svg" width="45" alt="" />
+
+                  <input
+                    className="service"
+                    type="radio"
+                    name="select"
+                    className="select_service"
+                    onClick={() => setServiceID("USSD")}
+                  />
                 </div>
               </Tooltip>
             </div>
 
-            <div
-              className={`pay-platform ${
-                payMethods[0] == "card" ? "hide" : "hide"
-              }`}
-            >
-              Enter your details to pay
-              <div className="card-details">
+            <div id="card-details">
+              <span className="center">Enter your details to pay</span>
+              <div>
                 <input
                   type="email"
                   name="email"
@@ -146,15 +148,19 @@ const PayPage = () => {
                     onChange={(e) => setCVV(e.target.value)}
                   />
                 </div>
+                <div style={{ margin: "15px 0" }}>
+                  <input
+                    type="checkbox"
+                    name=""
+                    id=""
+                    style={{ marginRight: 10 }}
+                  />
+                  Save Card
+                </div>
               </div>
             </div>
 
-            <div
-              className="pay-platform"
-              className={`pay-platform ${
-                payMethods[1] == "bank" ? "hide" : ""
-              }`}
-            >
+            {/* <div className="pay-platform">
               <div className="pay-methods">
                 <img src="./bank.svg" width="45" alt="Bank" />
                 Pay with Keystone
@@ -167,7 +173,7 @@ const PayPage = () => {
                 <img src="./bank.svg" width="45" alt="Bank" />
                 Pay with ALAT
               </div>
-            </div>
+            </div> */}
             {/* 
           <div className="pay-platform">
             <img src="./ussd_image.svg" width="45" alt="" />
